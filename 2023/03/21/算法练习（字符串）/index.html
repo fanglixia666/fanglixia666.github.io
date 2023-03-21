@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>算法练习（字符串） | 方立夏</title>
+  <meta name="keywords" content=" java , Github ">
+  <meta name="description" content="算法练习（字符串） | 方立夏">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="算法练习（双指针）涉及的算法题1.27移除元素1.题目给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素，并返回移除后数组的新长度。 不要使用额外的数组空间，你必须仅使用 O(1) 额外空间并原地修改输入数组。 元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。 示例 1: 给定 nums &#x3D; [3,2,2,3], val &#x3D; 3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法练习（双指针）">
+<meta property="og:url" content="http://example.com/2023/03/21/%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A02%E4%B8%80%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0%EF%BC%88%E5%8F%8C%E6%8C%87%E9%92%88%EF%BC%89/index.html">
+<meta property="og:site_name" content="方立夏">
+<meta property="og:description" content="算法练习（双指针）涉及的算法题1.27移除元素1.题目给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素，并返回移除后数组的新长度。 不要使用额外的数组空间，你必须仅使用 O(1) 额外空间并原地修改输入数组。 元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。 示例 1: 给定 nums &#x3D; [3,2,2,3], val &#x3D; 3">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://code-thinking.cdn.bcebos.com/gifs/27.%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0-%E6%9A%B4%E5%8A%9B%E8%A7%A3%E6%B3%95.gif">
+<meta property="og:image" content="https://code-thinking.cdn.bcebos.com/gifs/27.%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0-%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95.gif">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/HPx34e25eAdVD9sgbCD0hEqXA6AIlGUr2UZ6VbLH6kic97nCq5YSQsWY8M8icCTNSSvjYZe4NHxy02ibMibmvaLJIw/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/HPx34e25eAdVD9sgbCD0hEqXA6AIlGUraRrmspPNib7az96HvLaHnYmGWkCk7IzGia8JOJLvxMdwjicfiaQuagnAGg/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/HPx34e25eAdVD9sgbCD0hEqXA6AIlGUrp3wpk92ibgYgqsu24FJYL2Hp8fg7tErWU7sUMuvibsszaS0PGo62zYSw/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/2GfhQ2H7oTFQtLYfmUIeHibNM0eZRvOsBPLJyclEEJgO0tlfw7TMiagRlWLsTXiaQQC0apzibaFWcRnyrXickdSf1YA/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/2GfhQ2H7oTFQtLYfmUIeHibNM0eZRvOsBLWlhiaoBf4gbED2CclOUZhVj27nJMVUWvcqIOqZCDwlsPjUmjrwYXdw/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://code-thinking.cdn.bcebos.com/gifs/977.%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9.gif">
+<meta property="article:published_time" content="2023-03-21T07:25:32.565Z">
+<meta property="article:modified_time" content="2023-03-21T07:24:13.902Z">
+<meta property="article:author" content="方立夏">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="Github">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://code-thinking.cdn.bcebos.com/gifs/27.%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0-%E6%9A%B4%E5%8A%9B%E8%A7%A3%E6%B3%95.gif">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>方立夏</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/fanglixia666"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/jaytp/activities"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            <a title="email"
+               href="mailto:2377579176@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=2377579176&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="kugou"
+               href="https://www.kugou.com/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-kugou"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="neteasemusic"
+               href="https://music.163.com/#/user/home?id=88151013"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-neteasemusic"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(4)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="博客篇">
+                        
+                        博客篇
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="算法篇">
+                        
+                        算法篇
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">关于</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="4">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Github</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Hexo</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>java</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 算法篇 "
+           href="/2023/03/21/%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A02%E4%B8%80%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0%EF%BC%88%E5%8F%8C%E6%8C%87%E9%92%88%EF%BC%89/"
+           data-tag="java,Github"
+           data-author="" >
+            <span class="post-title" title="算法练习（双指针）">算法练习（双指针）</span>
+            <span class="post-date" title="2023-03-21 15:25:32">2023/03/21</span>
+        </a>
+        
+        
+        <a  class="全部文章 算法篇 "
+           href="/2023/03/21/%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0%EF%BC%88%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%89/"
+           data-tag="java,Github"
+           data-author="" >
+            <span class="post-title" title="算法练习（字符串）">算法练习（字符串）</span>
+            <span class="post-date" title="2023-03-21 15:25:25">2023/03/21</span>
+        </a>
+        
+        
+        <a  class="全部文章 博客篇 "
+           href="/2023/03/21/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A11/"
+           data-tag="Github,Hexo"
+           data-author="" >
+            <span class="post-title" title="11月Java总结">11月Java总结</span>
+            <span class="post-date" title="2023-03-21 10:56:25">2023/03/21</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2023/03/21/hello-world/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2023-03-21 10:51:18">2023/03/21</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-算法练习（字符串）" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">算法练习（字符串）</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="算法篇">算法篇</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">java</a>
+            
+            <a class="color2">Github</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2023-03-21 15:24:33'>2023-03-21 15:25</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0-%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">算法学习(字符串)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#KMP%E7%AE%97%E6%B3%95"><span class="toc-text">KMP算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-KMP%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8"><span class="toc-text">1.KMP有什么用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BB%80%E4%B9%88%E6%98%AF%E5%89%8D%E7%BC%80%E8%A1%A8"><span class="toc-text">2.什么是前缀表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%89%8D%E5%90%8E%E7%BC%80%EF%BC%9F"><span class="toc-text">3.最长公共前后缀？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%80%E5%AE%9A%E8%A6%81%E7%94%A8%E5%89%8D%E7%BC%80%E8%A1%A8"><span class="toc-text">4.为什么一定要用前缀表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E5%89%8D%E7%BC%80%E8%A1%A8"><span class="toc-text">5.如何计算前缀表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%89%8D%E7%BC%80%E8%A1%A8%E4%B8%8Enext%E6%95%B0%E7%BB%84"><span class="toc-text">6.前缀表与next数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E4%BD%BF%E7%94%A8next%E6%95%B0%E7%BB%84%E6%9D%A5%E5%8C%B9%E9%85%8D"><span class="toc-text">7.使用next数组来匹配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E6%9E%84%E9%80%A0next%E6%95%B0%E7%BB%84"><span class="toc-text">8. 构造next数组</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%89%E5%8F%8A%E7%9A%84%E7%AE%97%E6%B3%95%E9%A2%98"><span class="toc-text">涉及的算法题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">1.反转字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%A2%98%E7%9B%AE"><span class="toc-text">1.题目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%80%9D%E8%B7%AF%EF%BC%88%E5%8F%8C%E6%8C%87%E9%92%88%EF%BC%89"><span class="toc-text">2.思路（双指针）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81"><span class="toc-text">3.实现代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2II"><span class="toc-text">2.反转字符串II</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%A2%98%E7%9B%AE-1"><span class="toc-text">1.题目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%80%9D%E8%B7%AF"><span class="toc-text">2.思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81-1"><span class="toc-text">3.实现代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%89%91%E6%8C%87Offer-05-%E6%9B%BF%E6%8D%A2%E7%A9%BA%E6%A0%BC"><span class="toc-text">3.剑指Offer 05.替换空格</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81-2"><span class="toc-text">3.实现代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-151-%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%87%8C%E7%9A%84%E5%8D%95%E8%AF%8D"><span class="toc-text">4.151.翻转字符串里的单词</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%A2%98%E7%9B%AE-2"><span class="toc-text">1.题目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%80%9D%E8%B7%AF-1"><span class="toc-text">2.思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81-3"><span class="toc-text">3.实现代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%89%91%E6%8C%87Offer58-II-%E5%B7%A6%E6%97%8B%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">5.剑指Offer58-II.左旋转字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%A2%98%E7%9B%AE-3"><span class="toc-text">1.题目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%80%9D%E8%B7%AF-2"><span class="toc-text">2.思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81-4"><span class="toc-text">3.实现代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-28-%E5%AE%9E%E7%8E%B0-strStr"><span class="toc-text">6.28. 实现 strStr()</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%A2%98%E7%9B%AE-4"><span class="toc-text">1.题目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%80%9D%E8%B7%AF-3"><span class="toc-text">2.思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81-5"><span class="toc-text">3.实现代码</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E6%96%B9%E6%B3%95%E4%BA%8C"><span class="toc-text">2.方法二</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-459-%E9%87%8D%E5%A4%8D%E7%9A%84%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">7.459.重复的子字符串</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%A6%81%E4%B8%8D%E8%A6%81%E4%BD%BF%E7%94%A8%E5%BA%93%E5%87%BD%E6%95%B0"><span class="toc-text">1.要不要使用库函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8F%8D%E8%BD%AC%E7%B3%BB%E5%88%97"><span class="toc-text">2.反转系列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95"><span class="toc-text">3.双指针法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-kmp"><span class="toc-text">4.kmp</span></a></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="算法学习-字符串"><a href="#算法学习-字符串" class="headerlink" title="算法学习(字符串)"></a>算法学习(字符串)</h1><h2 id="KMP算法"><a href="#KMP算法" class="headerlink" title="KMP算法"></a>KMP算法</h2><h3 id="1-KMP有什么用"><a href="#1-KMP有什么用" class="headerlink" title="1.KMP有什么用"></a>1.KMP有什么用</h3><p>KMP主要应用在字符串匹配上。</p>
+<p>KMP的主要思想是<strong>当出现字符串不匹配时，可以知道一部分之前已经匹配的文本内容，可以利用这些信息避免从头再去做匹配了。</strong></p>
+<p>所以如何记录已经匹配的文本内容，是KMP的重点，也是next数组肩负的重任。</p>
+<p>其实KMP的代码不好理解，一些同学甚至直接把KMP代码的模板背下来。</p>
+<p>没有彻底搞懂，懵懵懂懂就把代码背下来太容易忘了。</p>
+<p>不仅面试的时候可能写不出来，如果面试官问：<strong>next数组里的数字表示的是什么，为什么这么表示？</strong></p>
+<p>next[i]表示的就是<strong>有多大长度的相同前缀后缀</strong></p>
+<h3 id="2-什么是前缀表"><a href="#2-什么是前缀表" class="headerlink" title="2.什么是前缀表"></a>2.什么是前缀表</h3><p><strong>前缀表是用来回退的，它记录了模式串与主串(文本串)不匹配的时候，模式串应该从哪里开始重新匹配。</strong></p>
+<p>此时就要问了<strong>前缀表是如何记录的呢？</strong></p>
+<p>首先要知道前缀表的任务是当前位置匹配失败，找到之前已经匹配上的位置，再重新匹配，此也意味着在某个字符失配时，前缀表会告诉你下一步匹配中，模式串应该跳到哪个位置。</p>
+<p>那么什么是前缀表：<strong>记录下标i之前（包括i）的字符串中，有多大长度的相同前缀后缀。</strong></p>
+<h3 id="3-最长公共前后缀？"><a href="#3-最长公共前后缀？" class="headerlink" title="3.最长公共前后缀？"></a>3.最长公共前后缀？</h3><p>文章中字符串的<strong>前缀是指不包含最后一个字符的所有以第一个字符开头的连续子串</strong>。</p>
+<p><strong>后缀是指不包含第一个字符的所有以最后一个字符结尾的连续子串</strong>。</p>
+<p><strong>正确理解什么是前缀什么是后缀很重要</strong>!</p>
+<p><strong>因为前缀表要求的就是相同前后缀的长度。</strong></p>
+<p>而最长公共前后缀里面的“公共”，更像是说前缀和后缀公共的长度。这其实并不是前缀表所需要的。</p>
+<p>所以字符串a的最长相等前后缀为0。 字符串aa的最长相等前后缀为1。 字符串aaa的最长相等前后缀为2。 等等…..。</p>
+<h3 id="4-为什么一定要用前缀表"><a href="#4-为什么一定要用前缀表" class="headerlink" title="4.为什么一定要用前缀表"></a>4.为什么一定要用前缀表</h3><p>这就是前缀表，那为啥就能告诉我们 上次匹配的位置，并跳过去呢？</p>
+<p>回顾一下，刚刚匹配的过程在下标5的地方遇到不匹配，模式串是指向f，如图： <img src="https://code-thinking.cdn.bcebos.com/pics/KMP%E7%B2%BE%E8%AE%B21.png" alt="KMP精讲1"></p>
+<p>然后就找到了下标2，指向b，继续匹配：如图： <img src="https://code-thinking.cdn.bcebos.com/pics/KMP%E7%B2%BE%E8%AE%B22.png" alt="KMP精讲2"></p>
+<p>以下这句话，对于理解为什么使用前缀表可以告诉我们匹配失败之后跳到哪里重新匹配 非常重要！</p>
+<p><strong>下标5之前这部分的字符串（也就是字符串aabaa）的最长相等的前缀 和 后缀字符串是 子字符串aa ，因为找到了最长相等的前缀和后缀，匹配失败的位置是后缀子串的后面，那么我们找到与其相同的前缀的后面重新匹配就可以了。</strong></p>
+<h3 id="5-如何计算前缀表"><a href="#5-如何计算前缀表" class="headerlink" title="5.如何计算前缀表"></a>5.如何计算前缀表</h3><p>接下来就要说一说怎么计算前缀表。</p>
+<p>如图：</p>
+<p><img src="https://code-thinking.cdn.bcebos.com/pics/KMP%E7%B2%BE%E8%AE%B25.png" alt="KMP精讲5"></p>
+<p>长度为前1个字符的子串<code>a</code>，最长相同前后缀的长度为0。（注意字符串的<strong>前缀是指不包含最后一个字符的所有以第一个字符开头的连续子串</strong>；<strong>后缀是指不包含第一个字符的所有以最后一个字符结尾的连续子串</strong>。）</p>
+<p><img src="https://code-thinking.cdn.bcebos.com/pics/KMP%E7%B2%BE%E8%AE%B26.png" alt="KMP精讲6"></p>
+<p>长度为前2个字符的子串<code>aa</code>，最长相同前后缀的长度为1。</p>
+<p><img src="https://code-thinking.cdn.bcebos.com/pics/KMP%E7%B2%BE%E8%AE%B27.png" alt="KMP精讲7"></p>
+<p>长度为前3个字符的子串<code>aab</code>，最长相同前后缀的长度为0。</p>
+<p>以此类推： 长度为前4个字符的子串<code>aaba</code>，最长相同前后缀的长度为1。 长度为前5个字符的子串<code>aabaa</code>，最长相同前后缀的长度为2。 长度为前6个字符的子串<code>aabaaf</code>，最长相同前后缀的长度为0。</p>
+<p>那么把求得的最长相同前后缀的长度就是对应前缀表的元素，如图： <img src="https://code-thinking.cdn.bcebos.com/pics/KMP%E7%B2%BE%E8%AE%B28.png" alt="KMP精讲8"></p>
+<p>可以看出模式串与前缀表对应位置的数字表示的就是：<strong>下标i之前（包括i）的字符串中，有多大长度的相同前缀后缀。</strong></p>
+<p>再来看一下如何利用 前缀表找到 当字符不匹配的时候应该指针应该移动的位置。如动画所示：</p>
+<p><img src="https://code-thinking.cdn.bcebos.com/gifs/KMP%E7%B2%BE%E8%AE%B22.gif" alt="KMP精讲2"></p>
+<p>找到的不匹配的位置， 那么此时我们要看它的前一个字符的前缀表的数值是多少。</p>
+<p>为什么要前一个字符的前缀表的数值呢，因为要找前面字符串的最长相同的前缀和后缀。</p>
+<p>所以要看前一位的 前缀表的数值。</p>
+<p>前一个字符的前缀表的数值是2， 所以把下标移动到下标2的位置继续比配。 可以再反复看一下上面的动画。</p>
+<p>最后就在文本串中找到了和模式串匹配的子串了。</p>
+<h3 id="6-前缀表与next数组"><a href="#6-前缀表与next数组" class="headerlink" title="6.前缀表与next数组"></a>6.前缀表与next数组</h3><p>next数组就可以是前缀表，但是很多实现都是把前缀表统一减一（右移一位，初始位置为-1）之后作为next数组。</p>
+<h3 id="7-使用next数组来匹配"><a href="#7-使用next数组来匹配" class="headerlink" title="7.使用next数组来匹配"></a>7.使用next数组来匹配</h3><p><img src="https://code-thinking.cdn.bcebos.com/gifs/KMP%E7%B2%BE%E8%AE%B24.gif" alt="KMP精讲4"></p>
+<h3 id="8-构造next数组"><a href="#8-构造next数组" class="headerlink" title="8. 构造next数组"></a>8. 构造next数组</h3><p><strong>构造next数组其实就是计算模式串s，前缀表的过程。</strong> 主要有如下三步：</p>
+<ol>
+<li>初始化</li>
+<li>处理前后缀不相同的情况</li>
+<li>处理前后缀相同的情况</li>
+</ol>
+<p>接下来我们详解一下。</p>
+<ol>
+<li>初始化：</li>
+</ol>
+<p>定义两个指针i和j，j指向前缀末尾位置，i指向后缀末尾位置。</p>
+<p>然后还要对next数组进行初始化赋值，如下：</p>
+<pre><code class="java">int j=0;
+next[0] = j;
+</code></pre>
+<p>​	2.处理前后缀不相同的情况</p>
+<p>因为j初始化为-1，那么i就从1开始，进行s[i] 与 s[j+1]的比较。</p>
+<p>所以遍历模式串s的循环下标i 要从 1开始，代码如下：</p>
+<pre><code class="java">for (int i = 1; i &lt; s.size(); i++) &#123;
+</code></pre>
+<p>如果 s[i] 与 s[j+1]不相同，也就是遇到 前后缀末尾不相同的情况，就要向前回退。</p>
+<p>怎么回退呢？</p>
+<p>next[j]就是记录着j（包括j）之前的子串的相同前后缀的长度。</p>
+<p>那么 s[i] 与 s[j+1] 不相同，就要找 j+1前一个元素在next数组里的值（就是next[j]）。</p>
+<p>所以，处理前后缀不相同的情况代码如下：</p>
+<pre><code class="java">while (j &gt;= 0 &amp;&amp; s[i] != s[j + 1]) &#123; // 前后缀不相同了
+    j = next[j]; // 向前回退
+&#125;
+</code></pre>
+<p>3.处理前后缀相同的情况</p>
+<p>如果 s[i] 与 s[j + 1] 相同，那么就同时向后移动i 和j 说明找到了相同的前后缀，同时还要将j（前缀的长度）赋给next[i], 因为next[i]要记录相同前后缀的长度。</p>
+<pre><code class="java">if (s[i] == s[j + 1]) &#123; // 找到相同的前后缀
+    j++;
+&#125;
+next[i] = j;
+</code></pre>
+<p>最后整体构建next数组的函数代码如下：</p>
+<pre><code class="cpp">void getNext(int* next, const string&amp; s)&#123;
+    int j = -1;
+    next[0] = j;
+    for(int i = 1; i &lt; s.size(); i++) &#123; // 注意i从1开始
+        while (j &gt;= 0 &amp;&amp; s[i] != s[j + 1]) &#123; // 前后缀不相同了
+            j = next[j]; // 向前回退
+        &#125;
+        if (s[i] == s[j + 1]) &#123; // 找到相同的前后缀
+            j++;
+        &#125;
+        next[i] = j; // 将j（前缀的长度）赋给next[i]
+    &#125;
+&#125;
+</code></pre>
+<p>代码构造next数组的逻辑流程动画如下：</p>
+<p><img src="https://code-thinking.cdn.bcebos.com/gifs/KMP%E7%B2%BE%E8%AE%B23.gif" alt="KMP精讲3"></p>
+<p>得到了next数组之后，就要用这个来做匹配了。</p>
+<p><img src="https://code-thinking-1253855093.file.myqcloud.com/pics/20220728212157.png" alt="图四"></p>
+<p><img src="https://code-thinking.cdn.bcebos.com/pics/459.%E9%87%8D%E5%A4%8D%E7%9A%84%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2_1.png" alt="459.重复的子字符串_1"></p>
+<p>关于kmp前缀表加一减一不变三种代码情况</p>
+<h2 id="涉及的算法题"><a href="#涉及的算法题" class="headerlink" title="涉及的算法题"></a>涉及的算法题</h2><h3 id="1-反转字符串"><a href="#1-反转字符串" class="headerlink" title="1.反转字符串"></a>1.反转字符串</h3><h4 id="1-题目"><a href="#1-题目" class="headerlink" title="1.题目"></a>1.题目</h4><p>编写一个函数，其作用是将输入的字符串反转过来。输入字符串以字符数组 char[] 的形式给出。</p>
+<p>不要给另外的数组分配额外的空间，你必须原地修改输入数组、使用 O(1) 的额外空间解决这一问题。</p>
+<p>你可以假设数组中的所有字符都是 ASCII 码表中的可打印字符。</p>
+<p>示例 1：<br>输入：[“h”,”e”,”l”,”l”,”o”]<br>输出：[“o”,”l”,”l”,”e”,”h”]</p>
+<p>示例 2：<br>输入：[“H”,”a”,”n”,”n”,”a”,”h”]<br>输出：[“h”,”a”,”n”,”n”,”a”,”H”</p>
+<h4 id="2-思路（双指针）"><a href="#2-思路（双指针）" class="headerlink" title="2.思路（双指针）"></a>2.思路（双指针）</h4><p>那么反转字符串依然是使用双指针的方法，只不过对于字符串的反转，其实要比链表简单一些。</p>
+<p>因为字符串也是一种数组，所以元素在内存中是连续分布，这就决定了反转链表和反转字符串方式上还是有所差异的。</p>
+<p>如果对数组和链表原理不清楚的同学，可以看这两篇，<a target="_blank" rel="noopener" href="https://programmercarl.com/%E9%93%BE%E8%A1%A8%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.html">关于链表，你该了解这些！ (opens new window)</a>，<a target="_blank" rel="noopener" href="https://programmercarl.com/%E6%95%B0%E7%BB%84%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.html">必须掌握的数组理论知识 (opens new window)</a>。</p>
+<p>对于字符串，我们定义两个指针（也可以说是索引下标），一个从字符串前面，一个从字符串后面，两个指针同时向中间移动，并交换元素。</p>
+<p>以字符串<code>hello</code>为例，过程如下：</p>
+<p><img src="https://code-thinking.cdn.bcebos.com/gifs/344.%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2.gif" alt="344.反转字符串"></p>
+<h4 id="3-实现代码"><a href="#3-实现代码" class="headerlink" title="3.实现代码"></a>3.实现代码</h4><pre><code class="Java">class Solution &#123;
+    public void reverseString(char[] s) &#123;
+        int l=0;
+        int r = s.length - 1;
+        while(l&lt;r) &#123;
+            char temp = s[l];
+            s[l] = s[r];
+            s[r] = temp;
+            l++;
+            r--;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h3 id="2-反转字符串II"><a href="#2-反转字符串II" class="headerlink" title="2.反转字符串II"></a>2.反转字符串II</h3><h4 id="1-题目-1"><a href="#1-题目-1" class="headerlink" title="1.题目"></a>1.题目</h4><h4 id="2-思路"><a href="#2-思路" class="headerlink" title="2.思路"></a>2.思路</h4><h4 id="3-实现代码-1"><a href="#3-实现代码-1" class="headerlink" title="3.实现代码"></a>3.实现代码</h4><pre><code class="java">class Solution &#123;
+    public String reverseStr(String s, int k) &#123;
+        char[] ch = s.toCharArray();
+        for(int i = 0;i&lt;ch.length;i+=2*k) &#123;
+            if(i+k &lt;= ch.length) &#123;
+                reverse(ch,i,i+k-1);
+                continue;
+            &#125;
+            reverse(ch,i,ch.length-1);
+        &#125;
+        return new STRING(CH);
+    &#125;
+    public void reverse(char[] ch, int i, int j) &#123;
+        for(;i&lt;j;i++,j--) &#123;
+            char temp = ch[i];
+            ch[i] = ch[j];
+            ch[j] = temp;
+        &#125;
+    &#125;
+&#125;
+
+</code></pre>
+<h3 id="3-剑指Offer-05-替换空格"><a href="#3-剑指Offer-05-替换空格" class="headerlink" title="3.剑指Offer 05.替换空格"></a>3.剑指Offer 05.替换空格</h3><p>1.题目</p>
+<p>2.思路</p>
+<h4 id="3-实现代码-2"><a href="#3-实现代码-2" class="headerlink" title="3.实现代码"></a>3.实现代码</h4><pre><code class="Java">public String replaceSpace(String s) &#123;
+         if(s == null || s.length() == 0)&#123;
+        return s;
+    &#125;
+     StringBuilder str = new StringBuilder();
+    for (int i = 0;i&lt;s.length();i++) &#123;
+        if(s.chat(i) == &#39;&#39;) &#123;
+            str.append(&quot;  &quot;);
+        &#125;
+    &#125;
+    if(str.length() == 0) &#123;
+        return s;
+    &#125;
+    int left = s.length() -1;
+    s+=str.toString();
+    int right = s.length() -1;
+    char[] chars = s.toCharArray();
+    while(left&gt;=0)&#123;
+        if(chars[left] == &#39; &#39;)&#123;
+            chars[right--] = &#39;0&#39;;
+            chars[right--] = &#39;2&#39;;
+            chars[right] = &#39;%&#39;;
+        &#125;else &#123;
+            chars[right] = chars[left];
+        &#125;
+        left --;
+        right--;
+    &#125;
+    return new String(chars);
+&#125;
+</code></pre>
+<pre><code class="java">第二种方法
+//使用一个新的对象，复制 str，复制的过程对其判断，是空格则替换，否则直接复制，类似于数组复制
+public static String replaceSpace(String s) &#123;
+if(s==null)&#123;
+return null;
+&#125;
+StringBuilder sb = new StringBuilder();
+for(int i = 0;i&lt;s.length();i++)&#123;
+if(s.charAt(i) == &#39; &#39;) &#123;
+sb.append(&quot;%20&quot;);
+&#125;else&#123;
+sb.append(s.chatAt(i));
+&#125;
+return sb.toString();
+&#125;
+&#125;
+</code></pre>
+<h3 id="4-151-翻转字符串里的单词"><a href="#4-151-翻转字符串里的单词" class="headerlink" title="4.151.翻转字符串里的单词"></a>4.151.翻转字符串里的单词</h3><h4 id="1-题目-2"><a href="#1-题目-2" class="headerlink" title="1.题目"></a>1.题目</h4><pre><code>给定一个字符串，逐个翻转字符串中的每个单词。
+
+示例 1：
+输入: &quot;the sky is blue&quot;
+输出: &quot;blue is sky the&quot;
+
+示例 2：
+输入: &quot;  hello world!  &quot;
+输出: &quot;world! hello&quot;
+解释: 输入字符串可以在前面或者后面包含多余的空格，但是反转后的字符不能包括。
+
+示例 3：
+输入: &quot;a good   example&quot;
+输出: &quot;example good a&quot;
+解释: 如果两个单词间有多余的空格，将反转后单词间的空格减少到只含一个。
+</code></pre>
+<p>所以这里我还是提高一下本题的难度：<strong>不要使用辅助空间，空间复杂度要求为O(1)。</strong></p>
+<h4 id="2-思路-1"><a href="#2-思路-1" class="headerlink" title="2.思路"></a>2.思路</h4><p>1.使用库函数erase</p>
+<pre><code class="Java">void removeExtraSpaces(string&amp; s) &#123;
+    for (int i = s.size() - 1; i &gt; 0; i--) &#123;
+        if (s[i] == s[i - 1] &amp;&amp; s[i] == &#39; &#39;) &#123;
+            s.erase(s.begin() + i);
+        &#125;
+    &#125;
+    // 删除字符串最后面的空格
+    if (s.size() &gt; 0 &amp;&amp; s[s.size() - 1] == &#39; &#39;) &#123;
+        s.erase(s.begin() + s.size() - 1);
+    &#125;
+    // 删除字符串最前面的空格
+    if (s.size() &gt; 0 &amp;&amp; s[0] == &#39; &#39;) &#123;
+        s.erase(s.begin());
+    &#125;
+&#125;
+</code></pre>
+<p>逻辑很简单，从前向后遍历，遇到空格了就erase。</p>
+<p>如果不仔细琢磨一下erase的时间复杂度，还以为以上的代码是O(n)的时间复杂度呢。</p>
+<p>想一下真正的时间复杂度是多少，一个erase本来就是O(n)的操作。</p>
+<p>erase操作上面还套了一个for循环，那么以上代码移除冗余空格的代码时间复杂度为O(n^2)。</p>
+<p>2.双指针方法来处理O（n）的复杂度</p>
+<p>那么使用双指针法来去移除空格，最后resize（重新设置）一下字符串的大小，就可以做到O(n)的时间复杂度。</p>
+<pre><code class="Java">void removeExtraSpaces(string&amp; s) &#123;//去除所有空格并在相邻单词之间添加空格, 快慢指针。
+    int slow = 0;
+    for(int i=0;i&lt;s.size();++i) &#123;
+        if(s[i] != &#39; &#39;) &#123;
+            if(slow != 0) s[slow++] = &#39; &#39;;
+            while(i&lt;s.size() &amp;&amp; s[i] != &#39; &#39;) &#123;
+                s[slow++]= s[i++];
+            &#125;
+        &#125;
+    &#125;
+    s.resize(slow);
+&#125;
+</code></pre>
+<p>3.整体反转后再局部反转</p>
+<h4 id="3-实现代码-3"><a href="#3-实现代码-3" class="headerlink" title="3.实现代码"></a>3.实现代码</h4><pre><code class="Java">class Solution &#123;
+    /**
+     * 不使用Java内置方法实现
+     * &lt;p&gt;
+     * 1.去除首尾以及中间多余空格
+     * 2.反转整个字符串
+     * 3.反转各个单词
+     */
+    public String reverseWords(String s) &#123;
+        StringBuilder sb = removeSpace(s);
+        // 2.反转整个字符串
+        reverseString(sb, 0, sb.length() - 1);
+        // 3.反转各个单词
+        reverseEachWord(sb);
+        return sb.toString();
+    &#125;
+     private StringBuilder removeSpace(String s) &#123;
+         int start = 0;
+         int end = s.length()-1;
+         while (s.charAt(start) == &#39; &#39;) start++;
+         while (s.charAt(end) == &#39; &#39;) end--;
+         StringBulider sb = new StringBuilder();
+         while(start&lt;= end) &#123;
+             char c=s.charAt(start);
+             if(c!= &#39; &#39; || sb.charAt(sb.length() -1) != &#39; &#39;) &#123;
+                 sb.append(c);
+             &#125;
+             start ++;
+         &#125;
+         return sb;
+     &#125;
+     public void reverseString(StringBuilder sb, int start, int end) &#123;
+         while(start &lt; end)&#123;
+             char temp = sb.charAt(start);
+             sb.setCharAt(start, sb.charAt(end));
+            sb.setCharAt(end, temp);
+            start++;
+            end--;
+         &#125;
+     &#125;
+     private void reverseEachWord(StringBuilder sb) &#123;
+         int start = 0;
+         int end = 0;
+         int n =sb.length();
+         while(start&lt; n)&#123;
+             while(end&lt;n &amp;&amp; sb.charAt(end)!= &#39; &#39;) &#123;
+                 end++;
+             &#125;
+             reverseString(sb, start, end - 1);
+            start = end + 1;
+            end = start + 1;
+         &#125;
+     &#125;
+&#125;
+</code></pre>
+<p>还有其他解法</p>
+<p>解法2，解法3</p>
+<h3 id="5-剑指Offer58-II-左旋转字符串"><a href="#5-剑指Offer58-II-左旋转字符串" class="headerlink" title="5.剑指Offer58-II.左旋转字符串"></a>5.剑指Offer58-II.左旋转字符串</h3><h4 id="1-题目-3"><a href="#1-题目-3" class="headerlink" title="1.题目"></a>1.题目</h4><p>字符串的左旋转操作是把字符串前面的若干个字符转移到字符串的尾部。请定义一个函数实现字符串左旋转操作的功能。比如，输入字符串”abcdefg”和数字2，该函数将返回左旋转两位得到的结果”cdefgab”。</p>
+<p>示例 1：<br>输入: s &#x3D; “abcdefg”, k &#x3D; 2<br>输出: “cdefgab”</p>
+<p>示例 2：<br>输入: s &#x3D; “lrloseumgh”, k &#x3D; 6<br>输出: “umghlrlose”</p>
+<p>限制：<br>1 &lt;&#x3D; k &lt; s.length &lt;&#x3D; 10000</p>
+<h4 id="2-思路-2"><a href="#2-思路-2" class="headerlink" title="2.思路"></a>2.思路</h4><p>为了让本题更有意义，提升一下本题难度：<strong>不能申请额外空间，只能在本串上操作</strong>。</p>
+<p>具体步骤为：</p>
+<ol>
+<li>反转区间为前n的子串</li>
+<li>反转区间为n到末尾的子串</li>
+<li>反转整个字符串</li>
+</ol>
+<p>最后就可以达到左旋n的目的，而不用定义新的字符串，完全在本串上操作。</p>
+<p>例如 ：示例1中 输入：字符串abcdefg，n&#x3D;2</p>
+<p>如图：</p>
+<p><img src="https://code-thinking.cdn.bcebos.com/pics/%E5%89%91%E6%8C%87Offer58-II.%E5%B7%A6%E6%97%8B%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2.png" alt="img"></p>
+<p>最终得到左旋2个单元的字符串：cdefgab</p>
+<h4 id="3-实现代码-4"><a href="#3-实现代码-4" class="headerlink" title="3.实现代码"></a>3.实现代码</h4><pre><code class="Java">class solution &#123;
+     public String reverseLeftWords(String s, int n) &#123;
+         int len = s.length();
+         StringBuilder sb = new StringBulider(s);
+         reverseString(sb,0,n-1);
+         reverseString(sb,n,len-1);
+         return sb.reverse().toString();
+     &#125;
+     public void reverseString(StringBuilder sb, int start, int end) &#123;
+         while(start&lt;end)&#123;
+             char temp = sb.chatAt(start);
+             sb.setCharAt(start,sb.charAt(end));
+             sb.setCharAt(end,temp);
+             start++;end--;
+         &#125;
+     &#125;
+&#125;
+</code></pre>
+<h3 id="6-28-实现-strStr"><a href="#6-28-实现-strStr" class="headerlink" title="6.28. 实现 strStr()"></a>6.28. 实现 strStr()</h3><h4 id="1-题目-4"><a href="#1-题目-4" class="headerlink" title="1.题目"></a>1.题目</h4><p>实现 strStr() 函数。</p>
+<p>给定一个 haystack 字符串和一个 needle 字符串，在 haystack 字符串中找出 needle 字符串出现的第一个位置 (从0开始)。如果不存在，则返回  -1。</p>
+<p>示例 1: 输入: haystack &#x3D; “hello”, needle &#x3D; “ll” 输出: 2</p>
+<p>示例 2: 输入: haystack &#x3D; “aaaaa”, needle &#x3D; “bba” 输出: -1</p>
+<p>说明: 当 needle 是空字符串时，我们应当返回什么值呢？这是一个在面试中很好的问题。 对于本题而言，当 needle 是空字符串时我们应当返回 0 。这与C语言的 strstr() 以及 Java的 indexOf() 定义相符。</p>
+<h4 id="2-思路-3"><a href="#2-思路-3" class="headerlink" title="2.思路"></a>2.思路</h4><h4 id="3-实现代码-5"><a href="#3-实现代码-5" class="headerlink" title="3.实现代码"></a>3.实现代码</h4><pre><code class="java">class Solution &#123;
+    /**
+     * 基于窗口滑动的算法
+     * &lt;p&gt;
+     * 时间复杂度：O(m*n)
+     * 空间复杂度：O(1)
+     * 注：n为haystack的长度，m为needle的长度
+     */
+    public int strStr(String haystack, String needle) &#123;
+        int m = needle.length();
+        if(m==0) &#123;
+            return 0;
+        &#125;
+        int n=haystack.length();
+        if(n&lt;m)&#123;
+            return -1;
+        &#125;
+        int i = 0;
+        int j = 0;
+         while (i &lt; n - m + 1) &#123;
+            // 找到首字母相等
+            while (i &lt; n &amp;&amp; haystack.charAt(i) != needle.charAt(j)) &#123;
+                i++;
+            &#125;
+               if (i == n) &#123;// 没有首字母相等的
+                return -1;
+            &#125;
+             
+          i++;
+            j++;
+            while (i &lt; n &amp;&amp; j &lt; m &amp;&amp; haystack.charAt(i) == needle.charAt(j)) &#123;
+                i++;
+                j++;
+            &#125;
+            if (j == m) &#123;// 找到
+                return i - j;
+            &#125; else &#123;// 未找到
+                i -= j - 1;
+                j = 0;
+            &#125;
+        &#125;
+        return -1;
+    &#125;
+&#125;
+</code></pre>
+<h5 id="2-方法二"><a href="#2-方法二" class="headerlink" title="2.方法二"></a>2.方法二</h5><pre><code class="java">// 方法一
+class Solution &#123;
+    public void getNext(int[] next, String s)&#123;
+        int j=0;
+        next[0]=0;
+        for(int i= 1;i&lt;s.size();i++) &#123;
+            while(j &gt;0 &amp;&amp; s[i] != s[j]) &#123;
+                j=next[j-1];
+            &#125;
+            if(s[i] ==  s[j]) &#123;
+                j++;
+            &#125;
+            next[i] = j;
+        &#125;
+    &#125;
+    int strStr(string haystack, string needle) &#123;
+        if(needle.size() == 0) &#123;
+            return 0;
+        &#125;
+        int next[needle.size()];
+        getNext(next,needle);
+        int j = 0;
+        for(int i=0;i&lt;haystack[i] != needle[j]) &#123;
+            while(j&gt;0 &amp;&amp; haystack[i] != needle[j]) &#123;
+                j=next[j-1];
+            &#125;
+            if(haystack[i] == needle[j]) &#123;
+                j ++;
+            &#125;
+            if(j = needle.size()) &#123;
+                return (i-needle.size() +1);
+            &#125;
+        &#125;
+        return -1;
+    &#125;
+&#125;
+</code></pre>
+<h3 id="7-459-重复的子字符串"><a href="#7-459-重复的子字符串" class="headerlink" title="7.459.重复的子字符串"></a>7.459.重复的子字符串</h3><p>1题目</p>
+<p>2.思路</p>
+<p>3.实现代码</p>
+<pre><code class="java">class Solution &#123;
+public void getNext (int next[], String s)&#123;
+    next[0] = 0;
+    int j = 0;
+    for(int i=1;i&lt;s.size();i++) &#123;
+        while(j&gt;0 &amp;&amp; s[i] != s[j]) &#123;
+            j=next[j-1];
+        &#125;
+        if(s[i] == s[j]) &#123;
+            j++;
+        &#125;
+        next[i] = j;
+    &#125;
+    &#125;
+    public bool repeatedSubstringPattern (string s) &#123;
+        if(s.size()==0) &#123;
+            return false;
+        &#125;
+        int next[s.size()];
+        getNext(next,s);
+        int len = s.size();
+        if(next[len-1] != 0 &amp;&amp; len %(len-(next[len-1])) == 0) &#123;
+            return true;
+        &#125;
+        return fasle;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="1-要不要使用库函数"><a href="#1-要不要使用库函数" class="headerlink" title="1.要不要使用库函数"></a>1.要不要使用库函数</h3><p>在文章<a target="_blank" rel="noopener" href="https://programmercarl.com/0344.%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2.html">344.反转字符串 (opens new window)</a>中强调了<strong>打基础的时候，不要太迷恋于库函数。</strong></p>
+<p>甚至一些同学习惯于调用substr，split，reverse之类的库函数，却不知道其实现原理，也不知道其时间复杂度，这样实现出来的代码，如果在面试现场，面试官问：“分析其时间复杂度”的话，一定会一脸懵逼！</p>
+<p>所以建议<strong>如果题目关键的部分直接用库函数就可以解决，建议不要使用库函数。</strong></p>
+<p><strong>如果库函数仅仅是 解题过程中的一小部分，并且你已经很清楚这个库函数的内部实现原理的话，可以考虑使用库函数</strong></p>
+<h3 id="2-反转系列"><a href="#2-反转系列" class="headerlink" title="2.反转系列"></a>2.反转系列</h3><p>1.<a target="_blank" rel="noopener" href="https://programmercarl.com/0541.%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2II.html">541. 反转字符串II (opens new window)</a>中，一些同学可能为了处理逻辑：每隔2k个字符的前k的字符，写了一堆逻辑代码或者再搞一个计数器，来统计2k，再统计前k个字符。</p>
+<p>其实<strong>当需要固定规律一段一段去处理字符串的时候，要想想在在for循环的表达式上做做文章</strong>。</p>
+<p>只要让 i +&#x3D; (2 * k)，i 每次移动 2 * k 就可以了，然后判断是否需要有反转的区间。</p>
+<p>因为要找的也就是每2 * k 区间的起点，这样写程序会高效很多。</p>
+<p>2.在<a target="_blank" rel="noopener" href="https://programmercarl.com/0151.%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%87%8C%E7%9A%84%E5%8D%95%E8%AF%8D.html">151.翻转字符串里的单词 (opens new window)</a>中要求翻转字符串里的单词，这道题目可以说是综合考察了字符串的多种操作。是考察字符串的好题。</p>
+<p>这道题目通过 <strong>先整体反转再局部反转</strong>，实现了反转字符串里的单词。</p>
+<p>后来发现反转字符串还有一个牛逼的用处，就是达到左旋的效果。</p>
+<p>在<a target="_blank" rel="noopener" href="https://programmercarl.com/%E5%89%91%E6%8C%87Offer58-II.%E5%B7%A6%E6%97%8B%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2.html">字符串：反转个字符串还有这个用处？ (opens new window)</a>中，我们通过<strong>先局部反转再整体反转</strong>达到了左旋的效果。</p>
+<h3 id="3-双指针法"><a href="#3-双指针法" class="headerlink" title="3.双指针法"></a>3.双指针法</h3><p>在<a target="_blank" rel="noopener" href="https://programmercarl.com/0344.%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2.html">344.反转字符串 (opens new window)</a>，我们使用双指针法实现了反转字符串的操作，<strong>双指针法在数组，链表和字符串中很常用。</strong></p>
+<p>接着在<a target="_blank" rel="noopener" href="https://programmercarl.com/%E5%89%91%E6%8C%87Offer05.%E6%9B%BF%E6%8D%A2%E7%A9%BA%E6%A0%BC.html">字符串：替换空格 (opens new window)</a>，同样还是使用双指针法在时间复杂度O(n)的情况下完成替换空格。</p>
+<p><strong>其实很多数组填充类的问题，都可以先预先给数组扩容带填充后的大小，然后在从后向前进行操作。</strong></p>
+<p>那么针对数组删除操作的问题，其实在<a target="_blank" rel="noopener" href="https://programmercarl.com/0027.%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0.html">27. 移除元素 (opens new window)</a>中就已经提到了使用双指针法进行移除操作。</p>
+<p>同样的道理在<a target="_blank" rel="noopener" href="https://programmercarl.com/0151.%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%87%8C%E7%9A%84%E5%8D%95%E8%AF%8D.html">151.翻转字符串里的单词 (opens new window)</a>中我们使用O(n)的时间复杂度，完成了删除冗余空格。</p>
+<h3 id="4-kmp"><a href="#4-kmp" class="headerlink" title="4.kmp"></a>4.kmp</h3><p>KMP的主要思想是<strong>当出现字符串不匹配时，可以知道一部分之前已经匹配的文本内容，可以利用这些信息避免从头再去做匹配了。</strong></p>
+<p>KMP的精髓所在就是前缀表，在<a target="_blank" rel="noopener" href="https://programmercarl.com/0028.%E5%AE%9E%E7%8E%B0strStr.html">KMP精讲 (opens new window)</a>中提到了，什么是KMP，什么是前缀表，以及为什么要用前缀表。</p>
+<p>前缀表：起始位置到下标i之前（包括i）的子串中，有多大长度的相同前缀后缀。</p>
+<p>那么使用KMP可以解决两类经典问题：</p>
+<ol>
+<li>匹配问题：<a target="_blank" rel="noopener" href="https://programmercarl.com/0028.%E5%AE%9E%E7%8E%B0strStr.html">28. 实现 strStr()(opens new window)</a></li>
+<li>重复子串问题：<a target="_blank" rel="noopener" href="https://programmercarl.com/0459.%E9%87%8D%E5%A4%8D%E7%9A%84%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2.html">459.重复的子字符串(opens new window)</a></li>
+</ol>
+<p>再一次强调了什么是前缀，什么是后缀，什么又是最长相等前后缀。</p>
+<p>前缀：指不包含最后一个字符的所有以第一个字符开头的连续子串。</p>
+<p>后缀：指不包含第一个字符的所有以最后一个字符结尾的连续子串。</p>
+<p>然后<strong>针对前缀表到底要不要减一，这其实是不同KMP实现的方式</strong>，我们在<a target="_blank" rel="noopener" href="https://programmercarl.com/0028.%E5%AE%9E%E7%8E%B0strStr.html">KMP精讲 (opens new window)</a>中针对之前两个问题，分别给出了两个不同版本的的KMP实现。</p>
+<p>其中主要<strong>理解j&#x3D;next[x]这一步最为关键</strong></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 Yelog
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().trim().split('\n').length, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: ;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+    #post .pjax article :not(pre) > code {
+        color: #24292e;
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        background-color: rgba(27,31,35,.05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        padding: .2em .4em;
+    }
+    
+</style>
+
+
+
+
+
+
+
+</html>
