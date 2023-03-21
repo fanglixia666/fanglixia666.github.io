@@ -1,0 +1,3488 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>面向对象（类与对象） | 方立夏</title>
+  <meta name="keywords" content=" java , Github ">
+  <meta name="description" content="面向对象（类与对象） | 方立夏">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="算法学习（2023 -03-09）（数组）涉及到的算法题目1.2.3题涉及的知识点为滑动窗口1.长度最小的子数组1.题目给定一个含有 n 个正整数的数组和一个正整数 s ，找出该数组中满足其和 ≥ s 的长度最小的 连续 子数组，并返回其长度。如果不存在符合条件的子数组，返回 0。 示例： 输入：s &#x3D; 7, nums &#x3D; [2,3,1,2,4,3] 输出：2 解释：子数组 [">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法练习（数组滑动窗口）">
+<meta property="og:url" content="http://example.com/2023/03/21/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A03%EF%BC%88%E5%85%B3%E4%BA%8E%E6%95%B0%E7%BB%84%E5%A4%84%E7%90%86%E7%9A%84%E5%89%A9%E4%BD%99%E7%9F%A5%E8%AF%86%EF%BC%89/index.html">
+<meta property="og:site_name" content="方立夏">
+<meta property="og:description" content="算法学习（2023 -03-09）（数组）涉及到的算法题目1.2.3题涉及的知识点为滑动窗口1.长度最小的子数组1.题目给定一个含有 n 个正整数的数组和一个正整数 s ，找出该数组中满足其和 ≥ s 的长度最小的 连续 子数组，并返回其长度。如果不存在符合条件的子数组，返回 0。 示例： 输入：s &#x3D; 7, nums &#x3D; [2,3,1,2,4,3] 输出：2 解释：子数组 [">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://code-thinking.cdn.bcebos.com/gifs/209.%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.gif">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210312160441942.png">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/AZHyCoMMOCicvQicWSnN5ZNP97xQibk5RenSvNNZpr8ibMzLDeC2apV3ia2XS7ibTLC5WgGn3VStmCTw6elicia0ht2v6g/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://code-thinking-1253855093.file.myqcloud.com/pics/20220922102236.png">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBCcaan5hg7GsqSCVwq4sgZHyqBqfFF4G4oTjhACibCp2RcuMEPeHVjKQ/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBRn0NZibJkWiaJ522aMDOQEsiaiaX4AuXIBEjjKqetvibL104qGfSvmU4BRg/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBECDRbicfLRcRFCERDN4Ykq56ILvDlh6bft5nzG5TqgFXw4ib4y4kw4OA/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBcBzAWFuJjRttCghicyKua5cXicG1db1nTj3QLUh4nXgBNVkp2gznOzdw/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBHI2kPictZLyUeWXQ9Q6N5WBzRlBEXLRewuCDnmL4F2YiaPDN20w2ib9OQ/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBvib02FtjqhSI1R4CQVan160CwemYBsuofXycNecXWJIdysfwBeL2HibQ/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBbdTCtSzibQCt2O6kXkY18e5cncbriaPmjVDia5jp7rgFXICOoQPLBRIDA/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBS9aOEoYGMaic9SBZ2RoRx7soNExMKFbP3NsVo7aicKBjqz0iae46vATRg/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBGttfPK4icjwqxIOHdXC0xoMBLsG173oEN1KTlCmxGvN360XPiciaqvzIg/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBGAM79Tu8Xz5PX4C7Ub0oYFfUiaWU9qnrAXBmJZWPM8gGCloPaUqBwicQ/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBWDzzNiamIibl3YACnJyz1mgAnHwuTcteHOXpIXO5icph9rQAMxWTg4e7A/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBfwZocA61fXZPC26uuNKMUsk062VgbicxcLibf5tTQt2Uf6seEBYuZNlQ/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBtxrnKCicDoKEz5KvUAp4YIzA0W9d66xLK3z1HCpoVD5n1cXJUEnLvvQ/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBUQlq7WcBBpNfnz7OhuFtl72dMsNHstTiaD1icZCMO7ibFoxfkRun7aorg/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBwoNdbBfnQbibPDibLpmyCKZ5XIpzUbjtgDaR86xUBFWDFGTgKPibGZcjw/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSB5q9L67xuHKkWq8aGMsAOGty4Eybu1wicNicQmiajtCplAPNzxHicQggnyw/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBfMaWjJSOIdunBicib5lB9TImdvGUgJQoibouvvl7dIRIL6CztXY0tBDoQ/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://code-thinking-1253855093.file.myqcloud.com/pics/%E6%95%B0%E7%BB%84%E6%80%BB%E7%BB%93.png">
+<meta property="article:published_time" content="2023-03-21T07:31:11.887Z">
+<meta property="article:modified_time" content="2023-03-21T07:28:51.314Z">
+<meta property="article:author" content="方立夏">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="Github">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://code-thinking.cdn.bcebos.com/gifs/209.%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.gif">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>方立夏</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/fanglixia666"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/jaytp/activities"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            <a title="email"
+               href="mailto:2377579176@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=2377579176&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="kugou"
+               href="https://www.kugou.com/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-kugou"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="neteasemusic"
+               href="https://music.163.com/#/user/home?id=88151013"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-neteasemusic"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(9)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="博客篇">
+                        
+                        博客篇
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="后端篇">
+                        
+                        后端篇
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="算法篇">
+                        
+                        算法篇
+                        <small>(5)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">关于</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="9">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Github</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Hexo</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>java</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 算法篇 "
+           href="/2023/03/21/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A03%EF%BC%88%E5%85%B3%E4%BA%8E%E6%95%B0%E7%BB%84%E5%A4%84%E7%90%86%E7%9A%84%E5%89%A9%E4%BD%99%E7%9F%A5%E8%AF%86%EF%BC%89/"
+           data-tag="java,Github"
+           data-author="" >
+            <span class="post-title" title="算法练习（数组滑动窗口）">算法练习（数组滑动窗口）</span>
+            <span class="post-date" title="2023-03-21 15:31:11">2023/03/21</span>
+        </a>
+        
+        
+        <a  class="全部文章 算法篇 "
+           href="/2023/03/21/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/"
+           data-tag="java,Github"
+           data-author="" >
+            <span class="post-title" title="算法练习（数组）">算法练习（数组）</span>
+            <span class="post-date" title="2023-03-21 15:31:10">2023/03/21</span>
+        </a>
+        
+        
+        <a  class="全部文章 算法篇 "
+           href="/2023/03/21/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%93%88%E5%B8%8C%E8%A1%A8%EF%BC%8923-03-10/"
+           data-tag="java,Github"
+           data-author="" >
+            <span class="post-title" title="算法练习（哈希表）">算法练习（哈希表）</span>
+            <span class="post-date" title="2023-03-21 15:31:08">2023/03/21</span>
+        </a>
+        
+        
+        <a  class="全部文章 后端篇 "
+           href="/2023/03/21/Java%E9%AB%98%E7%BA%A7%E7%AF%87%EF%BC%88%E5%BC%82%E5%B8%B8%EF%BC%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%8C%E5%B8%B8%E7%94%A8%E7%B1%BB%EF%BC%89/"
+           data-tag="java,Github"
+           data-author="" >
+            <span class="post-title" title="面向对象（类与对象）">面向对象（类与对象）</span>
+            <span class="post-date" title="2023-03-21 15:30:59">2023/03/21</span>
+        </a>
+        
+        
+        <a  class="全部文章 后端篇 "
+           href="/2023/03/21/Java%E9%AB%98%E7%BA%A7%E7%AF%87%EF%BC%88%E9%9B%86%E5%90%88%EF%BC%8C%20%E6%B3%9B%E6%80%A7%EF%BC%89/"
+           data-tag="java,Github"
+           data-author="" >
+            <span class="post-title" title="面向对象（类与对象）">面向对象（类与对象）</span>
+            <span class="post-date" title="2023-03-21 15:30:57">2023/03/21</span>
+        </a>
+        
+        
+        <a  class="全部文章 算法篇 "
+           href="/2023/03/21/%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A02%E4%B8%80%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0%EF%BC%88%E5%8F%8C%E6%8C%87%E9%92%88%EF%BC%89/"
+           data-tag="java,Github"
+           data-author="" >
+            <span class="post-title" title="算法练习（双指针）">算法练习（双指针）</span>
+            <span class="post-date" title="2023-03-21 15:25:32">2023/03/21</span>
+        </a>
+        
+        
+        <a  class="全部文章 算法篇 "
+           href="/2023/03/21/%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0%EF%BC%88%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%89/"
+           data-tag="java,Github"
+           data-author="" >
+            <span class="post-title" title="算法练习（字符串）">算法练习（字符串）</span>
+            <span class="post-date" title="2023-03-21 15:25:25">2023/03/21</span>
+        </a>
+        
+        
+        <a  class="全部文章 博客篇 "
+           href="/2023/03/21/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A11/"
+           data-tag="Github,Hexo"
+           data-author="" >
+            <span class="post-title" title="11月Java总结">11月Java总结</span>
+            <span class="post-date" title="2023-03-21 10:56:25">2023/03/21</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2023/03/21/hello-world/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2023-03-21 10:51:18">2023/03/21</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-Java高级篇（异常，多线程，常用类）" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">面向对象（类与对象）</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="后端篇">后端篇</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">java</a>
+            
+            <a class="color2">Github</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2023-03-21 15:30:02'>2023-03-21 15:30</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java%E9%AB%98%E7%BA%A7%E7%AF%87%EF%BC%88%E5%BC%82%E5%B8%B8%EF%BC%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%8C%E5%B8%B8%E7%94%A8%E7%B1%BB%EF%BC%89"><span class="toc-text">Java高级篇（异常，多线程，常用类）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%BC%82%E5%B8%B8"><span class="toc-text">1.异常</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1%E5%BC%82%E5%B8%B8%E7%9A%84%E6%A6%82%E8%BF%B0"><span class="toc-text">1.1异常的概述</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E7%BC%96%E8%AF%91%E6%97%B6%E5%BC%82%E5%B8%B8%E5%92%8C%E8%BF%90%E8%A1%8C%E6%97%B6%E5%BC%82%E5%B8%B8"><span class="toc-text">1.编译时异常和运行时异常</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2java%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="toc-text">1.2java异常体系结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3%E5%BC%82%E5%B8%B8%E7%9A%84%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6%E4%B8%80%EF%BC%88try-catch-finally%EF%BC%89"><span class="toc-text">1.3异常的处理机制一（try-catch-finally）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6%E4%BA%8C%EF%BC%88throws%EF%BC%89"><span class="toc-text">1.4异常处理机制二（throws）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-1-%E9%87%8D%E5%86%99%E6%96%B9%E6%B3%95%E5%A3%B0%E6%98%8E%E6%8A%9B%E5%87%BA%E5%BC%82%E5%B8%B8%E7%9A%84%E5%8E%9F%E5%88%99"><span class="toc-text">1.4.1.重写方法声明抛出异常的原则</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5%E6%89%8B%E5%8A%A8%E6%8A%9B%E5%87%BA%E5%BC%82%E5%B8%B8"><span class="toc-text">1.5手动抛出异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6%E7%94%A8%E6%88%B7%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8%E7%B1%BB"><span class="toc-text">1.6用户自定义异常类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7-%E5%BC%82%E5%B8%B8%E7%BB%BC%E5%90%88%E7%BB%83%E4%B9%A0"><span class="toc-text">1.7 异常综合练习</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-text">2.多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-text">2.1线程的概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2%E4%BD%95%E6%97%B6%E9%9C%80%E8%A6%81%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-text">2.2何时需要多线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E4%BD%BF%E7%94%A8"><span class="toc-text">2.3线程的创建与使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-1%E5%88%9B%E5%BB%BA%E4%B8%8E%E5%90%AF%E5%8A%A8"><span class="toc-text">2.3.1创建与启动</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-2thread%E7%B1%BB"><span class="toc-text">2.3.2thread类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-3%E5%88%9B%E5%BB%BA%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E7%BB%A7%E6%89%BFthread%E7%B1%BB"><span class="toc-text">2.3.3创建多线程的方法一：继承thread类</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%88%9B%E5%BB%BA%EF%BC%8C%E6%96%B9%E5%BC%8F%E4%B8%80%EF%BC%9A%E7%BB%A7%E6%89%BF%E4%BA%8EThread%E7%B1%BB"><span class="toc-text">1.多线程的创建，方式一：继承于Thread类</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%8C%BF%E5%90%8D%E5%AD%90%E7%B1%BB%E7%9A%84%E5%88%9B%E5%BB%BA%E6%96%B9%E6%B3%95"><span class="toc-text">2.匿名子类的创建方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-thread%E7%B1%BB%E7%9A%84%E6%9C%89%E5%85%B3%E6%96%B9%E6%B3%95"><span class="toc-text">3.thread类的有关方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E7%BA%BF%E7%A8%8B%E7%9A%84%E8%B0%83%E5%BA%A6"><span class="toc-text">4.线程的调度</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-text">5.线程的优先级</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-4%E5%88%9B%E5%BB%BA%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%88%9B%E5%BB%BA%EF%BC%8C%E6%96%B9%E5%BC%8F%E4%BA%8C%EF%BC%9A%E5%AE%9E%E7%8E%B0runnable%E6%8E%A5%E5%8F%A3"><span class="toc-text">2.3.4创建多线程的创建，方式二：实现runnable接口</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E5%88%9B%E5%BB%BA%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%96%B9%E5%BC%8F%E4%BA%8C%EF%BC%9A%E5%AE%9E%E7%8E%B0Runnable%E6%8E%A5%E5%8F%A3"><span class="toc-text">1创建多线程的方式二：实现Runnable接口</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E7%BB%A7%E6%89%BF%E6%96%B9%E5%BC%8F%E5%92%8C%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E7%9A%84%E8%81%94%E7%B3%BB%E4%B8%8E%E5%8C%BA%E5%88%AB"><span class="toc-text">2.继承方式和实现方式的联系与区别</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-text">3.线程的生命周期</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-5%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%90%8C%E6%AD%A5%EF%BC%88%E8%A7%A3%E5%86%B3%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%89"><span class="toc-text">2.3.5线程的同步（解决线程安全的问题）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E5%90%8C%E6%AD%A5%E4%BB%A3%E7%A0%81%E5%9D%97%E5%A4%84%E7%90%86%E5%AE%9E%E7%8E%B0Runnable%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="toc-text">1.同步代码块处理实现Runnable的线程安全问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%90%8C%E6%AD%A5%E4%BB%A3%E7%A0%81%E5%9D%97%E5%A4%84%E7%90%86%E7%BB%A7%E6%89%BFThread%E7%B1%BB%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="toc-text">2.同步代码块处理继承Thread类的线程安全问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E5%90%8C%E6%AD%A5%E6%96%B9%E6%B3%95%E5%A4%84%E7%90%86%E5%AE%9E%E7%8E%B0Runnable%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="toc-text">3.同步方法处理实现Runnable的线程安全问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E5%90%8C%E6%AD%A5%E6%96%B9%E6%B3%95%E5%A4%84%E7%90%86%E7%BB%A7%E6%89%BFThread%E7%B1%BB%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="toc-text">4.同步方法处理继承Thread类的线程安全问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%87%92%E6%B1%89%E5%BC%8F"><span class="toc-text">5.线程安全的单例模式之懒汉式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-%E6%AD%BB%E9%94%81"><span class="toc-text">6.死锁</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7-Lock%E9%94%81%E6%96%B9%E5%BC%8F%E8%A7%A3%E5%86%B3%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="toc-text">7.Lock锁方式解决线程安全问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#8-%E7%BB%83%E4%B9%A0"><span class="toc-text">8.练习</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-6%E7%BA%BF%E7%A8%8B%E7%9A%84%E9%80%9A%E4%BF%A1"><span class="toc-text">2.3.6线程的通信</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E6%B6%89%E5%8F%8A%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">1.涉及的方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-sleep-%E5%92%8Cwait-%E7%9A%84%E5%BC%82%E5%90%8C"><span class="toc-text">2.sleep()和wait()的异同</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E7%BB%8F%E5%85%B8%E4%BE%8B%E9%A2%98%EF%BC%9A%E7%94%9F%E4%BA%A7%E8%80%85-x2F-%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98"><span class="toc-text">3.经典例题：生产者&#x2F;消费者问题</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-7%E5%88%9B%E5%BB%BA%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%96%B9%E5%BC%8F%E4%B8%89%EF%BC%9A%E5%AE%9E%E7%8E%B0callable%E6%8E%A5%E5%8F%A3"><span class="toc-text">2.3.7创建多线程的方式三：实现callable接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-8%E5%88%9B%E5%BB%BA%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%96%B9%E5%BC%8F%E5%9B%9B%EF%BC%9A%E4%BD%BF%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="toc-text">2.3.8创建多线程的方式四：使用线程池</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="toc-text">1.线程池的好处</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E6%80%8E%E4%B9%88%E5%86%99%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="toc-text">2.怎么写一个线程池</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%B8%B8%E7%94%A8%E7%B1%BB"><span class="toc-text">3.常用类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E5%85%B3%E7%9A%84%E7%B1%BB"><span class="toc-text">3.1字符串相关的类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-1String%E7%B1%BB%E7%9A%84%E6%A6%82%E8%BF%B0"><span class="toc-text">3.1.1String类的概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-2-String%E7%9A%84%E4%B8%8D%E5%8F%AF%E5%8F%98%E6%80%A7"><span class="toc-text">3.1.2 String的不可变性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-3-String%E4%B8%8D%E5%90%8C%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%96%B9%E5%BC%8F%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="toc-text">3.1.3 String不同实例化方式的对比</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F"><span class="toc-text">1.创建方式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-String-str1-x3D-%E2%80%9Cabc%E2%80%9D-%E4%B8%8EString-str2-x3D-new-String-%E2%80%9Cabc%E2%80%9D-%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-text">2.String str1 &#x3D; “abc”;与String str2 &#x3D; new String(“abc”);的区别？</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-4-String%E4%B8%8D%E5%90%8C%E6%8B%BC%E6%8E%A5%E6%93%8D%E4%BD%9C%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="toc-text">3.1.4 String不同拼接操作的对比</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-5-JVM%E4%B8%AD%E6%B6%89%E5%8F%8A%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84"><span class="toc-text">3.1.5 JVM中涉及字符串的内存结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-6-String%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%951"><span class="toc-text">3.1.6 String的常用方法1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-7-String%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%952"><span class="toc-text">3.1.7 String的常用方法2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-8-String%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%953"><span class="toc-text">3.1.8 String的常用方法3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-9-String%E4%B8%8E%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8C%85%E8%A3%85%E7%B1%BB%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="toc-text">3.1.9 String与基本数据类型包装类的转换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-10-String%E4%B8%8Echar-%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="toc-text">3.1.10 String与char[]之间的转换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-11-String%E4%B8%8Ebyte-%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="toc-text">3.1.11 String与byte[]之间的转换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-12-%E9%9D%A2%E8%AF%95%E4%B8%ADString%E7%AE%97%E6%B3%95%E8%80%83%E6%9F%A5"><span class="toc-text">3.1.12 面试中String算法考查</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-13-StringBuffer%E5%92%8CStringBuilder%E7%9A%84%E4%BB%8B%E7%BB%8D"><span class="toc-text">3.1.13 StringBuffer和StringBuilder的介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-14-StringBuffer%E4%B8%AD%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">3.1.14 StringBuffer中的常用方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-JDK-8%E4%B9%8B%E5%89%8D%E7%9A%84%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4API"><span class="toc-text">3.2 JDK 8之前的日期时间API</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-1-System%E7%B1%BB%E4%B8%AD%E8%8E%B7%E5%8F%96%E6%97%B6%E9%97%B4%E6%88%B3%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">3.2.1 System类中获取时间戳的方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-2-Java%E4%B8%AD%E4%B8%A4%E4%B8%AADate%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">3.2.2 Java中两个Date类的使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-3-SimpleDateFormat%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">3.2.3 SimpleDateFormat的使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-4-Calendar%E6%97%A5%E5%8E%86%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">3.2.4 Calendar日历类的使用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-JDK8%E4%B8%AD%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4API%E7%9A%84%E4%BB%8B%E7%BB%8D"><span class="toc-text">3.3 JDK8中日期时间API的介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-1-%E6%96%B0%E6%97%A5%E6%9C%9F%E5%87%BA%E7%8E%B0%E7%9A%84%E8%83%8C%E6%99%AF"><span class="toc-text">3.3.1 新日期出现的背景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-2-LocalDate%E3%80%81LocalTime%E3%80%81LocalDateTime%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">3.3.2 LocalDate、LocalTime、LocalDateTime的使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-3-Instant%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">3.3.3 Instant类的使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-4-DateTimeFormatter%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">3.3.4 DateTimeFormatter的使用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-Java%E6%AF%94%E8%BE%83%E5%99%A8"><span class="toc-text">3.4 Java比较器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-1-%E6%AF%94%E8%BE%83%E5%99%A8%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-text">3.4.1 比较器的概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-2-Comparable%E8%87%AA%E7%84%B6%E6%8E%92%E5%BA%8F%E4%B8%BE%E4%BE%8B"><span class="toc-text">3.4.2 Comparable自然排序举例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-3-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%AE%9E%E7%8E%B0Comparable%E8%87%AA%E7%84%B6%E6%8E%92%E5%BA%8F"><span class="toc-text">3.4.3 自定义类实现Comparable自然排序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-4-%E4%BD%BF%E7%94%A8Comparator%E5%AE%9E%E7%8E%B0%E5%AE%9A%E5%88%B6%E6%8E%92%E5%BA%8F"><span class="toc-text">3.4.4 使用Comparator实现定制排序</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-System%E7%B1%BB%E3%80%81Math%E7%B1%BB%E3%80%81BigInteger%E4%B8%8EBigDecimal"><span class="toc-text">3.5 System类、Math类、BigInteger与BigDecimal</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-1-System%E7%B1%BB"><span class="toc-text">3.5.1 System类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-2-Math%E7%B1%BB"><span class="toc-text">3.5.2 Math类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-3-BigInteger%E4%B8%8EBigDecimal"><span class="toc-text">3.5.3 BigInteger与BigDecimal</span></a></li></ol></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Java高级篇（异常，多线程，常用类）"><a href="#Java高级篇（异常，多线程，常用类）" class="headerlink" title="Java高级篇（异常，多线程，常用类）"></a>Java高级篇（异常，多线程，常用类）</h1><h2 id="1-异常"><a href="#1-异常" class="headerlink" title="1.异常"></a>1.异常</h2><h3 id="1-1异常的概述"><a href="#1-1异常的概述" class="headerlink" title="1.1异常的概述"></a>1.1异常的概述</h3><h5 id="1-编译时异常和运行时异常"><a href="#1-编译时异常和运行时异常" class="headerlink" title="1.编译时异常和运行时异常"></a>1.<strong>编译时异常</strong>和<strong>运行时异常</strong></h5><p>运行时异常<br>是指编译器不要求强制处置的异常。一般是指编程时的逻辑错误，是程序员应该积极避免其出现的异常。java.lang.RuntimeException类及它的子类都是运行时异常。<br>对于这类异常，可以不作处理，因为这类异常很普遍，若全处理可能会对程序的可读性和运行效率产生影响。<br>编译时异常<br>是指编译器要求必须处置的异常。即程序在运行时由于外界因素造成的一般性异常。编译器要求Java程序必须捕获或声明所有编译时异常。<br>对于这类异常，如果程序不处理，可能会带来意想不到的结果。</p>
+<h3 id="1-2java异常体系结构"><a href="#1-2java异常体系结构" class="headerlink" title="1.2java异常体系结构"></a>1.2java异常体系结构</h3><ul>
+<li>java.lang.Throwable</li>
+<li><pre><code>    |----java.lang.Error:一般不编写针对性的代码进行处理
+</code></pre>
+</li>
+<li><pre><code>    |----java.lang.Exception:可以进行异常处理
+</code></pre>
+</li>
+<li><pre><code>        |----编译时异常(checked)
+</code></pre>
+</li>
+<li><pre><code>            |----IOEXception
+</code></pre>
+</li>
+<li><pre><code>                |----FileNotFoundException
+</code></pre>
+</li>
+<li><pre><code>            |----ClassNotFoundException
+</code></pre>
+</li>
+<li><pre><code>        |----运行时异常(unchecked)
+</code></pre>
+</li>
+<li><pre><code>            |----NullPointerException
+</code></pre>
+</li>
+<li><pre><code>            |----ArrayIndexOutOfBoundsException
+</code></pre>
+</li>
+<li><pre><code>            |----ClassCaseException
+</code></pre>
+</li>
+<li><pre><code>            |----NumberFormatException
+</code></pre>
+</li>
+<li><pre><code>            |----InputMismatchException
+</code></pre>
+</li>
+<li><pre><code>            |----ArithmaticException
+</code></pre>
+</li>
+</ul>
+<h3 id="1-3异常的处理机制一（try-catch-finally）"><a href="#1-3异常的处理机制一（try-catch-finally）" class="headerlink" title="1.3异常的处理机制一（try-catch-finally）"></a>1.3异常的处理机制一（try-catch-finally）</h3><p>1.try<br>捕获异常的第一步是用try{…}语句块选定捕获异常的范围，将可能出现异常的代码放在try语句块中。<br>catch(Exceptiontypee)<br>在catch语句块中是对异常对象进行处理的代码。每个try语句块可以伴随一个或多个catch语句，用于处理可能产生的不同类型的异常对象。<br>捕获异常的有关信息：与其它对象一样，可以访问一个异常对象的成员变量或调用它的方法。<br>getMessage() 获取异常信息，返回字符串<br>printStackTrace() 获取异常类名和异常信息，以及异常出现在程序中的位置。返回值void。</p>
+<p>finally<br>捕获异常的最后一步是通过finally语句为异常处理提供一个统一的出口，使得在控制流转到程序的其它部分以前，能够对程序的状态作统一的管理。<br>不论在try代码块中是否发生了异常事件，catch语句是否执行，catch语句是否有异常，catch语句中是否有return，finally块中的语句都会被执行。<br>finally语句和catch语句是任选的</p>
+<p>eg</p>
+<pre><code class="java">import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import org.junit.Test;
+
+/*
+ * 异常的处理:抓抛模型
+ * 
+ * 过程一:“抛”：程序在征程执行过程中，一旦出现异常，就会在异常代码处生成一个对应异常类的对象
+ * 			 并将此对象抛出。
+ * 			一旦抛出对象以后，其后的代码就不再执行。
+ * 
+ * 过程二:“抓”:可以理解为异常的处理方式：① try-catch-finally  ② throws
+ * 
+ * 二、try-catch-finally的使用
+ * 
+ * try&#123;
+ * 		//可能出现异常的代码
+ * &#125;catch(异常类型1 变量名1)&#123;
+ * 		//处理异常的方式1
+ * &#125;catch(异常类型2 变量名2)&#123;
+ * 		//处理异常的方式2
+ * &#125;catch(异常类型3 变量名3)&#123;
+ * 		//处理异常的方式3
+ * &#125;
+ * ...
+ * finally&#123;
+ * 		//一定会执行的代码
+ * &#125;
+ * 
+ * 说明:
+ * 1.finally是可选的。
+ * 2.使用try将可能出现异常代码包装起来，在执行过程中，一旦出现异常，就会生成一个对应异常类的对象，根据此对象
+ *   的类型，去catch中进行匹配。
+ * 3.一旦try中的异常对象匹配到某一个catch时，就进入catch中进行异常的处理。一旦处理完成，就跳出当前的
+ *   try-catch结构（在没有写finally的情况）。继续执行其后的代码。
+ * 4.catch中的异常类型如果没有子父类关系，则谁声明在上，谁声明在下无所谓。
+ *   catch中的异常类型如果满足子父类关系，则要求子类一定声明在父类的上面。否则，报错
+ * 5.常用的异常对象处理的方式： ① String  getMessage()    ② printStackTrace()
+ * 6.在try结构中声明的变量，再出了try结构以后，就不能再被调用,例65行:System.out.println(num);
+ * 7.try-catch-finally结构可以嵌套  
+ * 
+ * 体会1：使用try-catch-finally处理编译时异常，是得程序在编译时就不再报错，但是运行时仍可能报错。
+ *     相当于我们使用try-catch-finally将一个编译时可能出现的异常，延迟到运行时出现。
+ *     
+ * 体会2：开发中，由于运行时异常比较常见，所以我们通常就不针对运行时异常编写try-catch-finally了。
+ *      针对于编译时异常，我们说一定要考虑异常的处理。
+ */
+public class ExceptionTest1 &#123;
+    
+    @Test
+    public void test2()&#123;
+        try&#123;
+            File file = new File(&quot;hello.txt&quot;);
+            FileInputStream fis = new FileInputStream(file);
+            
+            int data = fis.read();
+            while(data != -1)&#123;
+                System.out.print((char)data);
+                data = fis.read();
+            &#125;
+            
+            fis.close();
+        &#125;catch(FileNotFoundException e)&#123;
+            e.printStackTrace();
+        &#125;catch(IOException e)&#123;
+            e.printStackTrace();
+        &#125;
+    &#125;
+
+    @Test
+    public void test1()&#123;
+        
+        String str = &quot;123&quot;;
+        str = &quot;abc&quot;;
+        try&#123;
+            int num = Integer.parseInt(str);	
+            
+            System.out.println(&quot;hello-----1&quot;);
+        &#125;catch(NumberFormatException e)&#123;
+//			System.out.println(&quot;出现数值转换异常了，不要着急....&quot;);
+            //String getMessage():
+//			System.out.println(e.getMessage());
+            //printStackTrace():
+            e.printStackTrace();
+        &#125;catch(NullPointerException e)&#123;
+            System.out.println(&quot;出现空指针异常了，不要着急....&quot;);
+        &#125;catch(Exception e)&#123;
+            System.out.println(&quot;出现异常了，不要着急....&quot;);
+        &#125;
+//		System.out.println(num);
+        
+        System.out.println(&quot;hello----2&quot;);
+    &#125;
+&#125;
+</code></pre>
+<p>1.2finally的使用</p>
+<pre><code class="java">/*
+ * try-catch-finally中finally的使用：
+ * 
+ * 1.finally是可选的。
+ * 2.finally中声明的是一定会被执行的代码。即使catch中又出现异常了，try中有return语句，catch中有
+ *   return语句等情况。
+ * 3.像数据库连接、输入输出流、网络编程Socket等资源，JVM是不能自动的回收的，我们需要自己手动的进行资源的
+ *   释放。此时的资源释放，就需要声明在finally中。
+ * 
+ */
+public class FinallyTest &#123;
+
+    @Test
+    public void test2() &#123;
+        FileInputStream fis = null;
+        try &#123;
+            File file = new File(&quot;hello1.txt&quot;);//文件可能不存在，而出现异常
+            fis = new FileInputStream(file);
+
+            int data = fis.read();
+            while (data != -1) &#123;
+                System.out.print((char) data);
+                data = fis.read();
+            &#125;
+
+        &#125; catch (FileNotFoundException e) &#123;
+            e.printStackTrace();
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125; finally &#123;
+            try &#123;
+                if (fis != null)
+                    fis.close();
+            &#125; catch (IOException e) &#123;
+                e.printStackTrace();
+            &#125;
+        &#125;
+    &#125;
+
+    @Test
+    public void testMethod() &#123;
+        int num = method();
+        System.out.println(num);
+    &#125;
+
+    public int method() &#123;
+
+        try &#123;
+            int[] arr = new int[10];
+            System.out.println(arr[10]);
+            return 1;
+        &#125; catch (ArrayIndexOutOfBoundsException e) &#123;
+            e.printStackTrace();
+            return 2;
+        &#125; finally &#123;
+            System.out.println(&quot;我一定会被执行&quot;);
+            return 3;
+        &#125;
+    &#125;
+
+    @Test
+    public void test1() &#123;
+        try &#123;
+            int a = 10;
+            int b = 0;
+            System.out.println(a / b);
+        &#125; catch (ArithmeticException e) &#123;
+            // e.printStackTrace();
+
+            int[] arr = new int[10];
+            System.out.println(arr[10]);
+
+        &#125; catch (Exception e) &#123;
+            e.printStackTrace();
+        &#125;
+        // System.out.println(&quot;我好慢呀~~~&quot;);
+        finally &#123;
+            System.out.println(&quot;我好慢呀~~~&quot;);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h3 id="1-4异常处理机制二（throws）"><a href="#1-4异常处理机制二（throws）" class="headerlink" title="1.4异常处理机制二（throws）"></a>1.4异常处理机制二（throws）</h3><p>1.4.1</p>
+<p>声明抛出异常是Java中处理异常的第二种方式<br>如果一个方法(中的语句执行时)可能生成某种异常，但是并不能确定如何处理这种异常，则此方法应显示地声明抛出异常，表明该方法将不对这些异常进行处理，而由该方法的调用者负责处理。<br>在方法声明中用throws语句可以声明抛出异常的列表，throws后面的异常类型可以是方法中产生的异常类型，也可以是它的父类。</p>
+<p>1.4.2</p>
+<pre><code class="java">/*
+ * 异常处理的方式二：throws + 异常类型
+ * 
+ * 1. &quot;throws + 异常类型&quot;写在方法的声明处。指明此方法执行时，可能会抛出的异常类型。
+ *     一旦当方法体执行时，出现异常，仍会在异常代码处生成一个异常类的对象，此对象满足throws后异常
+ *     类型时，就会被抛出。异常代码后续的代码，就不再执行！
+ *
+ *     关于异常对象的产生:① 系统自动生成的异常对象
+ * 					② 手动生成一个异常对象，并抛出(throw)
+ *     
+ * 2. 体会：try-catch-finally:真正的将异常给处理掉了。
+ *        throws的方式只是将异常抛给了方法的调用者。  并没有真正将异常处理掉。  
+ * 
+ */
+public class ExceptionTest2 &#123;
+    
+    public static void main(String[] args)&#123;
+        try &#123;
+            method2();
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;
+        
+        method3();
+    &#125;
+    
+    public static void method3()&#123;
+        try &#123;
+            method2();
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;
+    &#125;
+    
+    public static void method2() throws IOException&#123;
+        method1();
+    &#125;
+
+    
+    public static void method1() throws FileNotFoundException,IOException&#123;
+        File file = new File(&quot;hello1.txt&quot;);
+        FileInputStream fis = new FileInputStream(file);
+        
+        int data = fis.read();
+        while(data != -1)&#123;
+            System.out.print((char)data);
+            data = fis.read();
+        &#125;
+        
+        fis.close();
+        
+        System.out.println(&quot;hahaha!&quot;);
+    &#125;
+&#125;
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/a349a3eb15bb86490d6c86c2b2a667ac.png" alt="img"></p>
+<h4 id="1-4-1-重写方法声明抛出异常的原则"><a href="#1-4-1-重写方法声明抛出异常的原则" class="headerlink" title="1.4.1.重写方法声明抛出异常的原则"></a>1.4.1.重写方法声明抛出异常的原则</h4><pre><code>import java.io.FileNotFoundException;
+import java.io.IOException;
+
+/*
+ * 方法重写的规则之一：
+ * 子类重写的方法抛出的异常类型不大于父类被重写的方法抛出的异常类型
+ * 
+ */
+public class OverrideTest &#123;
+    
+    public static void main(String[] args) &#123;
+        OverrideTest test = new OverrideTest();
+        test.display(new SubClass());
+    &#125;
+    
+    public void display(SuperClass s)&#123;
+        try &#123;
+            s.method();
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;
+    &#125;
+    
+&#125;
+class SuperClass&#123;
+    
+    public void method() throws IOException&#123;
+        
+    &#125;
+&#125;
+class SubClass extends SuperClass&#123;
+    public void method()throws FileNotFoundException&#123;
+        
+    &#125;
+&#125;
+
+</code></pre>
+<h3 id="1-5手动抛出异常"><a href="#1-5手动抛出异常" class="headerlink" title="1.5手动抛出异常"></a>1.5手动抛出异常</h3><ul>
+<li>首先要生成异常类对象，然后通过throw语句实现抛出操作(提交给Java运行环境)</li>
+<li>可以抛出的异常必须是Throwable或其子类的实例。下面的语句在编译时将会产生语法错误：</li>
+</ul>
+<pre><code class="Java">public class StudentTest &#123;
+    public static void main(String[] args) &#123;
+        try &#123;
+            Student s = new Student();
+//		s.regist(1001);
+            s.regist(-1001);
+            System.out.println(s);
+        &#125; catch (Exception e) &#123;
+//			e.printStackTrace();
+            System.out.println(e.getMessage());
+        &#125;
+    &#125;
+&#125;
+class Student&#123;
+    private int id;
+    
+    public void regist(int id) throws Exception&#123;
+        if(id &gt; 0)&#123;
+            this.id = id;
+        &#125;else&#123;
+//			System.out.println(&quot;您输入的数据非法！&quot;);
+            //手动抛出异常
+//			throw new RuntimeException(&quot;您输入的数据非法！&quot;);
+            throw new Exception(&quot;您输入的数据非法！&quot;);
+            
+        &#125;
+    &#125;
+
+    @Override
+    public String toString() &#123;
+        return &quot;Student [id=&quot; + id + &quot;]&quot;;
+    &#125;
+    
+&#125;
+</code></pre>
+<h3 id="1-6用户自定义异常类"><a href="#1-6用户自定义异常类" class="headerlink" title="1.6用户自定义异常类"></a>1.6用户自定义异常类</h3><ul>
+<li>一般地，用户自定义异常类都是RuntimeException的子类。</li>
+<li>自定义异常类通常需要编写几个重载的构造器。</li>
+<li>自定义异常需要提供serialVersionUID</li>
+<li>自定义的异常通过throw抛出。</li>
+<li>自定义异常最重要的是异常类的名字，当异常出现时，可以根据名字判断异常类型。</li>
+</ul>
+<pre><code class="Java">/*
+ * 如何自定义异常类？
+ * 1.继承于现有的异常结构：RuntimeException 、Exception
+ * 2.提供全局常量：serialVersionUID
+ * 3.提供重载的构造器
+ * 
+ */
+public class MyException extends RuntimeException&#123;
+    static final long serialVersionUID = -7034897193246939L;
+    
+    public MyException()&#123;
+        
+    &#125;
+    
+    public MyException(String msg)&#123;
+        super(msg);
+    &#125;
+&#125;
+</code></pre>
+<h3 id="1-7-异常综合练习"><a href="#1-7-异常综合练习" class="headerlink" title="1.7 异常综合练习"></a>1.7 异常综合练习</h3><pre><code class="Java">/*
+ * 编写应用程序EcmDef.java，接收命令行的两个参数，
+ * 		要求不能输入负数，计算两数相除。
+ * 		对 数 据 类 型 不 一 致(NumberFormatException)、
+ * 		缺 少 命 令 行 参 数(ArrayIndexOutOfBoundsException、
+ * 		除0(ArithmeticException)及输入负数(EcDef自定义的异常)进行异常处理。
+ *
+ * 提示：
+ * 		(1)在主类(EcmDef)中定义异常方法(ecm)完成两数相除功能。
+ * 		(2)在main()方法中使用异常处理语句进行异常处理。
+ * 		(3)在程序中，自定义对应输入负数的异常类(EcDef)。
+ * 		(4)运行时接受参数java EcmDef2010//args[0]=“20”args[1]=“10”
+ * 		(5)Interger类的static方法parseInt(Strings)将s转换成对应的int值。
+ * 		如：int a=Interger.parseInt(“314”);//a=314;
+ */
+public class EcmDef &#123;
+    public static void main(String[] args) &#123;
+        try &#123;
+            int i = Integer.parseInt(args[0]);
+            int j = Integer.parseInt(args[0]);
+            
+            int result = ecm(i,j);
+            
+            System.out.println(result);
+        &#125; catch (NumberFormatException e) &#123;
+            System.out.println(&quot;数据类型不一致&quot;);
+        &#125;catch (ArrayIndexOutOfBoundsException e)&#123;
+            System.out.println(&quot;缺少命令行参数&quot;);
+        &#125;catch (ArithmeticException e)&#123;
+            System.out.println(&quot;除0&quot;);
+        &#125;catch (EcDef e) &#123;
+            System.out.println(e.getMessage());
+        &#125;
+    &#125;
+    
+    public static int ecm(int i, int j) throws EcDef&#123;
+        if(i &lt; 0 || j &lt; 0)&#123;
+            throw new EcDef(&quot;分子或分母为负数了！&quot;);
+        &#125;
+        return i / j;
+    &#125;
+&#125;
+</code></pre>
+<p>异常类ecdef</p>
+<pre><code class="java">//自定义异常类
+public class EcDef extends Exception &#123;
+
+    static final long serialVersionUID = -33875164229948L;
+
+    public EcDef() &#123;
+        
+    &#125;
+
+    public EcDef(String msg) &#123;
+        super(msg);
+    &#125;
+&#125;
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/4614aa28f89b84571c65636790a8f087.png" alt="img"></p>
+<h2 id="2-多线程"><a href="#2-多线程" class="headerlink" title="2.多线程"></a>2.多线程</h2><h3 id="2-1线程的概念"><a href="#2-1线程的概念" class="headerlink" title="2.1线程的概念"></a>2.1线程的概念</h3><p>线程(thread)，进程可进一步细化为线程，是一个程序内部的一条执行路径。<br>若一个进程同一时间并行执行多个线程，就是支持多线程的<br>线程是调度和执行的单位，每个线程拥有独立的运行栈和程序计数器(pc)，线程切换的开销小<br>一个进程中的多个线程共享相同的内存单元&#x2F;内存地址空间—》它们从同一堆中分配对象，可以访问相同的变量和对象。这就使得线程间通信更简便、高效。但多个线程操作共享的系统资源可能就会带来安全的隐患。</p>
+<h3 id="2-2何时需要多线程"><a href="#2-2何时需要多线程" class="headerlink" title="2.2何时需要多线程"></a>2.2何时需要多线程</h3><ul>
+<li>程序需要同时执行两个或多个任务。</li>
+<li>程序需要实现一些需要等待的任务时，如用户输入、文件读写操作、网络操作、搜索等。</li>
+<li>需要一些后台运行的程序时。</li>
+</ul>
+<h3 id="2-3线程的创建与使用"><a href="#2-3线程的创建与使用" class="headerlink" title="2.3线程的创建与使用"></a>2.3线程的创建与使用</h3><h4 id="2-3-1创建与启动"><a href="#2-3-1创建与启动" class="headerlink" title="2.3.1创建与启动"></a>2.3.1创建与启动</h4><p>Java语言的JVM允许程序运行多个线程，它通过java.lang.Thread类来体现。<br>Thread类的特性<br>每个线程都是通过某个特定Thread对象的run()方法来完成操作的，经常把run()方法的主体称为线程体<br>通过该Thread对象的start()方法来启动这个线程，而非直接调用run()</p>
+<h4 id="2-3-2thread类"><a href="#2-3-2thread类" class="headerlink" title="2.3.2thread类"></a>2.3.2thread类</h4><p>Thread()：创建新的Thread对象<br>Thread(String threadname)：创建线程并指定线程实例名<br>Thread(Runnabletarget)：指定创建线程的目标对象，它实现了Runnable接口中的run方法<br>Thread(Runnable target, String name)：创建新的Thread对象</p>
+<h4 id="2-3-3创建多线程的方法一：继承thread类"><a href="#2-3-3创建多线程的方法一：继承thread类" class="headerlink" title="2.3.3创建多线程的方法一：继承thread类"></a>2.3.3创建多线程的方法一：继承thread类</h4><h5 id="1-多线程的创建，方式一：继承于Thread类"><a href="#1-多线程的创建，方式一：继承于Thread类" class="headerlink" title="1.多线程的创建，方式一：继承于Thread类"></a>1.多线程的创建，方式一：继承于Thread类</h5><ul>
+<li>1.创建一个继承于Thread类的子类</li>
+<li>2.重写Thread的run()方法 —&gt; 将此线程的方法声明在run()中</li>
+<li>3.创建Thread类的子对象</li>
+<li>4.通过此对象调用start()</li>
+</ul>
+<p><em>例子:遍历100以内的所有的偶数</em></p>
+<pre><code class="Java">1.创建一个继承于thread类的子类
+class mythread extends thread&#123;
+    重写thread类的run()
+    public void run() &#123;
+        for(int i=1;i&lt;100;i++)&#123;
+            if(i%2==0)&#123;
+                System.out.println(i)
+            &#125;
+        &#125;
+    &#125;
+&#125;
+public class threadtest &#123;
+    public static void main(String[] args)&#123;
+    3.创建thread类子对象
+    mythread t1 = new mythread();
+    4.通过此对象调用start();1.启动当前线程2调用当前线程的run;
+    t1.start();
+    //问题二:再启动一个线程，遍历100以内的偶数。不可以还让已经start()的线程去执行。会报IllegalThreadStateException
+//        t1.start();
+        //我们需要重现创建一个线程的对象，去start().
+        MyThread t2 = new MyThread();
+        t2.start();
+
+        //如下操作仍在main线程中执行的
+        for(int i = 1;i &lt; 100;i++)&#123;
+            if(i % 2 == 0)&#123;                System.out.println(Thread.currentThread().getName() + &quot;:&quot; + i + &quot;***main()***&quot;);
+            &#125;
+    main线程中执行
+    for(int i = 1;i&lt;100;i++)&#123;
+    if(i%2==0)&#123;
+    System.out.println(i+&quot;mian&quot;)
+    &#125;
+    &#125;
+    &#125;
+&#125;
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/4e851e2caa89df9b9838a273ad69249d.png" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/04e20e90637405c92469045cac1fbb54.png" alt="img"></p>
+<h5 id="2-匿名子类的创建方法"><a href="#2-匿名子类的创建方法" class="headerlink" title="2.匿名子类的创建方法"></a>2.匿名子类的创建方法</h5><pre><code class="Java">/**
+ * 练习:创建两个分线程，其中一个遍历100以内的偶数，另一个遍历100以内的奇数
+ */
+public class ThreadDemo &#123;
+    public static void main(String[] args) &#123;
+
+        //创建Thread类的匿名子类的方式
+        new Thread()&#123;
+            @Override
+            public void run() &#123;
+                for(int i = 0;i &lt; 100;i++)&#123;
+                    if(i % 2 == 0)&#123;
+                        System.out.println(Thread.currentThread().getName() + &quot;:&quot; + i);
+                    &#125;
+                &#125;
+            &#125;
+        &#125;.start();
+
+        new Thread()&#123;
+            @Override
+            public void run() &#123;
+                for(int i = 0;i &lt; 100;i++)&#123;
+                    if(i % 2 != 0)&#123;
+                        System.out.println(Thread.currentThread().getName() + &quot;:&quot; + i);
+                    &#125;
+                &#125;
+            &#125;
+        &#125;.start();
+    &#125;
+&#125;
+</code></pre>
+<h5 id="3-thread类的有关方法"><a href="#3-thread类的有关方法" class="headerlink" title="3.thread类的有关方法"></a>3.thread类的有关方法</h5><ul>
+<li>测试Thread类的常用方法</li>
+<li>1.start():启动当前线程，执行当前线程的run()</li>
+<li>2.run():通常需要重写Thread类中的此方法，将创建的线程要执行的操作声明在此方法中</li>
+<li>3.currentThread(): 静态方法，返回当前代码执行的线程</li>
+<li>4.getName():获取当前线程的名字</li>
+<li>5.setName():设置当前线程的名字</li>
+<li>6.yield():释放当前CPU的执行权</li>
+<li>7.join():在线程a中调用线程b的join(),此时线程a就进入阻塞状态，直到线程b完全执行完以后，线程a才</li>
+<li><pre><code>     结束阻塞状态。
+</code></pre>
+</li>
+<li>8.stop():已过时。当执行此方法时，强制结束当前线程。</li>
+<li>9.sleep(long millitime)：让当前线程“睡眠”指定时间的millitime毫秒)。在指定的millitime毫秒时间内，</li>
+<li><pre><code>                     当前线程是阻塞状态的。
+</code></pre>
+</li>
+<li>10.isAlive()：返回boolean，判断线程是否还活着</li>
+</ul>
+<h5 id="4-线程的调度"><a href="#4-线程的调度" class="headerlink" title="4.线程的调度"></a>4.线程的调度</h5><ul>
+<li>调度策略<ul>
+<li>时间片<br><img src="https://img-blog.csdnimg.cn/img_convert/df274b909314af5c7603df80e60c64f9.png" alt="img"></li>
+<li><strong>抢占式：高优先级的线程抢占CPU</strong></li>
+</ul>
+</li>
+<li>Java的调度方法<ul>
+<li>同优先级线程组成先进先出队列（先到先服务），使用时间片策略</li>
+<li>对高优先级，使用优先调度的抢占式策略</li>
+</ul>
+</li>
+</ul>
+<h5 id="5-线程的优先级"><a href="#5-线程的优先级" class="headerlink" title="5.线程的优先级"></a>5.线程的优先级</h5><pre><code class="Java">/**
+ * - 线程的优先级等级
+ *   - MAX_PRIORITY：10
+ *   - MIN _PRIORITY：1
+ *   - NORM_PRIORITY：5 ---&gt;默认优先级
+ * - 涉及的方法
+ *   - getPriority() ：返回线程优先值
+ *   - setPriority(intnewPriority) ：改变线程的优先级
+ *
+ *   说明:高优先级的线程要抢占低优先级线程cpu的执行权。
+ *       但是只是从概率上讲，高优先级的线程高概率的情况下被执行。
+ *       并不意味着只有当高优先级的线程执行完以后，低优先级的线程才会被执行。
+ */
+
+class HelloThread extends Thread &#123;
+    @Override
+    public void run() &#123;
+        for (int j = 0; j &lt; 100; j++) &#123;
+
+//            try &#123;
+//                sleep(10);
+//            &#125; catch (InterruptedException e) &#123;
+//                e.printStackTrace();
+//            &#125;
+
+            if (j % 2 == 0) &#123;
+                System.out.println(getName() + &quot;:&quot; + getPriority() + &quot;:&quot; + j);
+            &#125;
+        &#125;
+    &#125;
+    public HelloThread(String name)&#123;
+        super(name);
+    &#125;
+&#125;
+
+public class ThreadModeTest &#123;
+    public static void main(String[] args) &#123;
+        HelloThread h2 = new HelloThread(&quot;Thread : 1&quot;);
+        h2.start();
+
+        //设置分线程的优先级
+        h2.setPriority(Thread.MAX_PRIORITY);
+
+        //给主线程命名
+        Thread.currentThread().setName(&quot;主线程&quot;);
+        Thread.currentThread().setPriority((Thread.MIN_PRIORITY));
+
+        for(int j = 0;j &lt; 100; j++)&#123;
+            if(j % 2 == 0)&#123;
+                System.out.println(Thread.currentThread().getName() + &quot;:&quot; + Thread.currentThread().getPriority() + &quot;:&quot; + j);
+            &#125;
+
+//            if(j == 20)&#123;
+//                try &#123;
+//                    h2.join();
+//                &#125; catch (InterruptedException e) &#123;
+//                    e.printStackTrace();
+//                &#125;
+//            &#125;
+        &#125;
+
+        System.out.println(h2.isAlive());
+    &#125;
+&#125;
+</code></pre>
+<p>eg：多窗口卖票</p>
+<pre><code class="Java">/**
+ * 例子：创建三个c窗口卖票，总票数为100张
+ *
+ * 存在线程的安全问题，待解决。
+ */
+class Windows extends Thread&#123;
+
+    private static int ticket = 100;
+
+    @Override
+    public void run() &#123;
+        while(true)&#123;
+            if(ticket &gt; 0)&#123;
+                System.out.println(getName() + &quot;:卖票，票号为: &quot; + ticket);
+                ticket--;
+            &#125;else&#123;
+                break;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+
+public class WindowsTest &#123;
+    public static void main(String[] args) &#123;
+        Windows t1 = new Windows();
+        Windows t2 = new Windows();
+        Windows t3 = new Windows();
+
+        t1.setName(&quot;窗口1&quot;);
+        t2.setName(&quot;窗口2&quot;);
+        t3.setName(&quot;窗口3&quot;);
+
+        t1.start();
+        t2.start();
+        t3.start();
+    &#125;
+&#125;
+</code></pre>
+<p>该题中关于ticket数据应该设置为static</p>
+<h4 id="2-3-4创建多线程的创建，方式二：实现runnable接口"><a href="#2-3-4创建多线程的创建，方式二：实现runnable接口" class="headerlink" title="2.3.4创建多线程的创建，方式二：实现runnable接口"></a>2.3.4创建多线程的创建，方式二：实现runnable接口</h4><h5 id="1创建多线程的方式二：实现Runnable接口"><a href="#1创建多线程的方式二：实现Runnable接口" class="headerlink" title="1创建多线程的方式二：实现Runnable接口"></a>1<em>创建多线程的方式二：实现Runnable接口</em></h5><ul>
+<li>1.创建一个实现了Runnable接口得类</li>
+<li>2.实现类去实现Runnable中的抽象方法:run()</li>
+<li>3.创建实现类的对象</li>
+<li>4.将此对象作为参数传递到Thread类的构造器中，创建Thread类的对象</li>
+<li>5.通过Thread类的对象调用start()</li>
+</ul>
+<pre><code class="Java">//1.创建一个实现了Runnable接口得类
+class mthread implements runnable&#123;
+    //2.实现类去实现Runnable中的抽象方法:run()
+    @Override
+    public void run()&#123;
+        for(int i=1;i&lt;100;i++)&#123;
+            if(i%2 == 0)&#123;
+System.out.println(Thread.currentThread().getName() + &quot;:&quot; + i);
+            &#125;
+        &#125;
+    &#125;
+&#125;
+public class threadtest1&#123;
+    public static void main(String[] args)&#123;
+         //3.创建实现类的对象
+        mthread m1 = new mthread();
+         //4.将此对象作为参数传递到Thread类的构造器中，创建Thread类的对象
+        thread t1 = new thread(m1);
+        t1.start();
+        //再启动一个线程，遍历100以内的偶数
+        thread t2 = new thread(m1);
+        t2.start();
+    &#125;
+&#125;
+</code></pre>
+<h5 id="2-继承方式和实现方式的联系与区别"><a href="#2-继承方式和实现方式的联系与区别" class="headerlink" title="2.继承方式和实现方式的联系与区别"></a>2.继承方式和实现方式的联系与区别</h5><ul>
+<li>比较创建线程的两种方式。</li>
+<li>开发中：优先选择：实现Runnable接口的方式</li>
+<li>原因：1. 实现的方式没有类的单继承性的局限性</li>
+<li><pre><code>  2. 实现的方式更适合来处理多个线程有共享数据的情况。
+</code></pre>
+</li>
+<li></li>
+<li>联系：public class Thread implements Runnable</li>
+<li>相同点：两种方式都需要重写run(),将线程要执行的逻辑声明在run()中。</li>
+</ul>
+<p>补充</p>
+<p>Java中的线程分为两类：一种是守护线程，一种是用户线程。</p>
+<p>它们在几乎每个方面都是相同的，唯一的区别是判断JVM何时离开。<br>守护线程是用来服务用户线程的，通过在start()方法前调用**thread.setDaemon(true)**可以把一个用户线程变成一个守护线程。<br>Java垃圾回收就是一个典型的守护线程。<br>若JVM中都是守护线程，当前JVM将退出。<br>形象理解：兔死狗烹，鸟尽弓藏</p>
+<h5 id="3-线程的生命周期"><a href="#3-线程的生命周期" class="headerlink" title="3.线程的生命周期"></a>3.线程的生命周期</h5><p>JDK中用Thread.State类定义了线程的几种状态</p>
+<p>新建：当一个Thread类或其子类的对象被声明并创建时，新生的线程对象处于新建状态<br>就绪：处于新建状态的线程被start()后，将进入线程队列等待CPU时间片，此时它已具备了运行的条件，只是没分配到CPU资源<br>运行：当就绪的线程被调度并获得CPU资源时,便进入运行状态，run()方法定义了线程的操作和功能<br>阻塞：在某种特殊情况下，被人为挂起或执行输入输出操作时，让出CPU并临时中止自己的执行，进入阻塞状态<br>死亡：线程完成了它的全部工作或线程被提前强制性地中止或出现异常导致结束</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/b29133ad93d3839d259de57bbfa1397a.png" alt="img"></p>
+<h4 id="2-3-5线程的同步（解决线程安全的问题）"><a href="#2-3-5线程的同步（解决线程安全的问题）" class="headerlink" title="2.3.5线程的同步（解决线程安全的问题）"></a>2.3.5线程的同步（解决线程安全的问题）</h4><p>1、提出问题：</p>
+<p> 多个线程执行的不确定性引起执行结果的不稳定</p>
+<p> 多个线程对账本的共享，会造成操作的不完整性，会破坏数据。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/b10da50b242810bf311c0f7f8062e729.png" alt="img"></p>
+<h5 id="1-同步代码块处理实现Runnable的线程安全问题"><a href="#1-同步代码块处理实现Runnable的线程安全问题" class="headerlink" title="1.同步代码块处理实现Runnable的线程安全问题"></a>1.同步代码块处理实现Runnable的线程安全问题</h5><pre><code class="Java">/**
+ *  例子：创建三个窗口卖票，总票数为100张.使用实现Runnable接口的方式
+ *  1.卖票过程中出现重票、错票 ---》出现了线程的安全问题
+ *  2.问题出现的原因:当某个线程操作车票的过程中，尚未操作完成时，其他线程参与进来，也操作车票
+ *  3.如何解决：当一个线程在操作ticket的时候，其他线程不能参与进来。直到线程a操作完ticket时，其他
+ *            线程才可以操作ticket。这种情况即使线程a出现了阻塞，也不能被改变。
+ *  4.在java中，我们通过同步机制，来解决线程的安全问题。
+ *
+ *  方式一：同步代码块
+ *  synchronized(同步监视器)&#123;
+ *      //需要被同步的代码
+ *
+ *  &#125;
+ *  说明：1.操作共享数据的代码，即为需要被同步的代码 ---&gt;不能包含代码多了，也不能包含代码少了。
+ *       2.共享数据：多个线程共同操作的变量。比如：ticket就是共享数据
+ *       3.同步监视器，俗称：锁。任何一个类的对象，都可以来充当锁。
+ *          要求：多个线程必须要共用同一把锁。
+ *
+ *       补充：在实现Runnable接口创建多线程的方式中，我们可以考虑使用this充当同步监视器。
+ *
+ *  方式二：同步方法
+ *      如果操作共享数据的代码完整的声明在一个方法中，我们不妨将此方法声明同步的
+ *
+ *  5.同步的方式，解决了线程的安全问题。---好处
+ *    操作同步代码时，只能有一个线程参与，其他线程等待。相当于是一个单线程的过程，效率低。---局限性
+ */
+
+class Windows1 implements Runnable&#123;
+
+    private int ticket = 100;
+//    Object obj = new Object();
+//    Dog dog = new Dog();
+
+    @Override
+    public void run() &#123;
+        while(true)&#123;
+            synchronized (this) &#123;//此时的this:唯一的windows1的对象
+                很重要；多个对象用同一把锁所以这里只能用this，而且这个this指向window11的对象，而不是t1,t2,t3
+                //方式二:synchronized (dog) &#123;
+                if (ticket &gt; 0) &#123;
+
+                    try&#123;
+                        Thread.sleep(100);
+                    &#125;catch (InterruptedException e)&#123;
+                        e.printStackTrace();
+                    &#125;
+
+                    System.out.println(Thread.currentThread().getName() + &quot;:卖票，票号为: &quot; + ticket);
+                    ticket--;
+                &#125; else &#123;
+                    break;
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+
+public class WindowsTest1 &#123;
+    public static void main(String[] args) &#123;
+        Windows1 w = new Windows1();
+
+        Thread t1 = new Thread(w);
+        Thread t2 = new Thread(w);
+        Thread t3 = new Thread(w);
+
+        t1.setName(&quot;窗口1&quot;);
+        t2.setName(&quot;窗口2&quot;);
+        t3.setName(&quot;窗口3&quot;);
+
+        t1.start();
+        t2.start();
+        t3.start();
+    &#125;
+&#125;
+class Dog&#123;
+
+&#125;
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/3d05078b85d041ca81c335b48afa8607.png" alt="img"></p>
+<h5 id="2-同步代码块处理继承Thread类的线程安全问题"><a href="#2-同步代码块处理继承Thread类的线程安全问题" class="headerlink" title="2.同步代码块处理继承Thread类的线程安全问题"></a>2.同步代码块处理继承Thread类的线程安全问题</h5><pre><code class="Java">/**
+ * 使用同步代码块解决继承Thread类的方式的线程安全问题
+ *
+ * 例子：创建三个c窗口卖票，总票数为100张
+ */
+class Windows extends Thread&#123;
+
+    private static int ticket = 100;
+    private static Object obj = new Object();因为这里对象为私有，下面new了三个对象，也就相当于三个锁，为了保证唯一，应该加上一个static
+
+    @Override
+    public void run() &#123;
+        while(true)&#123;
+            //正确的
+//            synchronized (obj) &#123;
+            synchronized (Windows.class)&#123;   //Class clazz = Windows.class
+            //错误的，因为此时this表示的是t1,t2,t3三个对象
+//            synchronized (this) &#123;
+                if (ticket &gt; 0) &#123;
+
+                    try &#123;
+                        Thread.sleep(100);
+                    &#125; catch (InterruptedException e) &#123;
+                        e.printStackTrace();
+                    &#125;
+
+                    System.out.println(getName() + &quot;:卖票，票号为: &quot; + ticket);
+                    ticket--;
+                &#125; else &#123;
+                    break;
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+
+public class WindowsTest2 &#123;
+    public static void main(String[] args) &#123;
+        Windows t1 = new Windows();
+        Windows t2 = new Windows();
+        Windows t3 = new Windows();
+
+        t1.setName(&quot;窗口1&quot;);
+        t2.setName(&quot;窗口2&quot;);
+        t3.setName(&quot;窗口3&quot;);
+
+        t1.start();
+        t2.start();
+        t3.start();
+    &#125;
+&#125;
+</code></pre>
+<h5 id="3-同步方法处理实现Runnable的线程安全问题"><a href="#3-同步方法处理实现Runnable的线程安全问题" class="headerlink" title="3.同步方法处理实现Runnable的线程安全问题"></a>3.同步方法处理实现Runnable的线程安全问题</h5><pre><code class="Java">/**
+ * 使用同步方法解决实现Runnable接口的线程安全问题
+ *
+ * 关于同步方法的总结:
+ *  1. 同步方法仍然涉及到同步监视器，只是不需要我们显式的声明。
+ *  2. 非静态的同步方法，同步监视器是：this
+ *     静态的同步方法，同步监视器是：当前类本身
+ */
+
+class Windows3 implements Runnable &#123;
+
+    private int ticket = 100;
+
+    @Override
+    public void run() &#123;
+        while (true) &#123;
+            show();
+        &#125;
+    &#125;
+
+    public synchronized void show() &#123; //同步监视器:this
+//        synchronized (this)&#123;
+            if (ticket &gt; 0) &#123;
+                try &#123;
+                    Thread.sleep(100);
+                &#125; catch (InterruptedException e) &#123;
+                    e.printStackTrace();
+                &#125;
+                System.out.println(Thread.currentThread().getName() + &quot;:卖票，票号为: &quot; + ticket);
+                ticket--;
+            &#125;
+//        &#125;
+    &#125;
+&#125;
+
+public class WindowsTest3 &#123;
+    public static void main(String[] args) &#123;
+        Windows3 w3 = new Windows3();
+
+        Thread t1 = new Thread(w3);
+        Thread t2 = new Thread(w3);
+        Thread t3 = new Thread(w3);
+
+        t1.setName(&quot;窗口1&quot;);
+        t2.setName(&quot;窗口2&quot;);
+        t3.setName(&quot;窗口3&quot;);
+
+        t1.start();
+        t2.start();
+        t3.start();
+    &#125;
+&#125;
+</code></pre>
+<h5 id="4-同步方法处理继承Thread类的线程安全问题"><a href="#4-同步方法处理继承Thread类的线程安全问题" class="headerlink" title="4.同步方法处理继承Thread类的线程安全问题"></a>4.同步方法处理继承Thread类的线程安全问题</h5><pre><code class="Java">/**
+ * 使用同步方法处理继承Thread类的方式中的线程安全问题
+ */
+class Windows4 extends Thread &#123;
+
+    private static int ticket = 100;
+
+    @Override
+    public void run() &#123;
+
+        while (true) &#123;
+
+            show();
+        &#125;
+
+    &#125;
+    private static synchronized void show()&#123;//同步监视器：Window4.class
+        //private synchronized void show()&#123; //同步监视器：t1,t2,t3。此种解决方式是错误的
+        if (ticket &gt; 0) &#123;
+
+            try &#123;
+                Thread.sleep(100);
+            &#125; catch (InterruptedException e) &#123;
+                e.printStackTrace();
+            &#125;
+
+            System.out.println(Thread.currentThread().getName() + &quot;：卖票，票号为：&quot; + ticket);
+            ticket--;
+        &#125;
+    &#125;
+&#125;
+
+
+public class WindowsTest4 &#123;
+    public static void main(String[] args) &#123;
+        Windows4 t1 = new Windows4();
+        Windows4 t2 = new Windows4();
+        Windows4 t3 = new Windows4();
+
+
+        t1.setName(&quot;窗口1&quot;);
+        t2.setName(&quot;窗口2&quot;);
+        t3.setName(&quot;窗口3&quot;);
+
+        t1.start();
+        t2.start();
+        t3.start();
+
+    &#125;
+&#125;
+</code></pre>
+<h5 id="5-线程安全的单例模式之懒汉式"><a href="#5-线程安全的单例模式之懒汉式" class="headerlink" title="5.线程安全的单例模式之懒汉式"></a>5.线程安全的单例模式之懒汉式</h5><pre><code class="Java">/**
+ * 使用同步机制将单例模式中的懒汉式改写为线程安全的
+ */
+public class BankTest &#123;
+&#125;
+class Bank&#123;
+
+    private Bank()&#123;&#125;
+
+    private static Bank instance = null;
+
+    public static Bank getInstance()&#123;
+        //方式一：效率稍差
+        //快捷键:Alt+Shift+Z
+//        synchronized (Bank.class) &#123;
+//            if(instance == null)&#123;
+//                instance = new Bank();
+//            &#125;
+//            return instance;
+//        &#125;
+
+        //方式二：效率较高
+        if(instance == null) &#123;
+            synchronized (Bank.class) &#123;
+                if (instance == null) &#123;
+                    instance = new Bank();
+                &#125;
+            &#125;
+        &#125;
+        return instance;
+    &#125;
+&#125;
+</code></pre>
+<h5 id="6-死锁"><a href="#6-死锁" class="headerlink" title="6.死锁"></a>6.死锁</h5><pre><code class="Java">/**
+ * 演示线程的死锁
+ *
+ * 1.死锁的理解：不同的线程分别占用对方需要的同步资源不放弃，
+ *       都在等待对方放弃自己需要的同步资源，就形成了线程的死锁
+ * 2.说明:
+ *      》出现死锁后，不会出现异常，不会出现提示，只是所有的线程都处于阻塞状态，无法继续
+ *      》我们使用同步时，要避免出现死锁。
+ */
+public class ThreadTest &#123;
+    public static void main(String[] args) &#123;
+
+        StringBuffer s1 = new StringBuffer();
+        StringBuffer s2 = new StringBuffer();
+
+        new Thread()&#123;
+            @Override
+            public void run() &#123;
+
+                synchronized (s1)&#123;
+                    s1.append(&quot;a&quot;);
+                    s2.append(&quot;1&quot;);
+
+                    try &#123;
+                        Thread.sleep(100);
+                    &#125; catch (InterruptedException e) &#123;
+                        e.printStackTrace();
+                    &#125;
+
+                    synchronized (s2)&#123;
+                        s1.append(&quot;b&quot;);
+                        s2.append(&quot;2&quot;);
+
+                        System.out.println(s1);
+                        System.out.println(s2);
+                    &#125;
+                &#125;
+            &#125;
+        &#125;.start();
+
+        new Thread(new Runnable() &#123;
+            @Override
+            public void run() &#123;
+                synchronized (s2)&#123;
+                    s1.append(&quot;c&quot;);
+                    s2.append(&quot;3&quot;);
+
+                    try &#123;
+                        Thread.sleep(100);
+                    &#125; catch (InterruptedException e) &#123;
+                        e.printStackTrace();
+                    &#125;
+
+                    synchronized (s1)&#123;
+                        s1.append(&quot;d&quot;);
+                        s2.append(&quot;4&quot;);
+
+                        System.out.println(s1);
+                        System.out.println(s2);
+                    &#125;
+                &#125;
+            &#125;
+        &#125;).start();
+    &#125;
+&#125;
+</code></pre>
+<h5 id="7-Lock锁方式解决线程安全问题"><a href="#7-Lock锁方式解决线程安全问题" class="headerlink" title="7.Lock锁方式解决线程安全问题"></a>7.Lock锁方式解决线程安全问题</h5><p>java.util.concurrent.locks.Lock接口是控制多个线程对共享资源进行访问的工具。锁提供了对共享资源的独占访问，每次只能有一个线程对Lock对象加锁，线程开始访问共享资源之前应先获得Lock对象。<br>ReentrantLock类实现了Lock ，它拥有与synchronized相同的并发性和内存语义，在实现线程安全的控制中，比较常用的是ReentrantLock，可以显式加锁、释放锁。<br>从JDK 5.0开始，Java提供了更强大的线程同步机制——通过显式定义同步锁对象来实现同步。同步锁使用Lock对象充当。</p>
+<pre><code class="Java">import java.util.concurrent.locks.ReentrantLock;
+
+/**
+ * 解决线程安全问题的方式三：lock锁---》JDK5.0新增
+ *
+ * 注意：如果同步代码有异常，要将unlock()写入finally语句块
+ *
+ * 1. 面试题：synchronized 与 Lock的异同？
+ *    相同：二者都可以解决线程安全问题
+ *    不同：synchronized机制在执行完相应的同步代码以后，自动的释放同步监视器
+ *         Lock需要手动的启动同步（lock()），同时结束同步也需要手动的实现（unlock()）
+ *
+ * 2.优先使用顺序：
+ *      Lock 同步代码块（已经进入了方法体，分配了相应资源）同步方法（在方法体之外）
+ *
+ * 面试题：如何解决线程安全问题？有几种方式
+ */
+
+class Windows implements Runnable&#123;
+
+    private int ticket = 100;
+    //1.实例化ReentrantLock
+    private ReentrantLock lock = new ReentrantLock();
+
+
+    @Override
+    public void run() &#123;
+        while(true)&#123;
+            try&#123;
+
+                //调用锁定方法：lock()
+                lock.lock();
+
+                if(ticket &gt; 0)&#123;
+
+                    try &#123;
+                        Thread.sleep(100);
+                    &#125; catch (InterruptedException e) &#123;
+                        e.printStackTrace();
+                    &#125;
+
+                    System.out.println(Thread.currentThread().getName() + &quot;:售票，票号为: &quot; + ticket);
+                    ticket --;
+                &#125;else&#123;
+                    break;
+                &#125;
+            &#125;finally &#123;
+                //3.调用解锁方法：unlock()
+                lock.unlock();
+            &#125;
+        &#125;
+    &#125;
+&#125;
+
+public class LockTest &#123;
+    public static void main(String[] args) &#123;
+        Windows w = new Windows();
+
+        Thread t1 = new Thread(w);
+        Thread t2 = new Thread(w);
+        Thread t3 = new Thread(w);
+
+        t1.setName(&quot;窗口1&quot;);
+        t2.setName(&quot;窗口2&quot;);
+        t3.setName(&quot;窗口3&quot;);
+
+        t1.start();
+        t2.start();
+        t3.start();
+    &#125;
+&#125;
+</code></pre>
+<h5 id="8-练习"><a href="#8-练习" class="headerlink" title="8.练习"></a>8.练习</h5><pre><code class="Java">/**
+ * 银行有一个账户。
+ * 有两个储户分别向同一个账户存3000元，每次存1000，存3次。
+ * 每次存完打印账户余额。
+ *
+ * 分析：
+ *      1.是否是多线程问题？是，两个储户线程
+ *      2.是否有共享数据？有，账户（或账户余额）
+ *      3.是否有线程安全问题？有
+ *      4.需要考虑如何解决线程安全问题？同步机制：有三种方式。
+ */
+class Account&#123;
+    private double balance;
+
+    public Account(double balance)&#123;
+        this.balance = balance;
+    &#125;
+
+    //存钱
+    public synchronized void deposit(double amt)&#123;
+        if(amt &gt; 0)&#123;
+
+            try &#123;
+                Thread.sleep(1000);
+            &#125; catch (InterruptedException e) &#123;
+                e.printStackTrace();
+            &#125;
+
+            balance += amt;
+            System.out.println(Thread.currentThread().getName() + &quot;:&quot; + &quot;存钱成功，当前余额:&quot; + balance);
+        &#125;
+    &#125;
+&#125;
+
+class Customer extends Thread&#123;
+
+    private Account acct;
+    public Customer(Account acct)&#123;
+        this.acct = acct;
+    &#125;
+
+    @Override
+    public void run() &#123;
+
+        for(int i = 0;i &lt; 3;i++)&#123;
+            acct.deposit(1000);
+        &#125;
+    &#125;
+&#125;
+
+public class AccountTest &#123;
+    public static void main(String[] args) &#123;
+        Account acct = new Account(0);
+        Customer c1 = new Customer(acct);
+        Customer c2 = new Customer(acct);
+
+        c1.setName(&quot;甲&quot;);
+        c2.setName(&quot;乙&quot;);
+
+        c1.start();
+        c2.start();
+    &#125;
+&#125;
+</code></pre>
+<h4 id="2-3-6线程的通信"><a href="#2-3-6线程的通信" class="headerlink" title="2.3.6线程的通信"></a>2.3.6线程的通信</h4><h5 id="1-涉及的方法"><a href="#1-涉及的方法" class="headerlink" title="1.涉及的方法"></a>1.涉及的方法</h5><pre><code class="Java">/**
+ * 线程通信的例子：使用两个线程打印1-100。线程1, 线程2 交替打印
+ *
+ * 涉及到的三个方法：
+ * wait():一旦执行此方法，当前线程就进入阻塞状态，并释放同步监视器。
+ * notify():一旦执行此方法，就会唤醒被wait的一个线程。如果有多个线程被wait，就唤醒优先级高的那个。
+ * notifyAll():一旦执行此方法，就会唤醒所有被wait的线程。
+ *
+ * 说明：
+ *      1.wait()，notify()，notifyAll()三个方法必须使用在同步代码块或同步方法中。
+ *      2.wait()，notify()，notifyAll()三个方法的调用者必须是同步代码块或同步方法中的同步监视器。
+ *         否则，会出现IllegalMonitorStateException异常
+ *      3.wait()，notify()，notifyAll()三个方法是定义在java.lang.Object类中。
+ */
+
+class Number implements Runnable&#123;
+
+    private int number = 1;
+    public Object obj = new Object();
+
+    @Override
+    public void run() &#123;
+
+        while (true)&#123;
+            synchronized (obj) &#123;
+
+                obj.notify();
+
+                if(number &lt;= 100)&#123;
+
+                    try &#123;
+                        Thread.sleep(10);
+                    &#125; catch (InterruptedException e) &#123;
+                        e.printStackTrace();
+                    &#125;
+
+                    System.out.println(Thread.currentThread().getName() + &quot;:&quot; + number);
+                    number++;
+
+                    try &#123;
+                        //使得调用如下wait()方法的线程进入阻塞状态
+                        obj.wait();
+                    &#125; catch (InterruptedException e) &#123;
+                        e.printStackTrace();
+                    &#125;
+
+                &#125;else&#123;
+                    break;
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+
+public class CommunicationTest &#123;
+    public static void main(String[] args) &#123;
+        Number number = new Number();
+        Thread t1 = new Thread(number);
+        Thread t2 = new Thread(number);
+
+        t1.setName(&quot;线程1&quot;);
+        t2.setName(&quot;线程2&quot;);
+
+        t1.start();
+        t2.start();
+    &#125;
+&#125;
+</code></pre>
+<h5 id="2-sleep-和wait-的异同"><a href="#2-sleep-和wait-的异同" class="headerlink" title="2.sleep()和wait()的异同"></a>2.sleep()和wait()的异同</h5><ul>
+<li>面试题：sleep() 和 wait()的异同？</li>
+<li>1.相同点：一旦执行方法，都可以使得当前的线程进入阻塞状态。</li>
+<li>2.不同点：1）两个方法声明的位置不同：Thread类中声明sleep() , Object类中声明wait()</li>
+<li><pre><code>     2）调用的要求不同：sleep()可以在任何需要的场景下调用。 wait()必须使用在同步代码块或同步方法中
+</code></pre>
+</li>
+<li><pre><code>     3）关于是否释放同步监视器：如果两个方法都使用在同步代码块或同步方法中，sleep()不会释放锁，wait()会释放锁。
+</code></pre>
+</li>
+</ul>
+<h5 id="3-经典例题：生产者-x2F-消费者问题"><a href="#3-经典例题：生产者-x2F-消费者问题" class="headerlink" title="3.经典例题：生产者&#x2F;消费者问题"></a>3.经典例题：生产者&#x2F;消费者问题</h5><p><img src="https://img-blog.csdnimg.cn/img_convert/ac291433d4e2f43d4517b1b92043e95a.png" alt="img"></p>
+<pre><code class="Java">/**
+ * 线程通信的应用：经典例题：生产者/消费者问题
+ *
+ * 生产者(Productor)将产品交给店员(Clerk)，而消费者(Customer)从店员处取走产品，
+ * 店员一次只能持有固定数量的产品(比如:20），如果生产者试图生产更多的产品，
+ * 店员会叫生产者停一下，如果店中有空位放产品了再通知生产者继续生产；
+ * 如果店中没有产品了，店员会告诉消费者等一下，
+ * 如果店中有产品了再通知消费者来取走产品。
+ *
+ * 分析：
+ *      1.是否是多线程的问题？是，生产者的线程，消费者的线程
+ *      2.是否有共享数据的问题？是，店员、产品、产品数
+ *      3.如何解决线程的安全问题？同步机制，有三种方法
+ *      4.是否涉及线程的通信？是
+ */
+
+class Clerk&#123;
+
+    private int productCount = 0;
+
+    //生产产品
+    public synchronized void produceProduct() &#123;
+
+        if(productCount &lt; 20)&#123;
+            productCount++;
+            System.out.println(Thread.currentThread().getName() + &quot;: 开始生产第&quot; + productCount + &quot;个产品&quot;);
+
+            notify();
+        &#125;else&#123;
+            //等待
+            try &#123;
+                wait();
+            &#125; catch (InterruptedException e) &#123;
+                e.printStackTrace();
+            &#125;
+        &#125;
+
+    &#125;
+
+    //消费产品
+    public synchronized void consumeProduct() &#123;
+
+        if(productCount &gt; 0)&#123;
+            System.out.println(Thread.currentThread().getName() + &quot;:开始消费第&quot; + productCount + &quot;个产品&quot;);
+            productCount--;
+
+            notify();
+        &#125;else&#123;
+            //等待
+            try &#123;
+                wait();
+            &#125; catch (InterruptedException e) &#123;
+                e.printStackTrace();
+            &#125;
+        &#125;
+    &#125;
+
+&#125;
+
+class Producer extends Thread&#123;//生产者
+    private Clerk clerk;
+
+    public Producer(Clerk clerk)&#123;
+        this.clerk = clerk;
+    &#125;
+
+    @Override
+    public void run() &#123;
+        System.out.println(getName() + &quot;: 开始生产产品......&quot;);
+
+        while(true)&#123;
+
+            try &#123;
+                Thread.sleep(10);
+            &#125; catch (InterruptedException e) &#123;
+                e.printStackTrace();
+            &#125;
+
+            clerk.produceProduct();
+        &#125;
+    &#125;
+&#125;
+
+class Consumer extends Thread&#123;  //消费者
+    private Clerk clerk;
+
+    public Consumer(Clerk clerk)&#123;
+        this.clerk = clerk;
+    &#125;
+
+    @Override
+    public void run() &#123;
+        System.out.println(getName() + &quot;: 开始消费产品......&quot;);
+
+        while(true)&#123;
+
+            try &#123;
+                Thread.sleep(20);
+            &#125; catch (InterruptedException e) &#123;
+                e.printStackTrace();
+            &#125;
+
+            clerk.consumeProduct();
+        &#125;
+
+    &#125;
+&#125;
+
+public class ProductTest &#123;
+    public static void main(String[] args) &#123;
+        Clerk clerk = new Clerk();
+
+        Producer p1 = new Producer(clerk);
+        p1.setName(&quot;生产者1&quot;);
+
+        Consumer c1 = new Consumer(clerk);
+        c1.setName(&quot;消费者1&quot;);
+        Consumer c2 = new Consumer(clerk);
+        c2.setName(&quot;消费者2&quot;);
+
+        p1.start();
+        c1.start();
+        c2.start();
+    &#125;
+&#125;				
+</code></pre>
+<h4 id="2-3-7创建多线程的方式三：实现callable接口"><a href="#2-3-7创建多线程的方式三：实现callable接口" class="headerlink" title="2.3.7创建多线程的方式三：实现callable接口"></a>2.3.7创建多线程的方式三：实现callable接口</h4><pre><code class="Java">import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
+
+/**
+ * 创建多线程的方式三：实现Callable接口 ---&gt; JDK 5.0新增
+ *
+ * 如何理解实现Callable接口的方式创建多线程比实现Runnable接口创建多线程方式强大？
+ *      1.call()可以有返回值的。
+ *      2.call()可以抛出异常，被外面的操作捕获，获取异常的信息
+ *      3.Callable是支持泛型的
+ *      4.需要借助FutureTask类，比如获取返回结果
+ */
+//1.创建一个实现Callable的实现类
+class NumThread implements Callable&#123;
+
+    //2.实现call方法，将此线程需要执行的操作声明在call()中
+    @Override
+    public Object call() throws Exception &#123;
+        int sum = 0;
+        for(int i = 1;i &lt;= 100;i++)&#123;
+            if(i % 2 == 0)&#123;
+                System.out.println(i);
+                sum += i;
+            &#125;
+        &#125;
+        return sum;
+    &#125;
+&#125;
+
+public class ThreadNew &#123;
+    public static void main(String[] args) &#123;
+        //3.创建Callable接口实现类的对象
+        NumThread numThread = new NumThread();
+
+        //4.将此Callable接口实现类的对象作为传递到FutureTask构造器中，创建FutureTask的对象
+        FutureTask futureTask = new FutureTask(numThread);
+
+        //5.将FutureTask的对象作为参数传递到Thread类的构造器中，创建Thread对象，并调用start()
+        new Thread(futureTask).start();
+
+        try &#123;
+            //6.获取Callable中call方法的返回值
+            //get()返回值即为FutureTask构造器参数Callable实现类重写的call()的返回值。
+            Object sum = futureTask.get();
+            System.out.println(&quot;总和为:&quot; + sum);
+        &#125; catch (InterruptedException e) &#123;
+            e.printStackTrace();
+        &#125; catch (ExecutionException e) &#123;
+            e.printStackTrace();
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>Future接口</p>
+<p>可以对具体Runnable、Callable任务的执行结果进行取消、查询是否完成、获取结果等。<br>FutrueTask是Futrue接口的唯一的实现类<br>FutureTask同时实现了Runnable, Future接口。它既可以作为Runnable被线程执行，又可以作为Future得到Callable的返回值</p>
+<h4 id="2-3-8创建多线程的方式四：使用线程池"><a href="#2-3-8创建多线程的方式四：使用线程池" class="headerlink" title="2.3.8创建多线程的方式四：使用线程池"></a>2.3.8创建多线程的方式四：使用线程池</h4><h5 id="1-线程池的好处"><a href="#1-线程池的好处" class="headerlink" title="1.线程池的好处"></a>1.线程池的好处</h5><p>1、背景：</p>
+<p>经常创建和销毁、使用量特别大的资源，比如并发情况下的线程，对性能影响很大。</p>
+<p>2、思路：</p>
+<p>提前创建好多个线程，放入线程池中，使用时直接获取，使用完放回池中。可以避免频繁创建销毁、实现重复利用。类似生活中的公共交通工具。</p>
+<p>3、好处：</p>
+<p>提高响应速度（减少了创建新线程的时间）<br>降低资源消耗（重复利用线程池中线程，不需要每次都创建）<br>便于线程管理<br>corePoolSize：核心池的大小<br>maximumPoolSize：最大线程数<br>keepAliveTime：线程没有任务时最多保持多长时间后会终止<br>…</p>
+<h5 id="2-怎么写一个线程池"><a href="#2-怎么写一个线程池" class="headerlink" title="2.怎么写一个线程池"></a>2.怎么写一个线程池</h5><pre><code class="Java">
+class NumberThread implements Runnable&#123;
+    @Override
+    public void run() &#123;
+        for(int i = 0;i &lt;= 100;i++)&#123;
+            if(i % 2 == 0)&#123;
+                System.out.println(Thread.currentThread().getName() + &quot;:&quot; + i);
+            &#125;
+        &#125;
+    &#125;
+&#125;
+class NumberThread1 implements Runnable&#123;
+    @Override
+    public void run() &#123;
+        for(int i = 0;i &lt;= 100;i++)&#123;
+            if(i % 2 != 0)&#123;
+                System.out.println(Thread.currentThread().getName() + &quot;:&quot; + i);
+            &#125;
+        &#125;
+    &#125;
+&#125;
+
+public class ThreadPool &#123;
+    public static void main(String[] args) &#123;
+
+        //1. 提供指定线程数量的线程池
+        ExecutorService service = Executors.newFixedThreadPool(10);
+        ThreadPoolExecutor service1 = (ThreadPoolExecutor) service;
+        //设置线程池的属性
+//        System.out.println(service.getClass());
+//        service1.setCorePoolSize(15);
+//        service1.setKeepAliveTime();
+
+        //2.执行指定的线程的操作。需要提供实现Runnable接口或Callable接口实现类的对象
+        service.execute(new NumberThread());  //适合适用于Runable
+        service.execute(new NumberThread1());  //适合适用于Runable
+
+//        service.submit(Callable callable);   //适合适用于Callable
+
+        //3.关闭连接池
+        service.shutdown();
+    &#125;
+&#125;
+</code></pre>
+<p>线程池相关API</p>
+<p>JDK 5.0起提供了线程池相关API：ExecutorService和Executors<br>ExecutorService：真正的线程池接口。</p>
+<p>常见子类ThreadPoolExecutor</p>
+<p>void execute(Runnable command) ：执行任务&#x2F;命令，没有返回值，一般用来执行Runnable<br>Future submit(Callable task)：执行任务，有返回值，一般又来执行Callable<br>void shutdown()：关闭连接池</p>
+<p>Executors：工具类、线程池的工厂类，用于创建并返回不同类型的线程池</p>
+<p>Executors.newCachedThreadPool()：创建一个可根据需要创建新线程的线程池<br>Executors.newFixedThreadPool(n); 创建一个可重用固定线程数的线程池<br>Executors.newSingleThreadExecutor()：创建一个只有一个线程的线程池<br>Executors.newScheduledThreadPool(n)：创建一个线程池，它可安排在给定延迟后运行命令或者定期地执行。</p>
+<h2 id="3-常用类"><a href="#3-常用类" class="headerlink" title="3.常用类"></a>3.常用类</h2><h3 id="3-1字符串相关的类"><a href="#3-1字符串相关的类" class="headerlink" title="3.1字符串相关的类"></a>3.1字符串相关的类</h3><h4 id="3-1-1String类的概述"><a href="#3-1-1String类的概述" class="headerlink" title="3.1.1String类的概述"></a>3.1.1<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=String%E7%B1%BB&spm=1001.2101.3001.7020">String类</a>的概述</h4><pre><code> * String:字符串，使用一对“”引起来表示。
+ * 1.String声明为final的，不可被继承
+ * 2.String实现了Serializable接口：表示字符串是支持序列化的。
+ *         实现了Comparable接口：表示String可以比较大小
+ * 3.String内部定义了final char[] value用于存储字符串数据
+ * 4.String:代表不可变的字符序列。简称：不可变性。
+</code></pre>
+<h4 id="3-1-2-String的不可变性"><a href="#3-1-2-String的不可变性" class="headerlink" title="3.1.2 String的不可变性"></a>3.1.2 String的不可变性</h4><p>4.String:代表不可变的字符序列。简称：不可变性。<br>     *      体现：1.当对字符串重新赋值时，需要重写指定内存区域赋值，不能使用原有的value进行赋值。<br>     *           2.当对现有的字符串进行连接操作时，也需要重新指定内存区域赋值，不能使用原有的value进行赋值。<br>     *           3.当调用String的replace()方法修改指定字符或字符串时，也需要重新指定内存区域赋值，不能使用原有的value进行赋值。<br>     * 5.通过字面量的方式（区别于new）给一个字符串赋值，此时的字符串值声明在字符串常量池中。<br>     * 6.字符串常量池中是不会存储相同内容的字符串的。</p>
+<pre><code class="java">@Test
+    public void Test1()&#123;
+        String s1 = &quot;abc&quot;;  //字面量的定义方式
+        String s2 = &quot;abc&quot;;
+        s1 = &quot;hello&quot;;
+
+        System.out.println(s1 == s2);//比较s1和s2的地址值
+
+        System.out.println(s1);//hello
+        System.out.println(s2);//abc
+
+        System.out.println(&quot;*********************&quot;);
+
+        String s3 = &quot;abc&quot;;
+        s3 += &quot;def&quot;;
+        System.out.println(s3);//abcdef
+
+        System.out.println(&quot;**********************&quot;);
+
+        String s4 = &quot;abc&quot;;
+        String s5 = s4.replace(&#39;a&#39;, &#39;m&#39;);
+        System.out.println(s4);//abc
+        System.out.println(s5);//mbc
+    &#125;
+&#125;
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200509201648472.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MTUzOTQ5,size_16,color_FFFFFF,t_70#pic_center" alt="img"></p>
+<h4 id="3-1-3-String不同实例化方式的对比"><a href="#3-1-3-String不同实例化方式的对比" class="headerlink" title="3.1.3 String不同实例化方式的对比"></a>3.1.3 String不同实例化方式的对比</h4><h5 id="1-创建方式"><a href="#1-创建方式" class="headerlink" title="1.创建方式"></a>1.创建方式</h5><pre><code class="Java">String str = &quot;hello&quot;;
+
+//本质上this.value = new char[0];
+String  s1 = new String(); 
+
+//this.value = original.value;
+String  s2 = new String(String original); 
+
+//this.value = Arrays.copyOf(value, value.length);
+String  s3 = new String(char[] a);
+
+String  s4 = new String(char[] a,int startIndex,int count);
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200509201719650.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MTUzOTQ5,size_16,color_FFFFFF,t_70#pic_center" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200509201719569.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MTUzOTQ5,size_16,color_FFFFFF,t_70#pic_center" alt="img"></p>
+<h5 id="2-String-str1-x3D-“abc”-与String-str2-x3D-new-String-“abc”-的区别？"><a href="#2-String-str1-x3D-“abc”-与String-str2-x3D-new-String-“abc”-的区别？" class="headerlink" title="2.String str1 &#x3D; “abc”;与String str2 &#x3D; new String(“abc”);的区别？"></a>2.<strong>String str1 &#x3D; “abc”;与String str2 &#x3D; new String(“abc”);的区别？</strong></h5><ul>
+<li>字符串常量存储在字符串常量池，目的是共享</li>
+<li>字符串非常量对象存储在堆中。</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20200509201753900.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MTUzOTQ5,size_16,color_FFFFFF,t_70#pic_center" alt="img"><br>     * String的实例化方式<br>     * 方式一：通过字面量定义的方式<br>     * 方式二：通过new + 构造器的方式<br>          *<br>     * 面试题：String s &#x3D; new String(“abc”);方式创建对象，在内存中创建了几个对象？<br>     *      两个:一个是堆空间中new结构，另一个是char[]对应的常量池中的数据：”abc”</p>
+<h4 id="3-1-4-String不同拼接操作的对比"><a href="#3-1-4-String不同拼接操作的对比" class="headerlink" title="3.1.4 String不同拼接操作的对比"></a>3.1.4 String不同拼接操作的对比</h4><pre><code class="java">public class StringTest &#123;
+
+    /**
+     * 结论
+     *     1.常量与常量的拼接结果在常量池。且常量池中不会存在相同内容的常量。
+     *     2.只要其中有一个是变量，结果就在堆中
+     *     3.如果拼接的结果调用intern()方法，返回值就在常量池中
+     *
+     */
+    @Test
+    public void test4()&#123;
+        String s1 = &quot;javaEEhadoop&quot;;
+        String s2 = &quot;javaEE&quot;;
+        String s3 = s2 + &quot;hadoop&quot;;
+        System.out.println(s1 == s3);//false
+
+        final String s4 = &quot;javaEE&quot;;//s4:常量
+        String s5 = s4 + &quot;hadoop&quot;;
+        System.out.println(s1 == s5);//true
+
+    &#125;
+
+    @Test
+    public void test3()&#123;
+        String s1 = &quot;javaEE&quot;;
+        String s2 = &quot;hadoop&quot;;
+
+        String s3 = &quot;javaEEhadoop&quot;;
+        String s4 = &quot;javaEE&quot; + &quot;hadoop&quot;;
+        String s5 = s1 + &quot;hadoop&quot;;
+        String s6 = &quot;javaEE&quot; + s2;
+        String s7 = s1 + s2;
+
+        System.out.println(s3 == s4);//true
+        System.out.println(s3 == s5);//false
+        System.out.println(s3 == s6);//false
+        System.out.println(s5 == s6);//false
+        System.out.println(s3 == s7);//false
+        System.out.println(s5 == s6);//false
+        System.out.println(s5 == s7);//false
+        System.out.println(s6 == s7);//false
+
+        String s8 = s5.intern();//返回值得到的s8使用的常量值中已经存在的“javaEEhadoop”
+        System.out.println(s3 == s8);//true
+    &#125;
+&#125;
+</code></pre>
+<p>1、String s1 &#x3D; “a”;</p>
+<p>说明：在字符串常量池中创建了一个字面量为”a”的字符串。</p>
+<p>2、s1 &#x3D; s1 + “b”;</p>
+<p>说明：实际上原来的“a”字符串对象已经丢弃了，现在在堆空间中产生了一个字符串s1+“b”（也就是”ab”)。如果多次执行这些改变串内容的操作，会导致大量副本字符串对象存留在内存中，降低效率。如果这样的操作放到循环中，会极大影响程序的性能。</p>
+<p>3、String s2 &#x3D; “ab”;</p>
+<p>说明：直接在字符串常量池中创建一个字面量为”ab”的字符串。</p>
+<p>4、String s3 &#x3D; “a” + “b”;</p>
+<p>说明：s3指向字符串常量池中已经创建的”ab”的字符串。</p>
+<p>5、String s4 &#x3D; s1.intern();</p>
+<p>说明：堆空间的s1对象在调用intern()之后，会将常量池中已经存在的”ab”字符串赋值给s4。</p>
+<h4 id="3-1-5-JVM中涉及字符串的内存结构"><a href="#3-1-5-JVM中涉及字符串的内存结构" class="headerlink" title="3.1.5 JVM中涉及字符串的内存结构"></a>3.1.5 JVM中涉及字符串的内存结构</h4><p><img src="https://img-blog.csdnimg.cn/img_convert/4bf4b2285af70e363da6445fe73896c7.png" alt="img"></p>
+<p> <img src="https://img-blog.csdnimg.cn/img_convert/94b148a54b3c86ec101b9b88fc885067.png" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/aa3755823eee56483b00f06c1e905ec6.png" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/d48e2620b1e1997102c86dfc932977ff.png" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/c5c4dd11e2610077965445af6e822767.png" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/83d0b732dff16d3852b75b44231f56b1.png" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/e71ddbdda5c97fd91a19e3538987a7a2.png" alt="img"></p>
+<h4 id="3-1-6-String的常用方法1"><a href="#3-1-6-String的常用方法1" class="headerlink" title="3.1.6 String的常用方法1"></a>3.1.6 String的常用方法1</h4><pre><code class="Java">import org.junit.Test;
+
+public class StringMethodTest &#123;
+
+    /**
+     * int length()：返回字符串的长度：return value.length
+     * char charAt(int index)：返回某索引处的字符return value[index]
+     * boolean isEmpty()：判断是否是空字符串：return value.length==0
+     * String toLowerCase()：使用默认语言环境，将String中的所有字符转换为小写
+     * String toUpperCase()：使用默认语言环境，将String中的所有字符转换为大写
+     * String trim()：返回字符串的副本，忽略前导空白和尾部空白
+     * boolean equals(Object obj)：比较字符串的内容是否相同
+     * boolean equals IgnoreCase(String anotherString)：与equals方法类似，忽略大小写
+     * String concat(String str)：将指定字符串连接到此字符串的结尾。等价于用“+”
+     * int compareTo(String anotherString)：比较两个字符串的大小
+     * String substring(int beginIndex)：返回一个新的字符串，它是此字符串的从beginIndex开始截取到最后的一个子字符串。
+     * String substring(int beginIndex,int endIndex)：返回一个新字符串，它是此字符串从beginIndex开始截取到endIndex(不包含)的一个子字符串。
+     */
+    @Test
+    public void test2()&#123;
+        String s1 = &quot;HelloWorld&quot;;
+        String s2 = &quot;helloworld&quot;;
+        System.out.println(s1.equals(s2));//false
+        System.out.println(s1.equalsIgnoreCase(s2));//true
+        
+        String s3 = &quot;abc&quot;;
+        String s4 = s3.concat(&quot;def&quot;);
+        System.out.println(s4);//abcdef
+
+        String s5 = &quot;abc&quot;;
+        String s6 = new String(&quot;abe&quot;);
+        System.out.println(s5.compareTo(s6));//-2   //涉及到字符串的排序
+
+        String s7 = &quot;周围好吵啊&quot;;
+        String s8 = s7.substring(2);
+        System.out.println(s7);
+        System.out.println(s8);
+
+        String s9 = s7.substring(0, 2);
+        System.out.println(s9);
+    &#125;
+
+    @Test
+    public void Test1()&#123;
+        String s1 = &quot;helloworld&quot;;
+        System.out.println(s1.length());
+        System.out.println(s1.length());
+        System.out.println(s1.charAt(0));
+        System.out.println(s1.charAt(9));
+//        System.out.println(s1.charAt(10));
+//        s1 = &quot;&quot;;
+        System.out.println(s1.isEmpty());
+
+        String s2 = s1.toLowerCase();
+        System.out.println(s1);//s1不可变的，仍然为原来的字符串
+        System.out.println(s2);//改成小写以后的字符串
+
+        String s3 = &quot;   he  llo   world   &quot;;
+        String s4 = s3.trim();
+        System.out.println(&quot;-----&quot; + s3 + &quot;-----&quot;);
+        System.out.println(&quot;-----&quot; + s4 + &quot;-----&quot;);
+    &#125;
+
+&#125;
+</code></pre>
+<h4 id="3-1-7-String的常用方法2"><a href="#3-1-7-String的常用方法2" class="headerlink" title="3.1.7 String的常用方法2"></a>3.1.7 String的常用方法2</h4><pre><code class="Java">import org.junit.Test;
+
+public class StringMethodTest &#123;
+
+    /**
+     * boolean endsWith(String suffix)：测试此字符串是否以指定的后缀结束
+     * boolean startsWith(String prefix)：测试此字符串是否以指定的前缀开始
+     * boolean startsWith(String prefix, int toffset)：测试此字符串从指定索引开始的子字符串是否以指定前缀开始
+     *
+     * boolean contains(CharSequence s)：当且仅当此字符串包含指定的 char 值序列时，返回 true
+     * int indexOf(String str)：返回指定子字符串在此字符串中第一次出现处的索引
+     * int indexOf(String str, int fromIndex)：返回指定子字符串在此字符串中第一次出现处的索引，从指定的索引开始
+     * int lastIndexOf(String str)：返回指定子字符串在此字符串中最右边出现处的索引
+     * int lastIndexOf(String str, int fromIndex)：返回指定子字符串在此字符串中最后一次出现处的索引，从指定的索引开始反向搜索
+     *
+     * 注：indexOf和lastIndexOf方法如果未找到都是返回-1
+     */
+    @Test
+    public void test3()&#123;
+        String str1 = &quot;helloworld&quot;;
+        boolean b1 = str1.endsWith(&quot;rld&quot;);
+        System.out.println(b1);
+
+        boolean b2 = str1.startsWith(&quot;He&quot;);
+        System.out.println(b2);
+
+        boolean b3 = str1.startsWith(&quot;ll&quot;,2);
+        System.out.println(b3);
+
+        String str2 = &quot;wor&quot;;
+        System.out.println(str1.contains(str2));
+
+        System.out.println(str1.indexOf(&quot;lo&quot;));
+
+        System.out.println(str1.indexOf(&quot;lo&quot;,5));
+
+        String str3 = &quot;hellorworld&quot;;
+
+        System.out.println(str3.lastIndexOf(&quot;or&quot;));
+        System.out.println(str3.lastIndexOf(&quot;or&quot;,6));
+
+        //什么情况下，indexOf(str)和lastIndexOf(str)返回值相同？
+        //情况一：存在唯一的一个str。情况二：不存在str
+    &#125;
+&#125;
+</code></pre>
+<h4 id="3-1-8-String的常用方法3"><a href="#3-1-8-String的常用方法3" class="headerlink" title="3.1.8 String的常用方法3"></a>3.1.8 String的常用方法3</h4><pre><code class="Java">import org.junit.Test;
+
+public class StringMethodTest &#123;
+
+    /**
+     * 替换：
+     * String replace(char oldChar, char newChar)：返回一个新的字符串，它是通过用 newChar 替换此字符串中出现的所有 oldChar 得到的。
+     * String replace(CharSequence target, CharSequence replacement)：使用指定的字面值替换序列替换此字符串所有匹配字面值目标序列的子字符串。
+     * String replaceAll(String regex, String replacement)：使用给定的 replacement 替换此字符串所有匹配给定的正则表达式的子字符串。
+     * String replaceFirst(String regex, String replacement)：使用给定的 replacement 替换此字符串匹配给定的正则表达式的第一个子字符串。
+     *
+     * 匹配:
+     * boolean matches(String regex)：告知此字符串是否匹配给定的正则表达式。
+     *
+     * 切片：
+     * String[] split(String regex)：根据给定正则表达式的匹配拆分此字符串。
+     * String[] split(String regex, int limit)：根据匹配给定的正则表达式来拆分此字符串，最多不超过limit个，如果超过了，剩下的全部都放到最后一个元素中。
+     *
+     */
+    @Test
+    public void test4()&#123;
+        String str1 = &quot;西藏布达拉宫欢迎您&quot;;
+        String str2 = str1.replace(&#39;西&#39;,&#39;东&#39;);
+
+        System.out.println(str1);
+        System.out.println(str2);
+
+        String str3 = str1.replace(&quot;北京&quot;, &quot;南京&quot;);
+        System.out.println(str3);
+
+        System.out.println(&quot;*************************&quot;);
+        String str = &quot;12hello34world5java7891mysql456&quot;;
+        //把字符串中的数字替换成,，如果结果中开头和结尾有，的话去掉
+        String string = str.replaceAll(&quot;\\d+&quot;, &quot;,&quot;).replaceAll(&quot;^,|,$&quot;, &quot;&quot;);
+        System.out.println(string);
+
+        System.out.println(&quot;*************************&quot;);
+        str = &quot;12345&quot;;
+        //判断str字符串中是否全部有数字组成，即有1-n个数字组成
+        boolean matches = str.matches(&quot;\\d+&quot;);
+        System.out.println(matches);
+        String tel = &quot;0571-4534289&quot;;
+        //判断这是否是一个杭州的固定电话
+        boolean result = tel.matches(&quot;0571-\\d&#123;7,8&#125;&quot;);
+        System.out.println(result);
+
+        System.out.println(&quot;*************************&quot;);
+        str = &quot;hello|world|java&quot;;
+        String[] strs = str.split(&quot;\\|&quot;);
+        for (int i = 0; i &lt; strs.length; i++) &#123;
+            System.out.println(strs[i]);
+        &#125;
+        System.out.println();
+        str2 = &quot;hello.world.java&quot;;
+        String[] strs2 = str2.split(&quot;\\.&quot;);
+        for (int i = 0; i &lt; strs2.length; i++) &#123;
+            System.out.println(strs2[i]);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h4 id="3-1-9-String与基本数据类型包装类的转换"><a href="#3-1-9-String与基本数据类型包装类的转换" class="headerlink" title="3.1.9 String与基本数据类型包装类的转换"></a>3.1.9 String与基本数据类型包装类的转换</h4><p> &#x2F;**<br>     * 复习<br>     *    String与基本数据类型、包装类之间的转换<br>     *<br>     *    String –&gt; 基本数据类型、包装类：调用包装类的静态方法：parseXxx(str)<br>     *    基本数据类型、包装类 –&gt; String:调用String重载的valueOf(xxx)</p>
+<h4 id="3-1-10-String与char-之间的转换"><a href="#3-1-10-String与char-之间的转换" class="headerlink" title="3.1.10 String与char[]之间的转换"></a>3.1.10 String与char[]之间的转换</h4><pre><code class="java">import org.junit.Test;
+
+/**
+ * 涉及到String类与其他结构之间的转换
+ */
+public class StringTest1 &#123;
+
+    /**
+     * String 与 char[]之间的转换
+     *
+     * String --&gt; char[]:调用String的toCharArray()
+     * char[] --&gt; String:调用String的构造器
+     */
+    @Test
+    public void test2()&#123;
+        String str1 = &quot;abc123&quot;; //题目： a21cb3
+
+        char[] charArray = str1.toCharArray();
+        for (int i = 0; i &lt; charArray.length; i++) &#123;
+            System.out.println(charArray[i]);
+        &#125;
+
+        char[] arr = new char[]&#123;&#39;h&#39;,&#39;e&#39;,&#39;l&#39;,&#39;l&#39;,&#39;o&#39;&#125;;
+        String str2 = new String(arr);
+        System.out.println(str2);
+    &#125;
+&#125;
+</code></pre>
+<h4 id="3-1-11-String与byte-之间的转换"><a href="#3-1-11-String与byte-之间的转换" class="headerlink" title="3.1.11 String与byte[]之间的转换"></a>3.1.11 String与byte[]之间的转换</h4><pre><code class="Java">import org.junit.Test;
+
+import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
+
+/**
+ * 涉及到String类与其他结构之间的转换
+ */
+public class StringTest1 &#123;
+
+    /**
+     * String 与 byte[]之间的转换
+     *
+     * 编码：String --&gt; byte[]:调用String的getBytes()
+     * 解码：byte[] --&gt; String:调用String的构造器
+     *
+     * 编码：字符串 --&gt;字节  (看得懂 ---&gt;看不懂的二进制数据)
+     * 解码：编码的逆过程，字节 --&gt; 字符串 （看不懂的二进制数据 ---&gt; 看得懂）
+     *
+     * 说明：解码时，要求解码使用的字符集必须与编码时使用的字符集一致，否则会出现乱码。
+     *
+     */
+    @Test
+    public void test3() throws UnsupportedEncodingException &#123;
+        String str1 = &quot;abc123重工&quot;;
+        byte[] bytes = str1.getBytes();//使用默认的字符编码集,进行转换
+        System.out.println(Arrays.toString(bytes));
+
+        byte[] gbks = str1.getBytes(&quot;gbk&quot;);//使用gbk字符集进行编码。
+        System.out.println(Arrays.toString(gbks));
+
+        System.out.println(&quot;*****************************&quot;);
+
+        String str2 = new String(bytes);//使用默认的字符集，进行解码。
+        System.out.println(str2);
+
+        String str3 = new String(gbks);
+        System.out.println(str3);//出现乱码。原因：编码集和解码集不一致！
+
+        String str4 = new String(gbks,&quot;gbk&quot;);
+        System.out.println(str4);//没有出现乱码。原因：编码集和解码集一致！
+    &#125;
+&#125;
+</code></pre>
+<h4 id="3-1-12-面试中String算法考查"><a href="#3-1-12-面试中String算法考查" class="headerlink" title="3.1.12 面试中String算法考查"></a>3.1.12 面试中String算法考查</h4><p>1.模拟一个trim方法，去除字符串两端的空格。</p>
+<pre><code class="Java">import org.junit.Test;
+
+/*
+ * 1.模拟一个trim方法，去除字符串两端的空格。
+ * 
+ */
+public class StringExer &#123;
+
+    // 第1题
+    public String myTrim(String str) &#123;
+        if (str != null) &#123;
+            int start = 0;// 用于记录从前往后首次索引位置不是空格的位置的索引
+            int end = str.length() - 1;// 用于记录从后往前首次索引位置不是空格的位置的索引
+
+            while (start &lt; end &amp;&amp; str.charAt(start) == &#39; &#39;) &#123;
+                start++;
+            &#125;
+
+            while (start &lt; end &amp;&amp; str.charAt(end) == &#39; &#39;) &#123;
+                end--;
+            &#125;
+            if (str.charAt(start) == &#39; &#39;) &#123;
+                return &quot;&quot;;
+            &#125;
+
+            return str.substring(start, end + 1);
+        &#125;
+        return null;
+    &#125;
+    
+    @Test
+    public void testMyTrim() &#123;
+        String str = &quot;   a   &quot;;
+        // str = &quot; &quot;;
+        String newStr = myTrim(str);
+        System.out.println(&quot;---&quot; + newStr + &quot;---&quot;);
+    &#125;
+&#125;
+</code></pre>
+<p>2、将一个字符串进行反转。将字符串中指定部分进行反转。比如“abcdefg”反转为”abfedcg”</p>
+<pre><code class="Java">import org.junit.Test;
+
+public class StringDemo &#123;
+
+    /**
+     * 将一个字符串进行反转。将字符串中指定部分进行反转。比如“abcdefg”反转为”abfedcg”
+     *
+     * 方式一：转换为char[]
+     */
+    public String reverse(String str,int startIndex,int endIndex)&#123;
+
+        if(str != null &amp;&amp; str.length() != 0) &#123;
+            char[] arr = str.toCharArray();
+            for (int x = startIndex, y = endIndex; x &lt; y; x++, y--) &#123;
+                char temp = arr[x];
+                arr[x] = arr[y];
+                arr[y] = temp;
+            &#125;
+            return new String(arr);
+        &#125;
+        return null;
+    &#125;
+
+    /**
+     * 方式二：使用String的拼接
+     */
+    public String reverse2(String str, int startIndex, int endIndex) &#123;
+        if(str != null) &#123;
+            // 第一部分
+            String reverStr = str.substring(0,startIndex);// ab
+            // 第二部分
+            for (int i = endIndex; i &gt;= startIndex; i--) &#123;
+                reverStr += str.charAt(i);
+            &#125; // abfedc
+            // 第三部分
+            reverStr += str.substring(endIndex + 1);
+
+            return reverStr;
+        &#125;
+        return null;
+    &#125;
+
+    //方式三：使用StringBuffer/StringBuilder替换String
+    public String reverse3(String str, int startIndex, int endIndex) &#123;
+        StringBuilder builder = new StringBuilder(str.length());
+
+        if(str != null) &#123;
+            //第一部分
+            builder.append(str.substring(0, startIndex));
+
+            //第二部分
+            for (int i = endIndex; i &gt;= startIndex; i--) &#123;
+
+                builder.append(str.charAt(i));
+            &#125;
+            //第三部分
+            builder.append(str.substring(endIndex + 1));
+
+            return builder.toString();
+        &#125;
+        return null;
+    &#125;
+
+    @Test
+    public void testReverse() &#123;
+        String str = &quot;abcdefg&quot;;
+        String str1 = reverse3(str, 2, 5);
+        System.out.println(str1);// abfedcg
+
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>3、获取一个字符串在另一个字符串中出现的次数。比如：获取“ ab”在“abkkcadkabkebfkabkskab” 中出现的次数</p>
+</blockquote>
+<pre><code class="Java">import org.junit.Test;
+
+public class StringDemo2 &#123;
+    /**
+     * 获取一个字符串在另一个字符串中出现的次数。
+     * 比如：获取“ ab”在“abkkcadkabkebfkabkskab” 中出现的次数
+     *
+     */
+
+    /**
+     * 获取subStr在mainStr中出现的次数
+     * @param mainStr
+     * @param subStr
+     */
+    public int getCount(String mainStr,String subStr)&#123;
+        int mainLength = mainStr.length();
+        int subLength = subStr.length();
+        int count = 0;
+        int index = 0;
+
+        if(mainLength &gt;= subLength)&#123;
+
+            //方式一：
+//            while((index = mainStr.indexOf(subStr)) != -1)&#123;
+//                count++;
+//                mainStr = mainStr.substring(index + subStr.length());
+//            &#125;
+            //方式二：对方式一的改进
+            while((index = mainStr.indexOf(subStr,index)) != -1)&#123;
+                count++;
+                index += subLength;
+            &#125;
+
+            return count;
+        &#125;else&#123;
+            return 0;
+        &#125;
+    &#125;
+
+    @Test
+    public void testGetCount()&#123;
+        String mainStr = &quot;abkkcadkabkebfkabkskab&quot;;
+        String subStr = &quot;ab&quot;;
+        int count = getCount(mainStr,subStr);
+        System.out.println(count);
+    &#125;
+
+&#125;
+</code></pre>
+<p>4、获取两个字符串中最大相同子串。比如：</p>
+<pre><code>str1 = &quot;abcwerthelloyuiodef“;str2 = “cvhellobnm”
+</code></pre>
+<p>提示：将短的那个串进行长度依次递减的子串与较长的串比较。</p>
+<pre><code class="Java">import org.junit.Test;
+
+import java.util.Arrays;
+
+public class StringDemo3 &#123;
+    /**
+     * 获取两个字符串中最大相同子串。比如：
+     * str1 = &quot;abcwerthelloyuiodef“;str2 = &quot;cvhellobnm&quot;
+     * 提示：将短的那个串进行长度依次递减的子串与较长的串比较。
+     */
+    //前提：两个字符串中只有一个最大相同子串
+    public String getMaxSameString(String str1,String str2)&#123;
+        if(str1 != null &amp;&amp; str2 != null)&#123;
+            String maxStr = (str1.length() &gt;= str2.length())? str1 : str2;
+            String minStr = (str1.length() &lt; str2.length())? str1 : str2;
+            int length = minStr.length();
+
+            for(int i = 0;i &lt; length;i++)&#123;
+                for(int x = 0,y = length - i;y &lt;= length;x++,y++)&#123;
+                    String subStr = minStr.substring(x,y);
+                    if(maxStr.contains(subStr))&#123;
+                        return subStr;
+                    &#125;
+
+                &#125;
+            &#125;
+
+        &#125;
+        return null;
+    &#125;
+
+    // 如果存在多个长度相同的最大相同子串
+    // 此时先返回String[]，后面可以用集合中的ArrayList替换，较方便
+    public String[] getMaxSameString1(String str1, String str2) &#123;
+        if (str1 != null &amp;&amp; str2 != null) &#123;
+            StringBuffer sBuffer = new StringBuffer();
+            String maxString = (str1.length() &gt; str2.length()) ? str1 : str2;
+            String minString = (str1.length() &gt; str2.length()) ? str2 : str1;
+
+            int len = minString.length();
+            for (int i = 0; i &lt; len; i++) &#123;
+                for (int x = 0, y = len - i; y &lt;= len; x++, y++) &#123;
+                    String subString = minString.substring(x, y);
+                    if (maxString.contains(subString)) &#123;
+                        sBuffer.append(subString + &quot;,&quot;);
+                    &#125;
+                &#125;
+//                System.out.println(sBuffer);
+                if (sBuffer.length() != 0) &#123;
+                    break;
+                &#125;
+            &#125;
+            String[] split = sBuffer.toString().replaceAll(&quot;,$&quot;, &quot;&quot;).split(&quot;\\,&quot;);
+            return split;
+        &#125;
+
+        return null;
+    &#125;
+
+    @Test
+    public void testGetMaxSameString()&#123;
+        String str1 = &quot;abcwerthello1yuiodefabcdef&quot;;
+        String str2 = &quot;cvhello1bnmabcdef&quot;;
+        String[] maxSameStrings = getMaxSameString1(str1, str2);
+        System.out.println(Arrays.toString(maxSameStrings));
+
+    &#125;
+
+&#125;
+</code></pre>
+<h4 id="3-1-13-StringBuffer和StringBuilder的介绍"><a href="#3-1-13-StringBuffer和StringBuilder的介绍" class="headerlink" title="3.1.13 StringBuffer和StringBuilder的介绍"></a>3.1.13 StringBuffer和StringBuilder的介绍</h4><ul>
+<li>String、StringBuffer、StringBuilder三者的异同？</li>
+<li>String:不可变的字符序列；底层使用char[]存储</li>
+<li>StringBuffer:可变的字符序列；线程安全的，效率低；底层使用char[]存储</li>
+<li>StringBuilder:可变的字符序列；jdk5.0新增的，线程不安全的，效率高；底层使用char[]存储</li>
+</ul>
+<h4 id="3-1-14-StringBuffer中的常用方法"><a href="#3-1-14-StringBuffer中的常用方法" class="headerlink" title="3.1.14 StringBuffer中的常用方法"></a>3.1.14 StringBuffer中的常用方法</h4><pre><code class="Java">import org.junit.Test;
+
+/**
+ * 关于StringBuffer和StringBuilder的使用
+ */
+public class StringBufferBuilderTest &#123;
+
+    /**
+     * StringBuffer的常用方法：
+     *
+     * StringBuffer append(xxx)：提供了很多的append()方法，用于进行字符串拼接
+     * StringBuffer delete(int start,int end)：删除指定位置的内容
+     * StringBuffer replace(int start, int end, String str)：把[start,end)位置替换为str
+     * StringBuffer insert(int offset, xxx)：在指定位置插入xxx
+     * StringBuffer reverse() ：把当前字符序列逆转
+     * public int indexOf(String str)
+     * public String substring(int start,int end):返回一个从start开始到end索引结束的左闭右开区间的子字符串
+     * public int length()
+     * public char charAt(int n )
+     * public void setCharAt(int n ,char ch)
+     *
+     * 总结：
+     *     增：append(xxx)
+     *     删：delete(int start,int end)
+     *     改：setCharAt(int n ,char ch) / replace(int start, int end, String str)
+     *     查：charAt(int n )
+     *     插：insert(int offset, xxx)
+     *     长度：length();
+     *     遍历：for() + charAt() / toString()
+     *
+     */
+    @Test
+    public void test2()&#123;
+        StringBuffer s1 = new StringBuffer(&quot;abc&quot;);
+        s1.append(1);
+        s1.append(&#39;1&#39;);
+        System.out.println(s1);
+//        s1.delete(2,4);
+//        s1.replace(2,4,&quot;hello&quot;);
+//        s1.insert(2,false);
+//        s1.reverse();
+        String s2 = s1.substring(1,3);
+        System.out.println(s1);
+        System.out.println(s1.length());
+        System.out.println(s2);
+    &#125;
+&#125;
+</code></pre>
+<h3 id="3-2-JDK-8之前的日期时间API"><a href="#3-2-JDK-8之前的日期时间API" class="headerlink" title="3.2 JDK 8之前的日期时间API"></a>3.2 JDK 8之前的日期时间API</h3><h4 id="3-2-1-System类中获取时间戳的方法"><a href="#3-2-1-System类中获取时间戳的方法" class="headerlink" title="3.2.1 System类中获取时间戳的方法"></a>3.2.1 System类中获取时间戳的方法</h4><pre><code class="Java">import org.junit.Test;
+
+/**
+ * JDK 8之前日期和时间的API测试
+ */
+public class DateTimeTest &#123;
+
+    //1.System类中的currentTimeMillis()
+    @Test
+    public void test1()&#123;
+        long time = System.currentTimeMillis();
+        //返回当前时间与1970年1月1日0时0分0秒之间以毫秒为单位的时间差。
+        //称为时间戳
+        System.out.println(time);
+    &#125;
+&#125;
+</code></pre>
+<h4 id="3-2-2-Java中两个Date类的使用"><a href="#3-2-2-Java中两个Date类的使用" class="headerlink" title="3.2.2 Java中两个Date类的使用"></a>3.2.2 Java中两个Date类的使用</h4><pre><code class="Java">import org.junit.Test;
+
+import java.util.Date;
+
+/**
+ * JDK 8之前日期和时间的API测试
+ */
+public class DateTimeTest &#123;
+
+    /**
+     * java.util.Date类 ---&gt; 表示特定的瞬间，精确到毫秒
+     *            |---java.sql.Date类
+     *
+     * 1.两个构造器的使用
+     *     &gt;构造器一：Date()：创建一个对应当前时间的Date对象
+     *     &gt;构造器二：创建指定毫秒数的Date对象
+     * 2.两个方法的使用
+     *     &gt;toString():显示当前的年、月、日、时、分、秒
+     *     &gt;getTime():获取当前Date对象对应的毫秒数。（时间戳）
+     *
+     * 3. java.sql.Date对应着数据库中的日期类型的变量
+     *     &gt;如何实例化
+     *     &gt;如何将java.util.Date对象转换为java.sql.Date对象
+     *
+     */
+    @Test
+    public void test2()&#123;
+        //构造器一：Date()：创建一个对应当前时间的Date对象
+        Date date1 = new Date();
+        System.out.println(date1.toString());   //Sat May 09 20:09:11 CST 2020
+
+        System.out.println(date1.getTime());    //1589026216998
+
+        //构造器二：创建指定毫秒数的Date对象
+        Date date2 = new Date(1589026216998L);
+        System.out.println(date2.toString());
+
+        //创建java.sql.Date对象
+        java.sql.Date date3 = new java.sql.Date(35235325345L);
+        System.out.println(date3);  //1971-02-13
+
+        //如何将java.util.Date对象转换为java.sql.Date对象
+        //情况一：
+//        Date date4 = new java.sql.Date(2343243242323L);
+//        java.sql.Date date5 = (java.sql.Date) date4;
+        //情况二：
+        Date date6 = new Date();
+        java.sql.Date date7 = new java.sql.Date(date6.getTime());
+    &#125;
+&#125;
+</code></pre>
+<h4 id="3-2-3-SimpleDateFormat的使用"><a href="#3-2-3-SimpleDateFormat的使用" class="headerlink" title="3.2.3 SimpleDateFormat的使用"></a>3.2.3 SimpleDateFormat的使用</h4><pre><code class="Java">import org.junit.Test;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+/**
+ * jdk 8 之前的日期时间的API测试
+ * 1.System类中currentTimeMillis();
+ * 2.java.util.Date和字类java.sql.Date
+ * 3.SimpleDateFormat
+ * 4.Calendar
+ */
+public class DateTime &#123;
+    /**
+     * SimpleDateFormat的使用：SimpleDateFormat对日期Date类的格式化和解析
+     * 1.两个操作
+     * 1.1格式化：日期---》字符串
+     * 1.2解析：格式化的逆过程，字符串---》日期
+     *
+     * 2.SimpleDateFormat的实例化
+     */
+    @Test
+    public void testSimpleDateFormat() throws ParseException &#123;
+        //实例化SimpleDateFormat
+        SimpleDateFormat sdf = new SimpleDateFormat();
+
+        //格式化：日期---》字符串
+        Date date = new Date();
+        System.out.println(date);   //Sun May 10 16:34:30 CST 2020
+
+        String format = sdf.format(date);
+        System.out.println(format); //20-5-10 下午4:34
+
+        //解析：格式化的逆过程，字符串---》日期
+        String str = &quot;19-12-18 上午11:43&quot;;
+        Date date1 = sdf.parse(str);
+        System.out.println(date1);  //Wed Dec 18 11:43:00 CST 2019
+
+        //*************按照指定的方式格式化和解析：调用带参的构造器*****************
+//        SimpleDateFormat sdf1 = new SimpleDateFormat(&quot;yyyyy.MMMMM.dd GGG hh:mm aaa&quot;);
+        SimpleDateFormat sdf1 = new SimpleDateFormat(&quot;yyyyy.MMMMM.dd GGG hh:mm aaa&quot;);
+        //格式化
+        String format1 = sdf1.format(date);
+        System.out.println(format1);    //02020.五月.10 公元 04:32 下午
+        //解析:要求字符串必须是符合SimpleDateFormat识别的格式(通过构造器参数体现),
+        //否则，抛异常
+        Date date2 = sdf1.parse(&quot;02020.五月.10 公元 04:32 下午&quot;);
+        System.out.println(date2);  //Sun May 10 16:32:00 CST 2020
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="Java">/**
+     * 练习1：字符串&quot;2020-09-08&quot;转换为java.sql.Date
+     *
+     */
+    @Test
+    public void testExer() throws ParseException &#123;
+        String birth = &quot;2020-09-08&quot;;
+
+        SimpleDateFormat sdf1 = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);
+        Date date = sdf1.parse(birth);
+//        System.out.println(date);
+
+        java.sql.Date birthDate = new java.sql.Date(date.getTime());
+        System.out.println(birthDate);
+    &#125;
+</code></pre>
+<h4 id="3-2-4-Calendar日历类的使用"><a href="#3-2-4-Calendar日历类的使用" class="headerlink" title="3.2.4 Calendar日历类的使用"></a>3.2.4 Calendar日历类的使用</h4><pre><code class="Java">import java.util.Calendar;
+import java.util.Date;
+
+import org.junit.Test;
+
+/**
+ * jdk 8 之前的日期时间的API测试
+ * 1.System类中currentTimeMillis();
+ * 2.java.util.Date和字类java.sql.Date
+ * 3.SimpleDateFormat
+ * 4.Calendar
+ */
+public class DateTime &#123;
+
+    /**
+     * Calendar日历类的使用
+     */
+    @Test
+    public void testCalendar()&#123;
+        //1.实例化
+        //方式一：创建其子类（GregorianCalendar）的对象
+        //方式二：调用其静态方法getInstance()
+        Calendar calendar = Calendar.getInstance();
+
+//        System.out.println(calendar.getClass());    //class java.util.GregorianCalendar
+
+        //2.常用方法
+        //get()
+        int days = calendar.get(Calendar.DAY_OF_MONTH);
+        System.out.println(days);   //10
+        System.out.println(calendar.get(Calendar.DAY_OF_YEAR)); //131,今天是这一年的131天
+
+        //set()
+        //calendar可变性
+        calendar.set(Calendar.DAY_OF_MONTH,22);
+        days = calendar.get(Calendar.DAY_OF_MONTH);
+        System.out.println(days);   //22
+
+        //add()
+        calendar.add(Calendar.DAY_OF_MONTH,-3);
+        days = calendar.get(Calendar.DAY_OF_MONTH);
+        System.out.println(days);   //22-3 --》19
+
+        //getTime():日历类---&gt; Date
+        Date date = calendar.getTime();
+        System.out.println(date);   //Tue May 19 17:12:06 CST 2020
+
+        //setTime():Date ---&gt; 日历类
+        Date date1 = new Date();
+        calendar.setTime(date1);
+        days = calendar.get(Calendar.DAY_OF_MONTH);
+        System.out.println(days);   //10
+    &#125;
+&#125;
+</code></pre>
+<h3 id="3-3-JDK8中日期时间API的介绍"><a href="#3-3-JDK8中日期时间API的介绍" class="headerlink" title="3.3 JDK8中日期时间API的介绍"></a>3.3 JDK8中日期时间API的介绍</h3><h4 id="3-3-1-新日期出现的背景"><a href="#3-3-1-新日期出现的背景" class="headerlink" title="3.3.1 新日期出现的背景"></a>3.3.1 新日期出现的背景</h4><p>Java 8 吸收了Joda-Time 的精华，以一个新的开始为Java 创建优秀的API。新的java.time 中包含了所有关于本地日期（LocalDate）、本地时间（LocalTime）、本地日期时间（LocalDateTime）、时区（ZonedDateTime）和持续时间（Duration）的类。历史悠久的Date 类新增了toInstant()方法，用于把Date 转换成新的表示形式。这些新增的本地化时间日期API 大大简化了日期时间和本地化的管理。</p>
+<h4 id="3-3-2-LocalDate、LocalTime、LocalDateTime的使用"><a href="#3-3-2-LocalDate、LocalTime、LocalDateTime的使用" class="headerlink" title="3.3.2 LocalDate、LocalTime、LocalDateTime的使用"></a>3.3.2 LocalDate、LocalTime、LocalDateTime的使用</h4><p>LocalDate、LocalTime、LocalDateTime类是其中较重要的几个类，它们的实例是不可变的对象，分别表示使用ISO-8601日历系统的日期、时间、日期和时间。它们提供了简单的本地日期或时间，并不包含当前的时间信息，也不包含与时区相关的信息。</p>
+<p>LocalDate代表IOS格式（yyyy-MM-dd）的日期,可以存储生日、纪念日等日期。</p>
+<p>LocalTime表示一个时间，而不是日期。</p>
+<p>LocalDateTime是用来表示日期和时间的，这是一个最常用的类之一。</p>
+<pre><code class="Java">import org.junit.Test;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
+/**
+ * jdk 8中日期时间API的测试
+ */
+public class JDK8DateTimeTest &#123;
+
+    /**
+     * LocalDate、LocalTime、LocalDateTime的使用
+     *
+     */
+    @Test
+    public void test1()&#123;
+        //now():获取当前的日期、时间、日期+时间
+        LocalDate localDate = LocalDate.now();
+        LocalTime localTime = LocalTime.now();
+        LocalDateTime localDateTime = LocalDateTime.now();
+
+        System.out.println(localDate);
+        System.out.println(localTime);
+        System.out.println(localDateTime);
+
+        //of():设置指定的年、月、日、时、分、秒。没有偏移量
+        LocalDateTime localDateTime1 = LocalDateTime.of(2020, 10, 6, 13, 23, 43);
+        System.out.println(localDateTime1);
+
+        //getXxx()：获取相关的属性
+        System.out.println(localDateTime.getDayOfMonth());
+        System.out.println(localDateTime.getDayOfWeek());
+        System.out.println(localDateTime.getMonth());
+        System.out.println(localDateTime.getMonthValue());
+        System.out.println(localDateTime.getMinute());
+
+        //体现不可变性
+        //withXxx():设置相关的属性
+        LocalDate localDate1 = localDate.withDayOfMonth(22);
+        System.out.println(localDate);
+        System.out.println(localDate1);
+
+        LocalDateTime localDateTime2 = localDateTime.withHour(4);
+        System.out.println(localDateTime);
+        System.out.println(localDateTime2);
+
+        //不可变性
+        LocalDateTime localDateTime3 = localDateTime.plusMonths(3);
+        System.out.println(localDateTime);
+        System.out.println(localDateTime3);
+
+        LocalDateTime localDateTime4 = localDateTime.minusDays(6);
+        System.out.println(localDateTime);
+        System.out.println(localDateTime4);
+    &#125;
+&#125;
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/914ba4708727b970905de339e5817e25.png" alt="img"></p>
+<h4 id="3-3-3-Instant类的使用"><a href="#3-3-3-Instant类的使用" class="headerlink" title="3.3.3 Instant类的使用"></a>3.3.3 Instant类的使用</h4><pre><code class="Java">import org.junit.Test;
+
+import java.time.*;
+
+/**
+ * jdk 8中日期时间API的测试
+ */
+public class JDK8DateTimeTest &#123;
+
+    /**
+     * Instant的使用
+     */
+    @Test
+    public void test2()&#123;
+        //now():获取本初子午线对应的标准时间
+        Instant instant = Instant.now();
+        System.out.println(instant);    //2020-05-10T09:55:55.561Z
+
+        //添加时间的偏移量
+        OffsetDateTime offsetDateTime = instant.atOffset(ZoneOffset.ofHours(8));//东八区
+        System.out.println(offsetDateTime); //2020-05-10T18:00:00.641+08:00
+
+        //toEpochMilli():获取自1970年1月1日0时0分0秒（UTC）开始的毫秒数  ---&gt; Date类的getTime()
+        long milli = instant.toEpochMilli();
+        System.out.println(milli);  //1589104867591
+
+        //ofEpochMilli():通过给定的毫秒数，获取Instant实例  --&gt;Date(long millis)
+        Instant instant1 = Instant.ofEpochMilli(1550475314878L);
+        System.out.println(instant1);   //2019-02-18T07:35:14.878Z
+    &#125;
+&#125;
+</code></pre>
+<h4 id="3-3-4-DateTimeFormatter的使用"><a href="#3-3-4-DateTimeFormatter的使用" class="headerlink" title="3.3.4 DateTimeFormatter的使用"></a>3.3.4 DateTimeFormatter的使用</h4><pre><code class="Java">import org.junit.Test;
+
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.time.temporal.TemporalAccessor;
+
+/**
+ * jdk 8中日期时间API的测试
+ */
+public class JDK8DateTimeTest &#123;
+
+    /**
+     * DateTimeFormatter:格式化或解析日期、时间
+     *     类似于SimpleDateFormat
+     */
+    @Test
+    public void test3()&#123;
+        //方式一：预定义的标准格式。如：ISO_LOCAL_DATE_TIME;ISO_LOCAL_DATE;ISO_LOCAL_TIME
+        DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+        //格式化:日期--&gt;字符串
+        LocalDateTime localDateTime = LocalDateTime.now();
+        String str1 = formatter.format(localDateTime);
+        System.out.println(localDateTime);
+        System.out.println(str1);//2020-05-10T18:26:40.234
+
+        //解析：字符串 --&gt;日期
+        TemporalAccessor parse = formatter.parse(&quot;2020-05-10T18:26:40.234&quot;);
+        System.out.println(parse);
+
+        //方式二：
+        //本地化相关的格式。如：ofLocalizedDateTime()
+        //FormatStyle.LONG / FormatStyle.MEDIUM / FormatStyle.SHORT :适用于LocalDateTime
+        DateTimeFormatter formatter1 = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG);
+        //格式化
+        String str2 = formatter1.format(localDateTime);
+        System.out.println(str2);//2020年5月10日 下午06时26分40秒
+
+        //本地化相关的格式。如：ofLocalizedDate()
+        //FormatStyle.FULL / FormatStyle.LONG / FormatStyle.MEDIUM / FormatStyle.SHORT : 适用于LocalDate
+        DateTimeFormatter formatter2 = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM);
+        //格式化
+        String str3 = formatter2.format(LocalDate.now());
+        System.out.println(str3);//2020-5-10
+
+
+       //重点： 方式三：自定义的格式。如：ofPattern(“yyyy-MM-dd hh:mm:ss”)
+        DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd hh:mm:ss&quot;);
+        //格式化
+        String str4 = formatter3.format(LocalDateTime.now());
+        System.out.println(str4);//2020-05-10 06:26:40
+
+        //解析
+        TemporalAccessor accessor = formatter3.parse(&quot;2020-05-10 06:26:40&quot;);
+        System.out.println(accessor);
+
+    &#125;
+&#125;
+</code></pre>
+<h3 id="3-4-Java比较器"><a href="#3-4-Java比较器" class="headerlink" title="3.4 Java比较器"></a>3.4 Java比较器</h3><h4 id="3-4-1-比较器的概念"><a href="#3-4-1-比较器的概念" class="headerlink" title="3.4.1 比较器的概念"></a>3.4.1 比较器的概念</h4><p>Java中的对象，正常情况下，只能进行比较：<code>==</code>或 <code>!=</code> 。不能使用 <code>&gt;</code>或<code>&lt;</code>的，但是在开发场景中，我们需要对多个对象进行排序，言外之意，就需要比较对象的大小。 如何实现？使用两个接口中的任何一个：<code>Comparable</code>或 <code>Comparator</code></p>
+<ul>
+<li>Java实现对象排序的方式有两种：<ul>
+<li>自然排序：<code>java.lang.Comparable</code></li>
+<li>定制排序：&#96;java.util.Comparator</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-4-2-Comparable自然排序举例"><a href="#3-4-2-Comparable自然排序举例" class="headerlink" title="3.4.2 Comparable自然排序举例"></a>3.4.2 Comparable自然排序举例</h4><pre><code class="Java">import org.junit.Test;
+import java.util.Arrays;
+
+public class CompareTest &#123;
+
+    /**
+     * Comparable接口的使用举例：  自然排序
+     * 1.像String、包装类等实现了Comparable接口，重写了compareTo(obj)方法，给出了比较两个对象大小的方式。
+     * 2.像String、包装类重写compareTo()方法以后，进行了从小到大的排列
+     * 3. 重写compareTo(obj)的规则：
+     *    如果当前对象this大于形参对象obj，则返回正整数，
+     *    如果当前对象this小于形参对象obj，则返回负整数，
+     *    如果当前对象this等于形参对象obj，则返回零。
+     *
+     */
+    @Test
+    public void test1()&#123;
+        String[] arr = new String[]&#123;&quot;AA&quot;,&quot;CC&quot;,&quot;KK&quot;,&quot;MM&quot;,&quot;GG&quot;,&quot;JJ&quot;,&quot;DD&quot;&#125;;
+
+        Arrays.sort(arr);
+
+        System.out.println(Arrays.toString(arr));
+    &#125;
+
+&#125;
+</code></pre>
+<h4 id="3-4-3-自定义类实现Comparable自然排序"><a href="#3-4-3-自定义类实现Comparable自然排序" class="headerlink" title="3.4.3 自定义类实现Comparable自然排序"></a>3.4.3 自定义类实现Comparable自然排序</h4><p>1、测试类</p>
+<pre><code class="Java">import org.junit.Test;
+import java.util.Arrays;
+
+public class CompareTest &#123;
+
+    /**
+     * 4.对于自定义类来说，如果需要排序，我们可以让自定义类实现Comparable接口，重写compareTo(obj)方法。
+     *   在compareTo(obj)方法中指明如何排序
+     */
+    @Test
+    public void test2()&#123;
+        Goods[] arr = new Goods[5];
+        arr[0] = new Goods(&quot;lenovoMouse&quot;,34);
+        arr[1] = new Goods(&quot;dellMouse&quot;,43);
+        arr[2] = new Goods(&quot;xiaomiMouse&quot;,12);
+        arr[3] = new Goods(&quot;huaweiMouse&quot;,65);
+        arr[4] = new Goods(&quot;microsoftMouse&quot;,43);
+
+        Arrays.sort(arr);
+
+        System.out.println(Arrays.toString(arr));
+    &#125;
+
+&#125;
+</code></pre>
+<p>2、Goods类</p>
+<pre><code class="Java">/**
+ * 商品类
+ */
+public class Goods implements Comparable&#123;
+
+    private String name;
+    private double price;
+
+    public Goods() &#123;
+    &#125;
+
+    public Goods(String name, double price) &#123;
+        this.name = name;
+        this.price = price;
+    &#125;
+
+    public String getName() &#123;
+        return name;
+    &#125;
+
+    public void setName(String name) &#123;
+        this.name = name;
+    &#125;
+
+    public double getPrice() &#123;
+        return price;
+    &#125;
+
+    public void setPrice(double price) &#123;
+        this.price = price;
+    &#125;
+
+    @Override
+    public String toString() &#123;
+        return &quot;Goods&#123;&quot; +
+                &quot;name=&#39;&quot; + name + &#39;\&#39;&#39; +
+                &quot;, price=&quot; + price +
+                &#39;&#125;&#39;;
+    &#125;
+
+    //指明商品比较大小的方式:按照价格从低到高排序,再按照产品名称从高到低排序
+    @Override
+    public int compareTo(Object o) &#123;
+//        System.out.println(&quot;**************&quot;);
+        if(o instanceof Goods)&#123;
+            Goods goods = (Goods)o;
+            //方式一：
+            if(this.price &gt; goods.price)&#123;
+                return 1;
+            &#125;else if(this.price &lt; goods.price)&#123;
+                return -1;
+            &#125;else&#123;
+//                return 0;
+                return -this.name.compareTo(goods.name);
+            &#125;
+            //方式二：
+//           return Double.compare(this.price,goods.price);
+        &#125;
+//        return 0;
+        throw new RuntimeException(&quot;传入的数据类型不一致！&quot;);
+    &#125;
+&#125;
+</code></pre>
+<h4 id="3-4-4-使用Comparator实现定制排序"><a href="#3-4-4-使用Comparator实现定制排序" class="headerlink" title="3.4.4 使用Comparator实现定制排序"></a>3.4.4 使用Comparator实现定制排序</h4><pre><code class="java">import org.junit.Test;
+import java.util.Arrays;
+import java.util.Comparator;
+
+/**
+ * 一、说明：Java中的对象，正常情况下，只能进行比较：==  或  != 。不能使用 &gt; 或 &lt; 的
+ *          但是在开发场景中，我们需要对多个对象进行排序，言外之意，就需要比较对象的大小。
+ *          如何实现？使用两个接口中的任何一个：Comparable 或 Comparator
+ *
+ * 二、Comparable接口与Comparator的使用的对比：
+ *    Comparable接口的方式一旦一定，保证Comparable接口实现类的对象在任何位置都可以比较大小。
+ *    Comparator接口属于临时性的比较。
+ */
+public class CompareTest &#123;
+
+    /**
+     * Comparator接口的使用：定制排序
+     *     1.背景：
+     *     当元素的类型没有实现java.lang.Comparable接口而又不方便修改代码，
+     *     或者实现了java.lang.Comparable接口的排序规则不适合当前的操作，
+     *     那么可以考虑使用 Comparator 的对象来排序
+     *     2.重写compare(Object o1,Object o2)方法，比较o1和o2的大小：
+     *     如果方法返回正整数，则表示o1大于o2；
+     *     如果返回0，表示相等；
+     *     返回负整数，表示o1小于o2。
+     */
+    @Test
+    public void test3()&#123;
+        String[] arr = new String[]&#123;&quot;AA&quot;,&quot;CC&quot;,&quot;KK&quot;,&quot;MM&quot;,&quot;GG&quot;,&quot;JJ&quot;,&quot;DD&quot;&#125;;
+        Arrays.sort(arr,new Comparator()&#123;
+
+            //按照字符串从大到小的顺序排列
+            @Override
+            public int compare(Object o1, Object o2) &#123;
+                if(o1 instanceof String &amp;&amp; o2 instanceof  String)&#123;
+                    String s1 = (String) o1;
+                    String s2 = (String) o2;
+                    return -s1.compareTo(s2);
+                &#125;
+//                return 0;
+                throw new RuntimeException(&quot;输入的数据类型不一致&quot;);
+            &#125;
+        &#125;);
+        System.out.println(Arrays.toString(arr));
+    &#125;
+
+    @Test
+    public void test4()&#123;
+        Goods[] arr = new Goods[6];
+        arr[0] = new Goods(&quot;lenovoMouse&quot;,34);
+        arr[1] = new Goods(&quot;dellMouse&quot;,43);
+        arr[2] = new Goods(&quot;xiaomiMouse&quot;,12);
+        arr[3] = new Goods(&quot;huaweiMouse&quot;,65);
+        arr[4] = new Goods(&quot;huaweiMouse&quot;,224);
+        arr[5] = new Goods(&quot;microsoftMouse&quot;,43);
+
+        Arrays.sort(arr, new Comparator() &#123;
+            //指明商品比较大小的方式:按照产品名称从低到高排序,再按照价格从高到低排序
+            @Override
+            public int compare(Object o1, Object o2) &#123;
+                if(o1 instanceof Goods &amp;&amp; o2 instanceof Goods)&#123;
+                    Goods g1 = (Goods)o1;
+                    Goods g2 = (Goods)o2;
+                    if(g1.getName().equals(g2.getName()))&#123;
+                        return -Double.compare(g1.getPrice(),g2.getPrice());
+                    &#125;else&#123;
+                        return g1.getName().compareTo(g2.getName());
+                    &#125;
+                &#125;
+                throw new RuntimeException(&quot;输入的数据类型不一致&quot;);
+            &#125;
+        &#125;);
+
+        System.out.println(Arrays.toString(arr));
+    &#125;
+</code></pre>
+<blockquote>
+<p><strong>Comparable接口与Comparator的使用的对比</strong>：</p>
+</blockquote>
+<ul>
+<li>Comparable接口的方式一旦一定，保证Comparable接口实现类的对象在任何位置都可以比较大小。</li>
+<li>Comparator接口属于临时性的比较。</li>
+</ul>
+<h3 id="3-5-System类、Math类、BigInteger与BigDecimal"><a href="#3-5-System类、Math类、BigInteger与BigDecimal" class="headerlink" title="3.5 System类、Math类、BigInteger与BigDecimal"></a>3.5 System类、Math类、BigInteger与BigDecimal</h3><h4 id="3-5-1-System类"><a href="#3-5-1-System类" class="headerlink" title="3.5.1 System类"></a>3.5.1 System类</h4><p>System类代表系统，系统级的很多属性和控制方法都放置在该类的内部。该类位于java.lang包。</p>
+<p>由于该类的构造器是private的，所以无法创建该类的对象，也就是无法实例化该类。其内部的成员变量和成员方法都是static的，所以也可以很方便的进行调用。</p>
+<p>成员变量</p>
+<p>System类内部包含in、out和err三个成员变量，分别代表标准输入流(键盘输入)，标准输出流(显示器)和标准错误输出流(显示器)。<br>成员方法</p>
+<p>native long currentTimeMillis()：</p>
+<p>该方法的作用是返回当前的计算机时间，时间的表达格式为当前计算机时间和GMT时间(格林威治时间)1970年1月1号0时0分0秒所差的毫秒数。</p>
+<p>void exit(int status)：</p>
+<p>该方法的作用是退出程序。其中status的值为0代表正常退出，非零代表异常退出。使用该方法可以在图形界面编程中实现程序的退出功能等。</p>
+<p>void gc()：</p>
+<p>该方法的作用是请求系统进行垃圾回收。至于系统是否立刻回收，则取决于系统中垃圾回收算法的实现以及系统执行时的情况。String</p>
+<p>getProperty(String key)：</p>
+<p>该方法的作用是获得系统中属性名为key的属性对应的值。系统中常见的属性名以及属性的作用如下表所示：</p>
+<h4 id="3-5-2-Math类"><a href="#3-5-2-Math类" class="headerlink" title="3.5.2 Math类"></a>3.5.2 Math类</h4><p>abs 绝对值<br>acos,asin,atan,cos,sin,tan 三角函数<br>sqrt 平方根<br>pow(double a,doble b) a的b次幂<br>log 自然对数<br>exp e为底指数<br>max(double a,double b)<br>min(double a,double b)<br>random() 返回0.0到1.0的随机数<br>long round(double a) double型数据a转换为long型（四舍五入）<br>toDegrees(double angrad) 弧度—&gt;角度<br>toRadians(double angdeg) 角度—&gt;弧度</p>
+<h4 id="3-5-3-BigInteger与BigDecimal"><a href="#3-5-3-BigInteger与BigDecimal" class="headerlink" title="3.5.3 BigInteger与BigDecimal"></a>3.5.3 BigInteger与BigDecimal</h4><p>Integer类作为int的包装类，能存储的最大整型值为2^31 -1，Long类也是有限的，最大为2^63 -1。如果要表示再大的整数，不管是基本数据类型还是他们的包装类都无能为力，更不用说进行运算了。<br>java.math包的BigInteger可以表示不可变的任意精度的整数。BigInteger提供所有Java 的基本整数操作符的对应物，并提供java.lang.Math 的所有相关方法。另外，BigInteger还提供以下运算：模算术、GCD 计算、质数测试、素数生成、位操作以及一些其他操作。<br>构造器<br>BigInteger(String val)：根据字符串构建BigInteger对象<br>常用方法</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 Yelog
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().trim().split('\n').length, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: ;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+    #post .pjax article :not(pre) > code {
+        color: #24292e;
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        background-color: rgba(27,31,35,.05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        padding: .2em .4em;
+    }
+    
+</style>
+
+
+
+
+
+
+
+</html>

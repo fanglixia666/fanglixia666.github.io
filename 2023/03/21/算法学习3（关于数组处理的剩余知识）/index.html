@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>算法练习（数组滑动窗口） | 方立夏</title>
+  <meta name="keywords" content=" java , Github ">
+  <meta name="description" content="算法练习（数组滑动窗口） | 方立夏">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="算法学习（2023 -03-09）（数组）涉及到的算法题目1.2.3题涉及的知识点为滑动窗口1.长度最小的子数组1.题目给定一个含有 n 个正整数的数组和一个正整数 s ，找出该数组中满足其和 ≥ s 的长度最小的 连续 子数组，并返回其长度。如果不存在符合条件的子数组，返回 0。 示例： 输入：s &#x3D; 7, nums &#x3D; [2,3,1,2,4,3] 输出：2 解释：子数组 [">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法练习（数组滑动窗口）">
+<meta property="og:url" content="http://example.com/2023/03/21/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A03%EF%BC%88%E5%85%B3%E4%BA%8E%E6%95%B0%E7%BB%84%E5%A4%84%E7%90%86%E7%9A%84%E5%89%A9%E4%BD%99%E7%9F%A5%E8%AF%86%EF%BC%89/index.html">
+<meta property="og:site_name" content="方立夏">
+<meta property="og:description" content="算法学习（2023 -03-09）（数组）涉及到的算法题目1.2.3题涉及的知识点为滑动窗口1.长度最小的子数组1.题目给定一个含有 n 个正整数的数组和一个正整数 s ，找出该数组中满足其和 ≥ s 的长度最小的 连续 子数组，并返回其长度。如果不存在符合条件的子数组，返回 0。 示例： 输入：s &#x3D; 7, nums &#x3D; [2,3,1,2,4,3] 输出：2 解释：子数组 [">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://code-thinking.cdn.bcebos.com/gifs/209.%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.gif">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210312160441942.png">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/AZHyCoMMOCicvQicWSnN5ZNP97xQibk5RenSvNNZpr8ibMzLDeC2apV3ia2XS7ibTLC5WgGn3VStmCTw6elicia0ht2v6g/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://code-thinking-1253855093.file.myqcloud.com/pics/20220922102236.png">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBCcaan5hg7GsqSCVwq4sgZHyqBqfFF4G4oTjhACibCp2RcuMEPeHVjKQ/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBRn0NZibJkWiaJ522aMDOQEsiaiaX4AuXIBEjjKqetvibL104qGfSvmU4BRg/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBECDRbicfLRcRFCERDN4Ykq56ILvDlh6bft5nzG5TqgFXw4ib4y4kw4OA/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBcBzAWFuJjRttCghicyKua5cXicG1db1nTj3QLUh4nXgBNVkp2gznOzdw/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBHI2kPictZLyUeWXQ9Q6N5WBzRlBEXLRewuCDnmL4F2YiaPDN20w2ib9OQ/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBvib02FtjqhSI1R4CQVan160CwemYBsuofXycNecXWJIdysfwBeL2HibQ/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBbdTCtSzibQCt2O6kXkY18e5cncbriaPmjVDia5jp7rgFXICOoQPLBRIDA/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBS9aOEoYGMaic9SBZ2RoRx7soNExMKFbP3NsVo7aicKBjqz0iae46vATRg/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBGttfPK4icjwqxIOHdXC0xoMBLsG173oEN1KTlCmxGvN360XPiciaqvzIg/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBGAM79Tu8Xz5PX4C7Ub0oYFfUiaWU9qnrAXBmJZWPM8gGCloPaUqBwicQ/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBWDzzNiamIibl3YACnJyz1mgAnHwuTcteHOXpIXO5icph9rQAMxWTg4e7A/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBfwZocA61fXZPC26uuNKMUsk062VgbicxcLibf5tTQt2Uf6seEBYuZNlQ/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBtxrnKCicDoKEz5KvUAp4YIzA0W9d66xLK3z1HCpoVD5n1cXJUEnLvvQ/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBUQlq7WcBBpNfnz7OhuFtl72dMsNHstTiaD1icZCMO7ibFoxfkRun7aorg/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBwoNdbBfnQbibPDibLpmyCKZ5XIpzUbjtgDaR86xUBFWDFGTgKPibGZcjw/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSB5q9L67xuHKkWq8aGMsAOGty4Eybu1wicNicQmiajtCplAPNzxHicQggnyw/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBfMaWjJSOIdunBicib5lB9TImdvGUgJQoibouvvl7dIRIL6CztXY0tBDoQ/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://code-thinking-1253855093.file.myqcloud.com/pics/%E6%95%B0%E7%BB%84%E6%80%BB%E7%BB%93.png">
+<meta property="article:published_time" content="2023-03-21T07:31:11.887Z">
+<meta property="article:modified_time" content="2023-03-21T07:28:51.314Z">
+<meta property="article:author" content="方立夏">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="Github">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://code-thinking.cdn.bcebos.com/gifs/209.%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.gif">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>方立夏</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/fanglixia666"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/jaytp/activities"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            <a title="email"
+               href="mailto:2377579176@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=2377579176&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="kugou"
+               href="https://www.kugou.com/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-kugou"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="neteasemusic"
+               href="https://music.163.com/#/user/home?id=88151013"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-neteasemusic"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(9)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="博客篇">
+                        
+                        博客篇
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="后端篇">
+                        
+                        后端篇
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="算法篇">
+                        
+                        算法篇
+                        <small>(5)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">关于</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="9">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Github</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Hexo</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>java</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 算法篇 "
+           href="/2023/03/21/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A03%EF%BC%88%E5%85%B3%E4%BA%8E%E6%95%B0%E7%BB%84%E5%A4%84%E7%90%86%E7%9A%84%E5%89%A9%E4%BD%99%E7%9F%A5%E8%AF%86%EF%BC%89/"
+           data-tag="java,Github"
+           data-author="" >
+            <span class="post-title" title="算法练习（数组滑动窗口）">算法练习（数组滑动窗口）</span>
+            <span class="post-date" title="2023-03-21 15:31:11">2023/03/21</span>
+        </a>
+        
+        
+        <a  class="全部文章 算法篇 "
+           href="/2023/03/21/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/"
+           data-tag="java,Github"
+           data-author="" >
+            <span class="post-title" title="算法练习（数组）">算法练习（数组）</span>
+            <span class="post-date" title="2023-03-21 15:31:10">2023/03/21</span>
+        </a>
+        
+        
+        <a  class="全部文章 算法篇 "
+           href="/2023/03/21/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%93%88%E5%B8%8C%E8%A1%A8%EF%BC%8923-03-10/"
+           data-tag="java,Github"
+           data-author="" >
+            <span class="post-title" title="算法练习（哈希表）">算法练习（哈希表）</span>
+            <span class="post-date" title="2023-03-21 15:31:08">2023/03/21</span>
+        </a>
+        
+        
+        <a  class="全部文章 后端篇 "
+           href="/2023/03/21/Java%E9%AB%98%E7%BA%A7%E7%AF%87%EF%BC%88%E5%BC%82%E5%B8%B8%EF%BC%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%8C%E5%B8%B8%E7%94%A8%E7%B1%BB%EF%BC%89/"
+           data-tag="java,Github"
+           data-author="" >
+            <span class="post-title" title="面向对象（类与对象）">面向对象（类与对象）</span>
+            <span class="post-date" title="2023-03-21 15:30:59">2023/03/21</span>
+        </a>
+        
+        
+        <a  class="全部文章 后端篇 "
+           href="/2023/03/21/Java%E9%AB%98%E7%BA%A7%E7%AF%87%EF%BC%88%E9%9B%86%E5%90%88%EF%BC%8C%20%E6%B3%9B%E6%80%A7%EF%BC%89/"
+           data-tag="java,Github"
+           data-author="" >
+            <span class="post-title" title="面向对象（类与对象）">面向对象（类与对象）</span>
+            <span class="post-date" title="2023-03-21 15:30:57">2023/03/21</span>
+        </a>
+        
+        
+        <a  class="全部文章 算法篇 "
+           href="/2023/03/21/%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A02%E4%B8%80%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0%EF%BC%88%E5%8F%8C%E6%8C%87%E9%92%88%EF%BC%89/"
+           data-tag="java,Github"
+           data-author="" >
+            <span class="post-title" title="算法练习（双指针）">算法练习（双指针）</span>
+            <span class="post-date" title="2023-03-21 15:25:32">2023/03/21</span>
+        </a>
+        
+        
+        <a  class="全部文章 算法篇 "
+           href="/2023/03/21/%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0%EF%BC%88%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%89/"
+           data-tag="java,Github"
+           data-author="" >
+            <span class="post-title" title="算法练习（字符串）">算法练习（字符串）</span>
+            <span class="post-date" title="2023-03-21 15:25:25">2023/03/21</span>
+        </a>
+        
+        
+        <a  class="全部文章 博客篇 "
+           href="/2023/03/21/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A11/"
+           data-tag="Github,Hexo"
+           data-author="" >
+            <span class="post-title" title="11月Java总结">11月Java总结</span>
+            <span class="post-date" title="2023-03-21 10:56:25">2023/03/21</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2023/03/21/hello-world/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2023-03-21 10:51:18">2023/03/21</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-算法学习3（关于数组处理的剩余知识）" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">算法练习（数组滑动窗口）</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="算法篇">算法篇</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">java</a>
+            
+            <a class="color2">Github</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2023-03-21 15:28:51'>2023-03-21 15:31</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%EF%BC%882023-03-09%EF%BC%89%EF%BC%88%E6%95%B0%E7%BB%84%EF%BC%89"><span class="toc-text">算法学习（2023 -03-09）（数组）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%89%E5%8F%8A%E5%88%B0%E7%9A%84%E7%AE%97%E6%B3%95%E9%A2%98%E7%9B%AE"><span class="toc-text">涉及到的算法题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-3%E9%A2%98%E6%B6%89%E5%8F%8A%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B8%BA%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3"><span class="toc-text">1.2.3题涉及的知识点为滑动窗口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84"><span class="toc-text">1.长度最小的子数组</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%A2%98%E7%9B%AE"><span class="toc-text">1.题目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%80%9D%E8%B7%AF%EF%BC%88%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%EF%BC%89"><span class="toc-text">2.思路（滑动窗口）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E6%9A%B4%E5%8A%9B%E8%A7%A3%E6%B3%95"><span class="toc-text">1.暴力解法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3"><span class="toc-text">2.滑动窗口</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">代码实现</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-904-%E6%B0%B4%E6%9E%9C%E6%88%90%E7%AF%AE"><span class="toc-text">2.904.水果成篮</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%A2%98%E7%9B%AE-1"><span class="toc-text">1.题目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%80%9D%E8%B7%AF"><span class="toc-text">2.思路</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-1"><span class="toc-text">代码实现</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-76-%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%97%E4%B8%B2-%E5%9B%B0%E9%9A%BE"><span class="toc-text">3.76.最小覆盖字串(困难)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%A2%98%E7%9B%AE-2"><span class="toc-text">1.题目</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%89%E5%8F%8A%E5%90%84%E7%A7%8D%E7%9F%A9%E9%98%B5%E5%8F%98%E5%8C%96%E7%9A%84%E9%A2%98%E7%9B%AE"><span class="toc-text">涉及各种矩阵变化的题目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-59%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B52"><span class="toc-text">4.59螺旋矩阵2</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%A2%98%E7%9B%AE-3"><span class="toc-text">1.题目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%80%9D%E8%B7%AF-1"><span class="toc-text">2.思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">3.代码实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-54%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5"><span class="toc-text">5.54螺旋矩阵</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%A2%98%E7%9B%AE-4"><span class="toc-text">1.题目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%80%9D%E8%B7%AF-2"><span class="toc-text">2.思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-2"><span class="toc-text">代码实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E6%97%8B%E8%BD%AC%E6%AD%A3%E6%96%B9%E5%BD%A2%E7%9F%A9%E9%98%B5"><span class="toc-text">6.旋转正方形矩阵</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%A2%98%E7%9B%AE-5"><span class="toc-text">1.题目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%80%9D%E8%B7%AF-3"><span class="toc-text">2.思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81"><span class="toc-text">3.实现代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E2%80%9C%E4%B9%8B%E2%80%9D%E5%AD%97%E5%9E%8B%E6%89%93%E5%8D%B0%E7%9F%A9%E9%98%B5"><span class="toc-text">7.“之”字型打印矩阵</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%A2%98%E7%9B%AE-6"><span class="toc-text">1.题目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%80%9D%E8%B7%AF-4"><span class="toc-text">2.思路</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E5%9C%A8%E8%A1%8C%E5%88%97%E9%83%BD%E6%8E%92%E5%A5%BD%E5%BA%8F%E7%9A%84%E7%9F%A9%E9%98%B5%E4%B8%AD%E6%89%BE%E6%95%B0"><span class="toc-text">8.在行列都排好序的矩阵中找数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%A2%98%E7%9B%AE-7"><span class="toc-text">1.题目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%80%9D%E8%B7%AF-5"><span class="toc-text">2.思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81-1"><span class="toc-text">3.实现代码</span></a></li></ol></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="算法学习（2023-03-09）（数组）"><a href="#算法学习（2023-03-09）（数组）" class="headerlink" title="算法学习（2023 -03-09）（数组）"></a>算法学习（2023 -03-09）（数组）</h1><h2 id="涉及到的算法题目"><a href="#涉及到的算法题目" class="headerlink" title="涉及到的算法题目"></a>涉及到的算法题目</h2><h2 id="1-2-3题涉及的知识点为滑动窗口"><a href="#1-2-3题涉及的知识点为滑动窗口" class="headerlink" title="1.2.3题涉及的知识点为滑动窗口"></a>1.2.3题涉及的知识点为滑动窗口</h2><h3 id="1-长度最小的子数组"><a href="#1-长度最小的子数组" class="headerlink" title="1.长度最小的子数组"></a>1.长度最小的子数组</h3><h4 id="1-题目"><a href="#1-题目" class="headerlink" title="1.题目"></a>1.题目</h4><p>给定一个含有 n 个正整数的数组和一个正整数 s ，找出该数组中满足其和 ≥ s 的长度最小的 连续 子数组，并返回其长度。如果不存在符合条件的子数组，返回 0。</p>
+<p>示例：</p>
+<p>输入：s &#x3D; 7, nums &#x3D; [2,3,1,2,4,3] 输出：2 解释：子数组 [4,3] 是该条件下的长度最小的子数组。</p>
+<p>提示：</p>
+<ul>
+<li>1 &lt;&#x3D; target &lt;&#x3D; 10^9</li>
+<li>1 &lt;&#x3D; nums.length &lt;&#x3D; 10^5</li>
+<li>1 &lt;&#x3D; nums[i] &lt;&#x3D; 10^5</li>
+</ul>
+<h4 id="2-思路（滑动窗口）"><a href="#2-思路（滑动窗口）" class="headerlink" title="2.思路（滑动窗口）"></a>2.思路（滑动窗口）</h4><h5 id="1-暴力解法"><a href="#1-暴力解法" class="headerlink" title="1.暴力解法"></a>1.暴力解法</h5><p>1.两个for循环，不断的寻找符合条件的子序列</p>
+<pre><code class="Java">class Solution &#123;
+    public int minSubArrayLen(int s, int[] nums) &#123;
+        int result = INT32-max;
+        int sum = 0;   
+        int subLength = 0;
+        for(int i=0;i&lt;nums.size();i++) &#123;
+            sum = 0;
+        for(int j = i;j&lt;nums.size();j++) &#123;
+            sum += nums[j];
+            while(sum &gt;= s) &#123;
+                subLength = (j-i+1);
+                result = result &lt; subLength ? result:subLength;
+                break;
+            &#125;
+        &#125;
+     &#125;
+        return result == INt32-MAX ? 0:result;
+    &#125;
+&#125;
+</code></pre>
+<h5 id="2-滑动窗口"><a href="#2-滑动窗口" class="headerlink" title="2.滑动窗口"></a>2.滑动窗口</h5><p>所谓滑动窗口，<strong>就是不断的调节子序列的起始位置和终止位置，从而得出我们要想的结果</strong>。</p>
+<p>在暴力解法中，是一个for循环滑动窗口的起始位置，一个for循环为滑动窗口的终止位置，用两个for循环 完成了一个不断搜索区间的过程。</p>
+<p>那么滑动窗口如何用一个for循环来完成这个操作呢。</p>
+<p>首先要思考 如果用一个for循环，那么应该表示 滑动窗口的起始位置，还是终止位置。</p>
+<p>如果只用一个for循环来表示 滑动窗口的起始位置，那么如何遍历剩下的终止位置？</p>
+<p>此时难免再次陷入 暴力解法的怪圈。</p>
+<p>所以 只用一个for循环，那么这个循环的索引，一定是表示 滑动窗口的终止位置。</p>
+<p>查找过程的演示</p>
+<p><img src="https://code-thinking.cdn.bcebos.com/gifs/209.%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.gif" alt="209.长度最小的子数组"></p>
+<p>在本题中实现滑动窗口，主要确定如下三点：</p>
+<ul>
+<li>窗口内是什么？</li>
+<li>如何移动窗口的起始位置？</li>
+<li>如何移动窗口的结束位置？</li>
+</ul>
+<p>窗口就是 满足其和 ≥ s 的长度最小的 连续 子数组。</p>
+<p>窗口的起始位置如何移动：如果当前窗口的值大于s了，窗口就要向前移动了（也就是该缩小了）。</p>
+<p>窗口的结束位置如何移动：窗口的结束位置就是遍历数组的指针，也就是for循环里的索引。</p>
+<p>解题的关键在于 窗口的起始位置如何移动，如图所示：</p>
+<p><img src="https://img-blog.csdnimg.cn/20210312160441942.png" alt="leetcode_209"></p>
+<h5 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h5><pre><code class="Java">class Solution &#123;
+
+    // 滑动窗口
+    public int minSubArrayLen(int s, int[] nums) &#123;
+        int left = 0;
+        int sum = 0;
+        int result = Integer.MAX_VALUE;
+        for (int right = 0; right &lt; nums.length; right++) &#123;
+            sum += nums[right];
+            while (sum &gt;= s) &#123;
+                result = Math.min(result, right - left + 1);
+                sum -= nums[left++];
+            &#125;
+        &#125;
+        return result == Integer.MAX_VALUE ? 0 : result;
+    &#125;
+&#125;
+</code></pre>
+<h3 id="2-904-水果成篮"><a href="#2-904-水果成篮" class="headerlink" title="2.904.水果成篮"></a>2.904.水果成篮</h3><h4 id="1-题目-1"><a href="#1-题目-1" class="headerlink" title="1.题目"></a>1.题目</h4><p>你正在探访一家农场，农场从左到右种植了一排果树。这些树用一个整数数组 <code>fruits</code> 表示，其中 <code>fruits[i]</code> 是第 <code>i</code> 棵树上的水果 <strong>种类</strong> 。</p>
+<p>你想要尽可能多地收集水果。然而，农场的主人设定了一些严格的规矩，你必须按照要求采摘水果：</p>
+<blockquote>
+<ul>
+<li>• 你只有 <strong>两个</strong> 篮子，并且每个篮子只能装 <strong>单一类型</strong> 的水果。每个篮子能够装的水果总量没有限制。</li>
+<li>• 你可以选择任意一棵树开始采摘，你必须从 <strong>每棵</strong> 树（包括开始采摘的树）上 <strong>恰好摘一个水果</strong> 。采摘的水果应当符合篮子中的水果类型。每采摘一次，你将会向右移动到下一棵树，并继续采摘。</li>
+<li>• 一旦你走到某棵树前，但水果不符合篮子的水果类型，那么就必须停止采摘。</li>
+</ul>
+</blockquote>
+<p>给你一个整数数组 <code>fruits</code> ，返回你可以收集的水果的 <strong>最大</strong> 数目。</p>
+<p>【输入】fruits &#x3D; [1,2,1]<br>【输出】3<br>【解释】可以采摘全部 3 棵树。</p>
+<p>【输入】fruits &#x3D; [0,1,2,2]<br>【输出】3<br>【解释】可以采摘 [1,2,2] 这三棵树。如果从第一棵树开始采摘，则只能采摘 [0,1] 这两棵树。</p>
+<p>【输入】fruits &#x3D; [1,2,3,2,2]<br>【输出】4<br>【解释】可以采摘 [2,3,2,2] 这四棵树。如果从第一棵树开始采摘，则只能采摘 [1,2] 这两棵树。</p>
+<p>【输入】fruits &#x3D; [3,3,3,1,2,1,1,2,3,3,4]<br>【输出】5<br>【解释】可以采摘 [1,2,1,1,2] 这五棵树。</p>
+<h4 id="2-思路"><a href="#2-思路" class="headerlink" title="2.思路"></a>2.思路</h4><p>根据题目描述，我们只可以拿两种类型的水果，并且获取的顺序是<strong>按照数组fruits的顺序从左向右</strong>的，那么我们可以选择采用<strong>滑动窗口</strong>的方式对窗口内两种类型的水果数量进行计算，并且针对每个窗口中的水果数量进行计算，最终选取<strong>最大值返回</strong>即可。</p>
+<p>我们以下图中<code>fruits = [3,3,3,1,2,1,1,2,3,3,4]</code>为例，首先我们需要如下几个参数：</p>
+<blockquote>
+<p><strong>startIndex</strong>：表示窗口的起点。<br><strong>diffIndex</strong>：每当发现相邻两个水果不同，则将其指向发生不同的那个水果，当遍历发现有第三种水果的时候，用于将其作为新窗口的起点。<br><strong>pickRecords</strong>：用于记录当前窗口内选中的水果（下图没有画），默认未选中为0，选中为1；<br><strong>pickNums</strong>：用于记录当前窗口内，已经选中的水果种类数量。<br><strong>curFruit</strong>：用于记录当前选中的苹果类型，当发现curFruit与fruits[i]不同时，diffIndex &#x3D; fruits[i]。</p>
+</blockquote>
+<p>我们从头开始遍历，遍历指针<code>i</code>，每当发现遍历到的这个<strong>水果种类fruits[i]与curFruit不同</strong>时，就说明我们拿到了<strong>新的品种</strong>，那么<strong>pickNums加1</strong>，当超过2种的时候，我们就通过<code>i-startIndex</code>对窗口内的水果数量进行计算，然后移动窗口，将新窗口的起点设定为<code>diffIndex</code>指向的位置，然后继续遍历水果，以此类推进行计算。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/AZHyCoMMOCicvQicWSnN5ZNP97xQibk5RenSvNNZpr8ibMzLDeC2apV3ia2XS7ibTLC5WgGn3VStmCTw6elicia0ht2v6g/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<h5 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h5><pre><code class="java">class Solution &#123;
+    public int totalFruit(int[] fruits) &#123;
+    int[] pickRecords = new int[fruits.lengrh];
+        int result = 0,startIndex = 0,,diffIndex= 0,pickNums = 0,currFruit = 0;
+        for(int i=0;i&lt;fruit.length;i++) &#123;
+            if(pickNums == 2) &#123;
+                result = math.max(result,i-startIndex);
+            pickRecords[fruits[diffIndex-1]] = 0;
+                startIndex = diffIndex;
+                pickNums--;
+            &#125;
+            pickNums++;
+            pickRecords[fruits[i]] =1;
+        &#125;
+        if(curFruit != fruits[i]) &#123;
+            curFruit = fruits[i];
+            diffIndex = i;
+        &#125;
+    &#125;
+    return Math.max(result,fruits,length-startIndex)
+&#125;
+</code></pre>
+<h3 id="3-76-最小覆盖字串-困难"><a href="#3-76-最小覆盖字串-困难" class="headerlink" title="3.76.最小覆盖字串(困难)"></a>3.76.最小覆盖字串(困难)</h3><h4 id="1-题目-2"><a href="#1-题目-2" class="headerlink" title="1.题目"></a>1.题目</h4><p>给你一个字符串 s 、一个字符串 t 。返回 s 中涵盖 t 所有字符的最小子串。如果 s 中不存在涵盖 t 所有字符的子串，则返回空字符串 “” 。</p>
+<p>注意：</p>
+<p>对于 t 中重复字符，我们寻找的子字符串中该字符数量必须不少于 t 中该字符数量。</p>
+<p>如果 s 中存在这样的子串，我们保证它是唯一的答案。</p>
+<p>示例 1：</p>
+<p>输入：s &#x3D; “ADOBECODEBANC”, t &#x3D; “ABC”</p>
+<p>输出：”BANC”</p>
+<p>示例 2：</p>
+<p>输入：s &#x3D; “a”, t &#x3D; “a”</p>
+<p>输出：”a”</p>
+<p>示例 3:</p>
+<p>输入: s &#x3D; “a”, t &#x3D; “aa”</p>
+<p>输出: “”</p>
+<p>解释: t 中两个字符 ‘a’ 均应包含在 s 的子串中，</p>
+<p>因此没有符合条件的子字符串，返回空字符串。</p>
+<pre><code class="Java">
+public String minWindow(String s, String t) &#123;
+    String res = &quot;&quot;;
+    if (t.length() &gt; s.length()) &#123;
+        return res;
+    &#125;
+    HashMap&lt;Character, Integer&gt; need = new HashMap&lt;&gt;();
+    HashMap&lt;Character, Integer&gt; window = new HashMap&lt;&gt;();
+    for (int i = 0; i &lt; t.length(); i++) &#123;
+        char ch = t.charAt(i);
+        need.put(ch, need.getOrDefault(ch, 0) + 1);
+    &#125;
+    // 定义字符串左右指针
+    int left = 0;
+    int right = 0;
+    // valid 变量表示窗口中满足 need 条件的字符个数
+    int valid = 0;
+    // 定义符合字符串的起始索引
+    int len = Integer.MAX_VALUE;
+    int start = 0;
+    while (right &lt; s.length()) &#123;
+        char rightChar = s.charAt(right);
+        right++;
+        if (need.containsKey(rightChar)) &#123;
+            // 这部分和下面是对称的
+            window.put(rightChar, window.getOrDefault(rightChar, 0) + 1);
+            if (window.get(rightChar).equals(need.get(rightChar))) &#123;// ADBBECEBANC ABC
+                valid++; // valid 加一次，说明窗口里面某一个字符又符合了
+            &#125;
+        &#125;
+        // 如果 valid 和 need.size 的大小相同，则说明窗口已满足条件
+        // 判断左侧窗口是否要收缩
+        while (valid == need.size()) &#123;
+            // 在这里更新最小覆盖子串
+            if (right - left &lt; len) &#123;
+                start = left;
+                len = right - left;
+            &#125;
+            // leftChar 是将移出窗口的字符
+            char leftChar = s.charAt(left);
+            // 左移窗口
+            left++;
+            // 进行窗口内数据的一系列更新
+            if (need.containsKey(leftChar)) &#123;
+                if (window.get(leftChar).equals(need.get(leftChar))) &#123;
+                    valid--;
+                &#125;
+                window.put(leftChar, window.get(leftChar) - 1);
+                &#125;
+            &#125;
+        &#125;
+        return len == Integer.MAX_VALUE ? &quot;&quot; : s.substring(start, start + len);
+    &#125;
+</code></pre>
+<h3 id="涉及各种矩阵变化的题目"><a href="#涉及各种矩阵变化的题目" class="headerlink" title="涉及各种矩阵变化的题目"></a>涉及各种矩阵变化的题目</h3><h3 id="4-59螺旋矩阵2"><a href="#4-59螺旋矩阵2" class="headerlink" title="4.59螺旋矩阵2"></a>4.59螺旋矩阵2</h3><h4 id="1-题目-3"><a href="#1-题目-3" class="headerlink" title="1.题目"></a>1.题目</h4><p>给定一个正整数 n，生成一个包含 1 到 n^2 所有元素，且元素按顺时针顺序螺旋排列的正方形矩阵。</p>
+<p>示例:</p>
+<p>输入: 3 输出: [ [ 1, 2, 3 ], [ 8, 9, 4 ], [ 7, 6, 5 ] ]</p>
+<h4 id="2-思路-1"><a href="#2-思路-1" class="headerlink" title="2.思路"></a>2.思路</h4><p>模拟顺时针画矩阵的过程:</p>
+<ul>
+<li>填充上行从左到右</li>
+<li>填充右列从上到下</li>
+<li>填充下行从右到左</li>
+<li>填充左列从下到上</li>
+</ul>
+<p><img src="https://code-thinking-1253855093.file.myqcloud.com/pics/20220922102236.png" alt="img"></p>
+<p>这里每一种颜色，代表一条边，我们遍历的长度，可以看出每一个拐角处的处理规则，拐角处让给新的一条边来继续画。</p>
+<p>这也是坚持了每条边左闭右开的原则</p>
+<h4 id="3-代码实现"><a href="#3-代码实现" class="headerlink" title="3.代码实现"></a>3.代码实现</h4><pre><code class="Java">class Solution &#123;
+    public int[][] generateMatrix(int n) &#123;
+        int loop =0;
+        int[][] res = new int[n][n];
+        int start =0;
+        int count =1;
+        int i,j;
+        while(loop++ &lt;n/2)&#123;
+            for(j = start;j&lt;n-loop;j++) &#123;
+                res[start][j] = count++;
+            &#125;
+            for(i = start;i&lt;n-loop;i++) &#123;
+                res[i][j] = count++;
+            &#125;
+            for(;j&gt;=loop;j--) &#123;
+                res[i][j] = count++;
+            &#125;
+            for(;i&gt;=loop;i--) &#123;
+                res[i][j] = count ++;
+            &#125;
+            start++;
+        &#125;
+        if(n%2 == 1) &#123;
+            res[start][start] = count;
+        &#125; 
+        return res;
+    &#125;
+&#125;
+</code></pre>
+<h3 id="5-54螺旋矩阵"><a href="#5-54螺旋矩阵" class="headerlink" title="5.54螺旋矩阵"></a>5.54螺旋矩阵</h3><h4 id="1-题目-4"><a href="#1-题目-4" class="headerlink" title="1.题目"></a>1.题目</h4><p>【题目】 给定一个<code>整型矩阵</code>Matrix，请按照顺时针转圈的方式打印它。例如:</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBCcaan5hg7GsqSCVwq4sgZHyqBqfFF4G4oTjhACibCp2RcuMEPeHVjKQ/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片">实际上存储结构为二维数组</p>
+<p>打印结果为：</p>
+<pre><code>1，2，3，4，8，12，16，15，14，13，9， 5，6，7，11，10
+</code></pre>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBRn0NZibJkWiaJ522aMDOQEsiaiaX4AuXIBEjjKqetvibL104qGfSvmU4BRg/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片">转圈打印</p>
+<p>【要求】 额外空间复杂度为O(1)。</p>
+<h4 id="2-思路-2"><a href="#2-思路-2" class="headerlink" title="2.思路"></a>2.思路</h4><p>如果我们将眼光局限于坐标每次该如何移动，如何判断矩阵中哪些点已经输出，哪些点还没有输出，那么你就是进坑里了，这种方法不是不行，但是在面试的场景下，扣各种边界会导致你非常容易出错。那么有什么办法可以快速解决呢？其实很简单，<strong>从全局来看，我们实际上是在绘制一个又一个的矩形边界</strong>：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBECDRbicfLRcRFCERDN4Ykq56ILvDlh6bft5nzG5TqgFXw4ib4y4kw4OA/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片">将问题转化为绘制矩形边界</p>
+<p>是不是觉得问题一下子简单了很多，我们只要<strong>分别打印四个边界，就能打印出一个矩形</strong>；接下来我们考虑外层和内层如何衔接：</p>
+<p>如下图所示，我们每次绘制某一边界时（如矩形的上边界），不要把最后一个点绘制了，而是作为下一个边界的起点，那么最终结束位置在<code>5</code>，与下一圈的<code>6</code>正好衔接：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBcBzAWFuJjRttCghicyKua5cXicG1db1nTj3QLUh4nXgBNVkp2gznOzdw/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片">内外层衔接</p>
+<p>看到这里大家想必已经知道怎么做了，是的，我们只需控制左上角和右下角两个点的坐标，然后<strong>每跑完一圈，坐标进行相应的增加或减少</strong>即可：<img src="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBHI2kPictZLyUeWXQ9Q6N5WBzRlBEXLRewuCDnmL4F2YiaPDN20w2ib9OQ/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<h4 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h4><p>两种特殊情况</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBvib02FtjqhSI1R4CQVan160CwemYBsuofXycNecXWJIdysfwBeL2HibQ/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<pre><code class="Java">public void circlePrint(int[][] matrix) &#123;
+    if (matrix.empty()) return; // 空数组判断
+    int a = 0, b = 0, c = matrix.size() - 1, d = matrix[0].size() - 1;
+    while (a &lt;= c &amp;&amp; b &lt;= d) &#123;
+        edgePrint(a++, b++, c--, d--, matrix); // 打印(a,b)和(c,d)所在的矩形边界
+    &#125;
+&#125;
+
+public void edgePrint(int a, int b, int c, int d, int[][] matrix) &#123;
+    if (a == c) &#123; // only one row
+        for (int j = b; j &lt;= d; ++j) &#123;
+           matrix[a][j] ;
+        &#125;
+    &#125; else if (b == d) &#123; // only one column
+        for (int i = a; i &lt;= c; ++i) &#123;
+            cout &lt;&lt; matrix[i][d] &lt;&lt; &quot; &quot;;
+        &#125;
+    &#125; else &#123;
+        for (int j = b; j &lt; d; ++j) &#123; // print up edge
+            cout &lt;&lt; matrix[a][j] &lt;&lt; &quot; &quot;;
+        &#125;
+        for (int i = a; i &lt; c; ++i) &#123; // print right edge
+            cout &lt;&lt; matrix[i][d] &lt;&lt; &quot; &quot;;
+        &#125;
+        for (int j = d; j &gt; b; --j) &#123; // print down edge
+            cout &lt;&lt; matrix[c][j] &lt;&lt; &quot; &quot;;
+        &#125;
+        for (int i = c; i &gt; a; --i) &#123; // print left edge
+            cout &lt;&lt; matrix[i][b] &lt;&lt; &quot; &quot;;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h3 id="6-旋转正方形矩阵"><a href="#6-旋转正方形矩阵" class="headerlink" title="6.旋转正方形矩阵"></a>6.旋转正方形矩阵</h3><h4 id="1-题目-5"><a href="#1-题目-5" class="headerlink" title="1.题目"></a>1.题目</h4><p>【题目】 给定一个<code>整型正方形矩阵</code> Matrix，请把该矩阵调整成<code>顺时针旋转90度</code>的样子。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBbdTCtSzibQCt2O6kXkY18e5cncbriaPmjVDia5jp7rgFXICOoQPLBRIDA/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片">原地顺时针旋转90度</p>
+<p>【要求】 额外空间复杂度为O(1)。</p>
+<h4 id="2-思路-3"><a href="#2-思路-3" class="headerlink" title="2.思路"></a>2.思路</h4><p>】注意到题目要求我们的空间复杂度为<code>O(1)</code>，因此，我们不能借助辅助矩阵，只能原地调整。咋一看好像无从下手，但只要使用我们前面提到过的全局思想，我们可以首先<strong>将问题拆解为将一个矩形边界旋转90度</strong>：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBS9aOEoYGMaic9SBZ2RoRx7soNExMKFbP3NsVo7aicKBjqz0iae46vATRg/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片">化简为边界旋转的问题</p>
+<p>代码如下：</p>
+<pre><code>void rotateMatrix(vector&lt;vector&lt;int&gt;&gt; &amp;matrix) &#123;    int a = 0, b = 0, c = matrix.size() - 1, d = matrix[0].size() - 1;    while (a &lt;= c &amp;&amp; b &lt;= d) &#123;        rotateEdge(a++, b++, c--, d--, matrix); // 旋转指定对角所在正方形的边界    &#125;&#125;
+</code></pre>
+<p>接下来，我们要解决的就是<strong>如何将一个矩形边界旋转的问题</strong>了。</p>
+<p>我们先考虑四个角：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBGttfPK4icjwqxIOHdXC0xoMBLsG173oEN1KTlCmxGvN360XPiciaqvzIg/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片">边界旋转的四个角</p>
+<p>再考虑第二个点：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBGAM79Tu8Xz5PX4C7Ub0oYFfUiaWU9qnrAXBmJZWPM8gGCloPaUqBwicQ/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片">旋转边界的第二个点</p>
+<h4 id="3-实现代码"><a href="#3-实现代码" class="headerlink" title="3.实现代码"></a>3.实现代码</h4><pre><code class="Java">void rotateEdge(int a, int b, int c, int d, int[][] matrix) &#123;
+    for (int i = 0; i &lt; d-b; ++i) &#123; // 每一行要剔除最后一个点
+        int temp = matrix[a][b + i];                 // 暂存左上角的点
+        matrix[a][b + i] = matrix[c - i][b]; // 把左下角的点放到左上角 
+        matrix[c - i][b] = matrix[c][d - i]; // 把右下角的点放到左下角
+        matrix[c][d - i] = matrix[a + i][d]; // 把右上角的点放到右下角
+        matrix[a + i][d] = temp;                         // 把暂存的左上角的点放到右上角
+    &#125;
+&#125;
+</code></pre>
+<h3 id="7-“之”字型打印矩阵"><a href="#7-“之”字型打印矩阵" class="headerlink" title="7.“之”字型打印矩阵"></a>7.“之”字型打印矩阵</h3><h4 id="1-题目-6"><a href="#1-题目-6" class="headerlink" title="1.题目"></a>1.题目</h4><p>【题目】 给定一个矩阵matrix，按照“之”字形的方式打印这 个矩阵，例如:</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBWDzzNiamIibl3YACnJyz1mgAnHwuTcteHOXpIXO5icph9rQAMxWTg4e7A/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片">“之”字型打印</p>
+<p>“之”字形打印的结果为：</p>
+<pre><code>1，2，5，9，6，3，4，7，10，11， 8，12
+</code></pre>
+<p>【要求】 额外空间复杂度为O(1)。</p>
+<h4 id="2-思路-4"><a href="#2-思路-4" class="headerlink" title="2.思路"></a>2.思路</h4><p>将整个过程切分为：<strong>给定两个对角点坐标，遍历对角线</strong>，然后寻找两个对角点坐标的变化规律。</p>
+<p>给定两个对焦点坐标，遍历该对角线，实现起来非常简单：</p>
+<pre><code class="Java">void printDiagonal(int a, int b, int c, int d, int[][] matrix) &#123;    
+    while (a &gt;= c &amp;&amp; b &lt;= d) &#123;  
+    &#125;
+&#125;
+</code></pre>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBfwZocA61fXZPC26uuNKMUsk062VgbicxcLibf5tTQt2Uf6seEBYuZNlQ/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片">遍历对角线</p>
+<p>图中的<code>(a, b)</code>为对角线的左下角顶点，其中<code>a、b</code>均是变量，从左到右分别为每次变换的位置；一开始<code>(a, b)</code>和<code>(c, d)</code>都是<code>点1</code>，即<code>matrix[0][0]</code>；我们观察两个点的变换轨迹，可以发现，<code>(a, b)</code>先向下走，到底部再向右走；而<code>(c, d)</code>先向右走，到达最右边才向下走。</p>
+<p>与此同时，每完成一次对角线遍历，我们发现，遍历的方向会发生改变，因此我们使用一个<code>bool</code>类型的<code>isUp</code>来记录状态。</p>
+<p>因此，对角线函数需要进行修改：</p>
+<pre><code class="java">void printDiagonal(int a, int b, int c, int d, vector&lt;vector&lt;int&gt;&gt; &amp;matrix, bool isUp) &#123;    if (isUp) &#123;        while (a &gt;= c &amp;&amp; b &lt;= d) &#123;            cout &lt;&lt; matrix[a--][b++] &lt;&lt; &quot; &quot;;        &#125;    &#125; else &#123;        while (a &gt;= c &amp;&amp; b &lt;= d) &#123;            cout &lt;&lt; matrix[c++][d--] &lt;&lt; &quot; &quot;;        &#125;    &#125;&#125;
+</code></pre>
+<p>遍历所有对角线：</p>
+<pre><code class="java">void ZigZagPrint(vector&lt;vector&lt;int&gt;&gt; &amp;matrix) &#123;    bool isUp = true;    int a = 0, b = 0, c = 0, d = 0;    while (c != matrix.size()) &#123; // c 如果为 n，说明右上角的对角线顶点已经到达矩阵的右下角，所有对角线都被遍历了        printDiagonal(a, b, c, d, matrix, isUp);        isUp = !isUp;        b = (a == matrix.size() - 1) ? b + 1 : b; // 注意，我们要先更新b，然后才更新a        a = (a == matrix.size() - 1) ? a : a + 1;        c = (d == matrix[0].size() - 1) ? c + 1 : c; //同样的，先更新c，再更新d        d = (d == matrix[0].size() - 1) ? d : d + 1;    &#125;&#125;
+</code></pre>
+<h3 id="8-在行列都排好序的矩阵中找数"><a href="#8-在行列都排好序的矩阵中找数" class="headerlink" title="8.在行列都排好序的矩阵中找数"></a>8.在行列都排好序的矩阵中找数</h3><h4 id="1-题目-7"><a href="#1-题目-7" class="headerlink" title="1.题目"></a>1.题目</h4><p>【题目】 给定一个有<code>N*M</code>的<code>整型矩阵</code>Matrix和一个整数<code>K</code>， Matrix的每一行和每一 列都是<strong>排好序</strong>的。实现一个函数，判断<code>K 是否在 Matrix</code>中。例如：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBtxrnKCicDoKEz5KvUAp4YIzA0W9d66xLK3z1HCpoVD5n1cXJUEnLvvQ/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片">从排好序的矩阵中找数</p>
+<p>如果K为5，返回true；如果K为10，返回false。<br>【要求】 时间复杂度为<code>O(N+M)</code>，额外空间复杂度为O(1)。</p>
+<h4 id="2-思路-5"><a href="#2-思路-5" class="headerlink" title="2.思路"></a>2.思路</h4><p>【解法说明】如果我们遍历完整个矩阵，需要<code>O(N^2)</code>，而题目中要求<code>O(N+M)</code>的复杂度，因此我们就需要根据特殊的数据布局来考虑更优的解法。懂得二分法的朋友肯定知道，我们在一个排好序的数组中找一个数，从中间找起是最快的；这里也是类似，不过这里的中间在哪里呢？</p>
+<p>事实上，考虑数据的分布，左上角必然是最小值，右下角必然是最大值，而中间线，正好在左下角到右上角的对角线上：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBUQlq7WcBBpNfnz7OhuFtl72dMsNHstTiaD1icZCMO7ibFoxfkRun7aorg/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片">从中间线出发</p>
+<p>假设我们找<code>K=5</code>，从右上角开始，发现<code>4 &lt; 5</code>，所以向下找，为什么？因为行列都是按顺序排好的，4左边的数都是比4小的，既然5比4大，那么在左边就不可能找到5了：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBwoNdbBfnQbibPDibLpmyCKZ5XIpzUbjtgDaR86xUBFWDFGTgKPibGZcjw/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片">4的左边已经不存在5了</p>
+<p>接下来我们继续比较，发现<code>8 &gt; 5</code>，所以向左找，因为下面不可能有5了：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSB5q9L67xuHKkWq8aGMsAOGty4Eybu1wicNicQmiajtCplAPNzxHicQggnyw/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片">8的下面不可能存在5</p>
+<p>按照上面的方式，我们完成搜索：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBfMaWjJSOIdunBicib5lB9TImdvGUgJQoibouvvl7dIRIL6CztXY0tBDoQ/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片">找到5，返回true</p>
+<p>我们仔细考虑下过程，即使<code>K</code>在左下角，我们从右上角开始找，那么最终耗费的时间也只是<code>O(N+M)</code>，<code>N 为宽度，M 为长度</code>。</p>
+<h4 id="3-实现代码-1"><a href="#3-实现代码-1" class="headerlink" title="3.实现代码"></a>3.实现代码</h4><pre><code class="Java">bool findKInSortedMatrix(vector&lt;vector&lt;int&gt;&gt; &amp;matrix, int k) &#123;
+    int a = 0, b = matrix[0].size() - 1;
+    while (a &lt;= matrix.size() - 1 &amp;&amp; b &gt;= 0) &#123;
+        if (matrix[a][b] == k) &#123; // found
+            return true;
+        &#125; else if (matrix[a][b] &lt; k) &#123; // 如果当前点小于 K，向下走
+            a++;
+        &#125; else &#123; // 如果当前点大于 K，向左走
+            b--;
+        &#125;
+    &#125;
+    return false; // not found
+&#125;
+</code></pre>
+<p><img src="https://code-thinking-1253855093.file.myqcloud.com/pics/%E6%95%B0%E7%BB%84%E6%80%BB%E7%BB%93.png" alt="img"></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 Yelog
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().trim().split('\n').length, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: ;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+    #post .pjax article :not(pre) > code {
+        color: #24292e;
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        background-color: rgba(27,31,35,.05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        padding: .2em .4em;
+    }
+    
+</style>
+
+
+
+
+
+
+
+</html>

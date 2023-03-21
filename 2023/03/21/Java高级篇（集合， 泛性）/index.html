@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>算法练习（双指针） | 方立夏</title>
+  <title>面向对象（类与对象） | 方立夏</title>
   <meta name="keywords" content=" java , Github ">
-  <meta name="description" content="算法练习（双指针） | 方立夏">
+  <meta name="description" content="面向对象（类与对象） | 方立夏">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="算法学习（2023 -03-09）（数组）涉及到的算法题目1.2.3题涉及的知识点为滑动窗口1.长度最小的子数组1.题目给定一个含有 n 个正整数的数组和一个正整数 s ，找出该数组中满足其和 ≥ s 的长度最小的 连续 子数组，并返回其长度。如果不存在符合条件的子数组，返回 0。 示例： 输入：s &#x3D; 7, nums &#x3D; [2,3,1,2,4,3] 输出：2 解释：子数组 [">
 <meta property="og:type" content="article">
@@ -438,9 +438,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-算法练习2一移除元素（双指针）" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Java高级篇（集合， 泛性）" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">算法练习（双指针）</h1>
+        <h1 class="article-title">面向对象（类与对象）</h1>
     
     <div class="article-meta">
         
@@ -450,7 +450,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="算法篇">算法篇</a>
+            <a  data-rel="后端篇">后端篇</a>
             
         </span>
         
@@ -467,7 +467,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2023-03-21 15:24:13'>2023-03-21 15:25</time>
+            发布时间 : <time class="date" title='最后更新: 2023-03-21 15:30:14'>2023-03-21 15:30</time>
         
     </div>
     <div class="article-meta">
@@ -489,7 +489,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0%EF%BC%88%E5%8F%8C%E6%8C%87%E9%92%88%EF%BC%89"><span class="toc-text">算法练习（双指针）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%89%E5%8F%8A%E7%9A%84%E7%AE%97%E6%B3%95%E9%A2%98"><span class="toc-text">涉及的算法题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-27%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0"><span class="toc-text">1.27移除元素</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%A2%98%E7%9B%AE"><span class="toc-text">1.题目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%80%9D%E8%B7%AF"><span class="toc-text">2.思路</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E6%9A%B4%E5%8A%9B%E8%A7%A3%E6%B3%95"><span class="toc-text">1.暴力解法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="toc-text">2.双指针法（重点）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-26%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9"><span class="toc-text">2.26删除排序数组中的重复项</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%A2%98%E7%9B%AE-1"><span class="toc-text">1.题目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%80%9D%E8%B7%AF-1"><span class="toc-text">2.思路</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-283-%E7%A7%BB%E5%8A%A8%E9%9B%B6"><span class="toc-text">3.283.移动零</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%A2%98%E7%9B%AE-2"><span class="toc-text">1.题目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%80%9D%E8%B7%AF-2"><span class="toc-text">2.思路</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-844-%E6%AF%94%E8%BE%83%E5%90%AB%E9%80%80%E6%A0%BC%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">4.844.比较含退格的字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%A2%98%E7%9B%AE-3"><span class="toc-text">1.题目</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="toc-text">题目描述</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%80%9D%E8%B7%AF-3"><span class="toc-text">2.思路</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E4%BD%BF%E7%94%A8%E5%8F%8C%E6%8C%87%E9%92%88%E8%B5%96%E8%A7%A3%E5%86%B3"><span class="toc-text">1.使用双指针赖解决</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E4%BB%8E%E5%90%8E%E9%9D%A2%E5%BE%80%E5%89%8D%E9%9D%A2%E9%81%8D%E5%8E%86"><span class="toc-text">1.从后面往前面遍历</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%AF%B9%E4%BA%8E%E9%80%80%E6%A0%BC%E9%97%AE%E9%A2%98%E7%9A%84%E5%A4%84%E7%90%86"><span class="toc-text">2.对于退格问题的处理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E5%81%9C%E6%AD%A2%E6%9D%A1%E4%BB%B6%E7%9A%84%E5%88%A4%E6%96%AD"><span class="toc-text">3.停止条件的判断</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">3.代码实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9"><span class="toc-text">5.有序数组的平方</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%A2%98%E7%9B%AE-4"><span class="toc-text">1.题目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%80%9D%E8%B7%AF-4"><span class="toc-text">2.思路</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E6%9A%B4%E5%8A%9B%E8%A7%A3%E6%B3%95-1"><span class="toc-text">1.暴力解法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95"><span class="toc-text">2.双指针法</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#3-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-1"><span class="toc-text">3.代码实现</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java-HashMap-%E6%96%B9%E6%B3%95"><span class="toc-text">Java HashMap 方法</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -505,242 +505,106 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="算法练习（双指针）"><a href="#算法练习（双指针）" class="headerlink" title="算法练习（双指针）"></a>算法练习（双指针）</h1><h2 id="涉及的算法题"><a href="#涉及的算法题" class="headerlink" title="涉及的算法题"></a>涉及的算法题</h2><h3 id="1-27移除元素"><a href="#1-27移除元素" class="headerlink" title="1.27移除元素"></a>1.27移除元素</h3><h4 id="1-题目"><a href="#1-题目" class="headerlink" title="1.题目"></a>1.题目</h4><p>给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素，并返回移除后数组的新长度。</p>
-<p>不要使用额外的数组空间，你必须仅使用 O(1) 额外空间并<strong>原地</strong>修改输入数组。</p>
-<p>元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。</p>
-<p>示例 1: 给定 nums &#x3D; [3,2,2,3], val &#x3D; 3, 函数应该返回新的长度 2, 并且 nums 中的前两个元素均为 2。 你不需要考虑数组中超出新长度后面的元素。</p>
-<p>示例 2: 给定 nums &#x3D; [0,1,2,2,3,0,4,2], val &#x3D; 2, 函数应该返回新的长度 5, 并且 nums 中的前五个元素为 0, 1, 3, 0, 4。</p>
-<h4 id="2-思路"><a href="#2-思路" class="headerlink" title="2.思路"></a>2.思路</h4><p><strong>要知道数组的元素在内存地址中是连续的，不能单独删除数组中的某个元素，只能覆盖。</strong></p>
-<p>所以需要找到符合条件元素的位置，后面元素覆盖前面的元素</p>
-<h5 id="1-暴力解法"><a href="#1-暴力解法" class="headerlink" title="1.暴力解法"></a>1.暴力解法</h5><p>这个题目暴力的解法就是两层for循环，一个for循环遍历数组元素 ，第二个for循环更新数组。</p>
-<p>删除过程如下：</p>
-<p><img src="https://code-thinking.cdn.bcebos.com/gifs/27.%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0-%E6%9A%B4%E5%8A%9B%E8%A7%A3%E6%B3%95.gif" alt="27.移除元素-暴力解法"></p>
-<p>很明显暴力解法的时间复杂度是O(n^2)</p>
-<p>代码实现</p>
-<pre><code class="Java">class solution&#123;
-    public int removeElement(int[] nums,int val) &#123;
-        int size = nums.size();
-        for(int i = 0;i&lt;sizeli++) &#123;
-            if(nums[i] == val) &#123;
-                for(int j = i+1;j&lt;size;j++)&#123;
-                    nums[j-1] = nums[j];
-                &#125;
-                i--;
-                size--;
-            &#125;
-        &#125;
-        return size;
-    &#125;
-&#125;
-</code></pre>
-<h5 id="2-双指针法（重点）"><a href="#2-双指针法（重点）" class="headerlink" title="2.双指针法（重点）"></a>2.双指针法（重点）</h5><p>双指针法（快慢指针法）： <strong>通过一个快指针和慢指针在一个for循环下完成两个for循环的工作。</strong></p>
-<p>定义快慢指针</p>
-<ul>
-<li><strong>快指针：寻找新数组的元素 ，新数组就是不含有目标元素的数组</strong></li>
-<li><strong>慢指针：指向更新 新数组下标的位置</strong></li>
-</ul>
-<p><img src="https://code-thinking.cdn.bcebos.com/gifs/27.%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0-%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95.gif" alt="27.移除元素-双指针法"></p>
-<p>实现代码</p>
-<pre><code class="Java">class solution&#123;
-    public int removeElement(int[] nums,int val) &#123;
-        int slowindex = 0;
-        for(int fastindex = 0;fastindex&lt;nums,length;fastindex++)&#123;
-            if(nums[fastindex] != val)&#123;
-                nums[slowindex] = nums[fastindex];
-                slowindex++;
-            &#125;
-        &#125;
-        return slowindex;
-    &#125;
-&#125;
-</code></pre>
-<p>相向双指针法</p>
-<pre><code class="cpp">/**
-* 相向双指针方法，基于元素顺序可以改变的题目描述改变了元素相对位置，确保了移动最少元素
-* 时间复杂度：O(n)
-* 空间复杂度：O(1)
-*/
-</code></pre>
-<pre><code class="java">//相向双指针法
-class Solution &#123;
-    public int removeElement(int[] nums, int val) &#123;
-        int left = 0;
-        int right = nums.length - 1;
-        while(right &gt;= 0 &amp;&amp; nums[right] == val) right--; //将right移到从右数第一个值不为val的位置
-        while(left &lt;= right) &#123;
-            if(nums[left] == val) &#123; //left位置的元素需要移除
-                //将right位置的元素移到left（覆盖），right位置移除
-                nums[left] = nums[right];
-                right--;
-            &#125;
-            left++;
-            while(right &gt;= 0 &amp;&amp; nums[right] == val) right--;
-        &#125;
-        return left;
-    &#125;
-&#125;
-</code></pre>
-<h3 id="2-26删除排序数组中的重复项"><a href="#2-26删除排序数组中的重复项" class="headerlink" title="2.26删除排序数组中的重复项"></a>2.26删除排序数组中的重复项</h3><h4 id="1-题目-1"><a href="#1-题目-1" class="headerlink" title="1.题目"></a>1.题目</h4><p>给定一个排序数组，你需要在 原地 删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。</p>
-<p>不要使用额外的数组空间，你必须在 原地 <strong>修改输入数组</strong> 并在使用 O(1) 额外空间的条件下完成。</p>
-<p><strong>示例 1:</strong></p>
-<pre><code>给定数组 nums = [1,1,2],函数应该返回新的长度 2, 并且原数组 nums 的前两个元素被修改为 1, 2。你不需要考虑数组中超出新长度后面的元素。
-</code></pre>
-<p><strong>示例 2:</strong></p>
-<pre><code>给定 nums = [0,0,1,1,1,2,2,3,3,4],函数应该返回新的长度 5, 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4。你不需要考虑数组中超出新长度后面的元素。
-</code></pre>
-<h4 id="2-思路-1"><a href="#2-思路-1" class="headerlink" title="2.思路"></a>2.思路</h4><p>在必须原地修改输入数组的限定条件下，我们的思路就是不断地将数组的后部向前部挪动。因为是排好序的数组，所以重复的数字必然连着出现。为了消除重复，每次挪动只需要让后面独一无二的数字覆盖前面具有重复属性的数字位置即可。这里使用双指针的思路，暂且分别称为快指针和慢指针，令快指针不断向后探索，直到它指向了与慢指针不相等的数字时停止。此时通过将快指针指向的值覆盖到慢指针上的位置，就可以消除一个重复数字。</p>
-<p>当快指针完成遍历时，慢指针指向的位置就是整个去重后的数组的末尾，后面的数值都可以舍掉了。</p>
-<ol>
-<li></li>
-</ol>
-<p>实现代码</p>
-<pre><code class="Java">class Solution &#123;
-public:
-    int removeDuplicates(vector&lt;int&gt;&amp; nums) &#123;
-        if (!nums.size()) return 0;
-        
-        int i = 0;
-        for (int j = 1; j &lt; nums.size(); ++j) &#123;
-            if (nums[i] != nums[j]) &#123;
-                ++i;
-                nums[i] = nums[j];
-            &#125;
-        &#125;
-        
-        return i+1;
-    &#125;
-&#125;;
-</code></pre>
-<p>1.初始化快慢指针</p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/HPx34e25eAdVD9sgbCD0hEqXA6AIlGUr2UZ6VbLH6kic97nCq5YSQsWY8M8icCTNSSvjYZe4NHxy02ibMibmvaLJIw/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
-<p>\2. 移动快慢指针时，快指针必须指向与慢指针不同的值，然后进行assign</p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/HPx34e25eAdVD9sgbCD0hEqXA6AIlGUraRrmspPNib7az96HvLaHnYmGWkCk7IzGia8JOJLvxMdwjicfiaQuagnAGg/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
-<p>3.后移，并继续assign</p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/HPx34e25eAdVD9sgbCD0hEqXA6AIlGUrp3wpk92ibgYgqsu24FJYL2Hp8fg7tErWU7sUMuvibsszaS0PGo62zYSw/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
-<h3 id="3-283-移动零"><a href="#3-283-移动零" class="headerlink" title="3.283.移动零"></a>3.283.移动零</h3><h4 id="1-题目-2"><a href="#1-题目-2" class="headerlink" title="1.题目"></a>1.题目</h4><p><img src="https://mmbiz.qpic.cn/mmbiz_png/2GfhQ2H7oTFQtLYfmUIeHibNM0eZRvOsBPLJyclEEJgO0tlfw7TMiagRlWLsTXiaQQC0apzibaFWcRnyrXickdSf1YA/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
-<h4 id="2-思路-2"><a href="#2-思路-2" class="headerlink" title="2.思路"></a>2.思路</h4><p><img src="https://mmbiz.qpic.cn/mmbiz_png/2GfhQ2H7oTFQtLYfmUIeHibNM0eZRvOsBLWlhiaoBf4gbED2CclOUZhVj27nJMVUWvcqIOqZCDwlsPjUmjrwYXdw/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
-<p>代码实现（双指针）</p>
-<pre><code class="Java">public static void movezeros(int[] nums)&#123;
-    int l = 0;
-    int r = 0;
-    while (r &lt; nums.length) &#123;
-        if(nums[r] != 0)&#123;
-            swap(nums,l++,r);
-        &#125;
-        r++
-    &#125;
-&#125;
-public static void swap(int[] arr,int l,int r) &#123;
-    int tmp = arr[l];
-    arr[l] = arr[r];
-    arr[r] = tmp;
-&#125;
-</code></pre>
-<h3 id="4-844-比较含退格的字符串"><a href="#4-844-比较含退格的字符串" class="headerlink" title="4.844.比较含退格的字符串"></a>4.844.比较含退格的字符串</h3><h4 id="1-题目-3"><a href="#1-题目-3" class="headerlink" title="1.题目"></a>1.题目</h4><h5 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h5><p>给定 <code>S</code> 和 <code>T</code> 两个字符串，当它们分别被输入到空白的文本编辑器后，判断二者是否相等，并返回结果。<code>#</code> 代表退格字符。</p>
-<p>示例 1：输入：S &#x3D; “ab#c”, T &#x3D; “ad#c” 输出：true 解释：S 和 T 都会变成 “ac”。</p>
-<p>示例 2：输入：S &#x3D; “ab##”, T &#x3D; “c#d#” 输出：true 解释：S 和 T 都会变成 “”。</p>
-<p>示例 3：输入：S &#x3D; “a##c”, T &#x3D; “#a#c” 输出：true 解释：S 和 T 都会变成 “c”。</p>
-<p>示例 4：输入：S &#x3D; “a#c”, T &#x3D; “b” 输出：false 解释：S 会变成 “c”，但 T 仍然是 “b”。</p>
-<h4 id="2-思路-3"><a href="#2-思路-3" class="headerlink" title="2.思路"></a>2.思路</h4><h5 id="1-使用双指针赖解决"><a href="#1-使用双指针赖解决" class="headerlink" title="1.使用双指针赖解决"></a>1.使用双指针赖解决</h5><p>处理这个问题有两个关键</p>
-<h5 id="1-从后面往前面遍历"><a href="#1-从后面往前面遍历" class="headerlink" title="1.从后面往前面遍历"></a>1.从后面往前面遍历</h5><p>从前往后遍历字符串的时候，遇到一个字符，我们是没有办法知道这个字符最终会不会属于这个字符串，因为我们没有办法知道后面会有多少个退格，但是从后往前遍历字符串的时候，我们有办法知道一个字符是不是属于这个字符串。</p>
-<p>那么，我们可以从后往前遍历字符串，记 <code>i</code> 和 <code>j</code> 分别表示当前两个字符串的比较位置，初始均为 <code>strlen() - 1</code>。</p>
-<p>若当前位置的字符不相等（<code>S[i] != T[j]</code>），则直接 <code>return false</code> 而无需继续往前比较，若当前位置的字符相等，那么继续往前比较。</p>
-<h5 id="2-对于退格问题的处理"><a href="#2-对于退格问题的处理" class="headerlink" title="2.对于退格问题的处理"></a>2.对于退格问题的处理</h5><p>若遇到 <code>S[i] == &#39;#&#39;</code>，那么就要数一数有多少个退格键，每遇到一个退格键，<code>skipS++</code>，表示接下来要跳过多少个字符。那么，当 <code>skipS &gt; 0</code> 时，我们依旧需要持续地令 <code>i--; skipS--;</code>，不断的跳过那些被删除了的字符。</p>
-<p>有两点需要注意</p>
-<p>1.在这个过程中，<code>S[i]</code> 依旧有可能等于 <code>&#39;#&#39;</code>，此时我们非但不应该进行 <code>skipS--</code>，反而应该进行 <code>skipS++</code>。</p>
-<p>2.在退格操作完成后，紧接着的那个字符也有可能是 <code>&#39;#&#39;</code>，因此退格操作应持续进行到 <code>S[i] != &#39;#&#39;</code> 为止。</p>
-<h5 id="3-停止条件的判断"><a href="#3-停止条件的判断" class="headerlink" title="3.停止条件的判断"></a>3.停止条件的判断</h5><p>只要 <code>i</code> 和 <code>j</code> 中有任何一个还大于 0，就应该持续该过程，直到两者都小于 0，此时输出 <code>true</code>。</p>
-<p>由于字符串长度可能不等，退格键的按下次数可能会超过已经输入的字符数，例如 <code>a###########b</code>，所以应该时刻注意上面所有的条件判断中要加上 <code>i &gt;= 0</code> 和 <code>j &gt;= 0</code> 的判断。</p>
-<p>这样，在上面过程中的任何一处出现 <code>(i &gt;= 0 &amp;&amp; j &lt; 0)</code> 或者 <code>(i &lt; 0 &amp;&amp; j &gt;= 0)</code> 都将是不合法的。</p>
-<p>3</p>
-<h4 id="3-代码实现"><a href="#3-代码实现" class="headerlink" title="3.代码实现"></a>3.代码实现</h4><pre><code class="Java">bool backspaceCompare(char * S, char * T)&#123;
-    int i = strlen(S) - 1;
-    int j = strlen(T) - 1;
-    int skipS = 0;
-    int skipT = 0;
-    while (i &gt;= 0 || j &gt;= 0) &#123;
-        while (i &gt;= 0 &amp;&amp; S[i] == &#39;#&#39;) &#123;
-            while (i &gt;= 0 &amp;&amp; S[i] == &#39;#&#39;) &#123;
-                skipS++;
-                i--;
-            &#125;
-            while (i &gt;= 0 &amp;&amp; skipS &gt; 0) &#123;
-                if (S[i] == &#39;#&#39;) &#123;
-                    skipS++;
-                &#125; else &#123;
-                    skipS--;
-                &#125;
-                i--;
-            &#125;
-        &#125;
-        while (j &gt;= 0 &amp;&amp; T[j] == &#39;#&#39;) &#123;
-            while (j &gt;= 0 &amp;&amp; T[j] == &#39;#&#39;) &#123;
-                skipT++;
-                j--;
-            &#125;
-            while (j &gt;= 0 &amp;&amp; skipT &gt; 0) &#123;
-                if (T[j] == &#39;#&#39;) &#123;
-                    skipT++;
-                &#125; else &#123;
-                    skipT--;
-                &#125;
-                j--;
-            &#125;
-        &#125;
-        //比较每一个字符是不是相同的
-        if (i &gt;=0 &amp;&amp; j &gt;= 0) &#123;
-            if (S[i] != T[j]) &#123;
-                return false;
-            &#125; else &#123;
-                i--;
-                j--;
-            &#125;
-        &#125; else &#123;
-            return i &lt; 0 &amp;&amp; j &lt; 0;
-        &#125;
-    &#125;
-    return true;
-&#125;
-</code></pre>
-<h3 id="5-有序数组的平方"><a href="#5-有序数组的平方" class="headerlink" title="5.有序数组的平方"></a>5.有序数组的平方</h3><h4 id="1-题目-4"><a href="#1-题目-4" class="headerlink" title="1.题目"></a>1.题目</h4><p>给你一个按 非递减顺序 排序的整数数组 nums，返回 每个数字的平方 组成的新数组，要求也按 非递减顺序 排序。</p>
-<p>示例 1： 输入：nums &#x3D; [-4,-1,0,3,10] 输出：[0,1,9,16,100] 解释：平方后，数组变为 [16,1,0,9,100]，排序后，数组变为 [0,1,9,16,100]</p>
-<p>示例 2： 输入：nums &#x3D; [-7,-3,2,3,11] 输出：[4,9,9,49,121]</p>
-<h4 id="2-思路-4"><a href="#2-思路-4" class="headerlink" title="2.思路"></a>2.思路</h4><h5 id="1-暴力解法-1"><a href="#1-暴力解法-1" class="headerlink" title="1.暴力解法"></a>1.暴力解法</h5><p>把每个数平方后，排个序</p>
-<pre><code class="java">class Solution &#123;
-    public int[] sortedSquares(int[] nums) &#123;
-        for(int i = 0;i&lt;A.size();i++) &#123;
-            A[i] *= A[i];
-        &#125;
-        sort(A.begin(),A.end());
-        return A;
-    &#125;
-&#125;;
-</code></pre>
-<h5 id="2-双指针法"><a href="#2-双指针法" class="headerlink" title="2.双指针法"></a>2.双指针法</h5><p>数组其实是有序的， 只不过负数平方之后可能成为最大数了。</p>
-<p>那么数组平方的最大值就在数组的两端，不是最左边就是最右边，不可能是中间。</p>
-<p>此时可以考虑双指针法了，i指向起始位置，j指向终止位置。</p>
-<p>定义一个新数组result，和A数组一样的大小，让k指向result数组终止位置。</p>
-<p>如果<code>A[i] * A[i] &lt; A[j] * A[j]</code> 那么<code>result[k--] = A[j] * A[j];</code> 。</p>
-<p>如果<code>A[i] * A[i] &gt;= A[j] * A[j]</code> 那么<code>result[k--] = A[i] * A[i];</code> 。</p>
-<p><img src="https://code-thinking.cdn.bcebos.com/gifs/977.%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9.gif" alt="img"></p>
-<h6 id="3-代码实现-1"><a href="#3-代码实现-1" class="headerlink" title="3.代码实现"></a>3.代码实现</h6><pre><code class="Java">class Solution &#123;
-    public int[] sortedSquares(int[] nums) &#123;
-        int l=0;
-        int r = nums.length -1;
-        int[] res = new int[nums.length];
-        int j = nums.length -1;
-        while(l&lt;=r) &#123;
-            if(nums[l] * nums[l]&gt;nums[r] * nums[r]) &#123;
-                res[j--] = nums[l] *nums[l++];
-                
-            &#125;else&#123;
-                res[j--] = nums[r]*nums[r--];
-            &#125;
-        &#125;
-        return res;
-    &#125;
-&#125;
-</code></pre>
+        <p>java hashmap 方法</p>
+<p>1.常用方法</p>
+<h2 id="Java-HashMap-方法"><a href="#Java-HashMap-方法" class="headerlink" title="Java HashMap 方法"></a>Java HashMap 方法</h2><p>hashmap</p>
+<p>Java HashMap 常用方法列表如下：</p>
+<table>
+<thead>
+<tr>
+<th align="left">方法</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-hashmap-clear.html">clear()</a></td>
+<td align="left">删除 hashMap 中的所有键&#x2F;值对</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-hashmap-clone.html">clone()</a></td>
+<td align="left">复制一份 hashMap</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-hashmap-isempty.html">isEmpty()</a></td>
+<td align="left">判断 hashMap 是否为空</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-hashmap-size.html">size()</a></td>
+<td align="left">计算 hashMap 中键&#x2F;值对的数量</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-hashmap-put.html">put()</a></td>
+<td align="left">将键&#x2F;值对添加到 hashMap 中</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-hashmap-putall.html">putAll()</a></td>
+<td align="left">将所有键&#x2F;值对添加到 hashMap 中搜索</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-hashmap-putifabsent.html">putIfAbsent()</a></td>
+<td align="left">如果 hashMap 中不存在指定的键，则将指定的键&#x2F;值对插入到 hashMap 中。</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-hashmap-remove.html">remove()</a></td>
+<td align="left">全部删除 hashMap 中指定键 key 的映射关系</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-hashmap-containskey.html">containsKey()</a></td>
+<td align="left">视频号检查 hashMap 中是否存在指定的 key 对应的映射关系。</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-hashmap-containsvalue.html">containsValue()</a></td>
+<td align="left">文章检查 hashMap 中是否存在指定的 value 对应的映射关系。</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-hashmap-replace.html">replace()</a></td>
+<td align="left">公众号替换 hashMap 中是指定的 key 对应的 value。</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-hashmap-replaceall.html">replaceAll()</a></td>
+<td align="left">小程序将 hashMap 中的所有映射关系替换成给定的函数所执行的结果。</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-hashmap-get.html">get()</a></td>
+<td align="left">直播获取指定 key 对应对 value</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-hashmap-getordefault.html">getOrDefault()</a></td>
+<td align="left">读书获取指定 key 对应对 value，如果找不到 key ，则返回设置的默认值</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-hashmap-foreach.html">forEach()</a></td>
+<td align="left">表情对 hashMap 中的每个映射执行指定的操作。</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-hashmap-entryset.html">entrySet()</a></td>
+<td align="left">百科返回 hashMap 中所有映射项的集合集合视图。</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-hashmap-keyset.html">keySet</a>()</td>
+<td align="left">新闻返回 hashMap 中所有 key 组成的集合视图。</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-hashmap-values.html">values()</a></td>
+<td align="left">微信指数返回 hashMap 中存在的所有 value 值。</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-hashmap-merge.html">merge()</a></td>
+<td align="left">朋友圈添加键值对到 hashMap 中</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-hashmap-compute.html">compute()</a></td>
+<td align="left">对 hashMap 中指定 key 的值进行重新计算</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-hashmap-computeifabsent.html">computeIfAbsent()</a></td>
+<td align="left">对 hashMap 中指定 key 的值进行重新计算，如果不存在这个 key，则添加到 hasMap 中</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-hashmap-computeifpresent.html">computeIfPresent()</a></td>
+<td align="left">对 hashMap 中指定 key 的值进行重新计算，前提是该 key 存在于 hashMap 中。</td>
+</tr>
+</tbody></table>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
