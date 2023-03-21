@@ -2,11 +2,11 @@
 <html>
 <head>
   <meta charset="utf-8">
-  
-  
   <title>面向对象（类与对象） | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="面向对象11.类与对象1.1类与对象的创建及使用12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576&#x2F;* * 一、设计类、其实就是设计类的成员 * Field &#x3D; 属">
+  <meta name="keywords" content=" Hexo , Github ">
+  <meta name="description" content="面向对象（类与对象） | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="面向对象11.类与对象1.1类与对象的创建及使用12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576&#x2F;* * 一、设计类、其实就是设计类的成员 * Field &#x3D; 属">
 <meta property="og:type" content="article">
 <meta property="og:title" content="面向对象（类与对象）">
 <meta property="og:url" content="http://example.com/2023/03/21/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A11/index.html">
@@ -43,87 +43,433 @@
 <meta property="article:tag" content="Github">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/img_convert/e10710c43389ff33e23d546de2ee864a.png">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
 
-  
-  
-<link rel="stylesheet" href="/css/style.css">
 
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+<link rel="icon" href="/img/avatar.jpg">
 
-  
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
 <meta name="generator" content="Hexo 6.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
 
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-
-      <div class="outer">
-        <section id="main"><article id="post-面向对象1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/03/21/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A11/" class="article-date">
-  <time class="dt-published" datetime="2023-03-21T02:56:25.343Z" itemprop="datePublished">2023-03-21</time>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
 </a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%8D%9A%E5%AE%A2%E7%AF%87/">博客篇</a>
-  </div>
+<div class="author">
+    <span>John Doe</span>
+</div>
 
-  </div>
-  <div class="article-inner">
+<div class="icon">
     
-    
-      <header class="article-header">
         
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      面向对象（类与对象）
-    </h1>
-  
-
-      </header>
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
     
-    <div class="e-content article-entry" itemprop="articleBody">
+        
+            <a title="github"
+               href="https://github.com/yelog"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="facebook"
+               href="https://www.facebook.com/faker.tops"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-facebook"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+            <a title="instagram"
+               href="https://www.facebook.com/faker.tops"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-instagram"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="reddit"
+               href="https://www.reddit.com/user/yelog/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-reddit"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="weibo"
+               href="http://weibo.com/u/2307534817"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-weibo"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="jianshu"
+               href="https://www.jianshu.com/u/ff56736de7cf"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-jianshu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/jaytp/activities"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+            <a title="oschina"
+               href="https://my.oschina.net/yelog"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-oschina"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+            <a title="email"
+               href="mailto:jaytp@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=872336115&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="kugou"
+               href="https://www.kugou.com/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-kugou"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="neteasemusic"
+               href="https://music.163.com/#/user/home?id=88151013"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-neteasemusic"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(2)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="博客篇">
+                        
+                        博客篇
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="2">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Github</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Hexo</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All 博客篇 "
+           href="/2023/03/21/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A11/"
+           data-tag="Hexo,Github"
+           data-author="" >
+            <span class="post-title" title="面向对象（类与对象）">面向对象（类与对象）</span>
+            <span class="post-date" title="2023-03-21 10:56:25">2023/03/21</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2023/03/21/hello-world/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2023-03-21 10:51:18">2023/03/21</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-面向对象1" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">面向对象（类与对象）</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="博客篇">博客篇</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">Hexo</a>
+            
+            <a class="color2">Github</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2023-03-21 09:01:00'>2023-03-21 10:56</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A11"><span class="toc-text">面向对象1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1"><span class="toc-text">1.类与对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA%E5%8F%8A%E4%BD%BF%E7%94%A8"><span class="toc-text">1.1类与对象的创建及使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2%E7%B1%BB%E7%9A%84%E6%88%90%E5%91%98%E4%B9%8B%E4%B8%80%EF%BC%9A%E5%B1%9E%E6%80%A7"><span class="toc-text">1.2类的成员之一：属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3%E7%B1%BB%E7%9A%84%E6%88%90%E5%91%98%E4%B9%8B%E4%BA%8C%EF%BC%9A%E6%96%B9%E6%B3%95"><span class="toc-text">1.3类的成员之二：方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4%E6%96%B9%E6%B3%95%E7%9A%84%E9%87%8D%E8%BD%BD"><span class="toc-text">1.4方法的重载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5%E6%96%B9%E6%B3%95%E5%8F%82%E6%95%B0%E5%80%BC%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6"><span class="toc-text">1.5方法参数值传递机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6%E9%80%92%E5%BD%92"><span class="toc-text">1.6递归</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%89%B9%E5%BE%81%E4%B9%8B%E4%B8%80%EF%BC%9A%E5%B0%81%E8%A3%85%E4%B8%8E%E9%9A%90%E8%97%8F"><span class="toc-text">2.面向对象特征之一：封装与隐藏</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1%E5%9B%9B%E7%A7%8D%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-text">2.1四种权限修饰符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2%E5%9B%9B%E7%A7%8D%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-text">2.2四种访问权限修饰符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%9E%84%E9%80%A0%E5%99%A8%EF%BC%88%E7%B1%BB%E7%9A%84%E6%88%90%E5%91%98%E4%B9%8B%E4%B8%89%EF%BC%89"><span class="toc-text">3.构造器（类的成员之三）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1%E6%9E%84%E9%80%A0%E5%99%A8%E7%90%86%E8%A7%A3"><span class="toc-text">3.1构造器理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2%E5%B1%9E%E6%80%A7%E8%B5%8B%E5%80%BC%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-text">3.2属性赋值的过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3Javabean"><span class="toc-text">3.3Javabean</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-UML%E7%B1%BB%E5%9B%BE"><span class="toc-text">3.4 UML类图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5%E5%85%B3%E4%BA%8E%E6%9E%84%E9%80%A0%E5%99%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E8%A1%A5%E5%85%85%E7%90%86%E8%A7%A3"><span class="toc-text">3.5关于构造器的一些补充理解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-this%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">4.this的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-this%E8%B0%83%E7%94%A8%E5%B1%9E%E6%80%A7%EF%BC%8C%E6%96%B9%E6%B3%95%EF%BC%8C%E6%9E%84%E9%80%A0%E5%99%A8"><span class="toc-text">4.1.this调用属性，方法，构造器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-package%E3%80%81import-%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">5.package、import 的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1package"><span class="toc-text">5.1package</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2import"><span class="toc-text">5.2import</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A12"><span class="toc-text">面向对象2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%89%B9%E5%BE%81%E4%B9%8B%E4%BA%8C%EF%BC%9A%E7%BB%A7%E6%89%BF%E6%80%A7"><span class="toc-text">6.面向对象特征之二：继承性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1%E7%BB%A7%E6%89%BF%E6%80%A7%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-text">6.1继承性的理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2%E7%BB%A7%E6%89%BF%E6%80%A7%E7%9A%84%E7%BB%83%E4%B9%A0"><span class="toc-text">6.2继承性的练习</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E6%96%B9%E6%B3%95%E7%9A%84%E9%87%8D%E5%86%99"><span class="toc-text">7.方法的重写</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1%E9%87%8D%E5%86%99%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-text">7.1重写的理解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-super"><span class="toc-text">8.super</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1super"><span class="toc-text">8.1super</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E5%AD%90%E7%B1%BB%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96"><span class="toc-text">9.子类对象实例化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%89%B9%E5%BE%81%E4%B9%8B%E4%B8%89%EF%BC%9A%E5%A4%9A%E6%80%81%E6%80%A7"><span class="toc-text">10.面向对象特征之三：多态性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#10-1%E5%A4%9A%E6%80%81%E6%80%A7%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-text">10.1多态性的理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-2%E5%90%91%E4%B8%8B%E8%BD%AC%E5%9E%8B%E4%B8%8E%E5%90%91%E4%B8%8A%E8%BD%AC%E5%9E%8B"><span class="toc-text">10.2向下转型与向上转型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-3%E5%A4%9A%E6%80%81%E6%80%A7%E7%9A%84%E8%A1%A5%E5%85%85"><span class="toc-text">10.3多态性的补充</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11object%E7%B1%BB"><span class="toc-text">11object类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#11-1Object%E7%B1%BB%E4%B8%AD%E7%9A%84%E4%B8%BB%E8%A6%81%E7%BB%93%E6%9E%84"><span class="toc-text">11.1Object类中的主要结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-2-x3D-x3D-%E6%93%8D%E4%BD%9C%E7%AC%A6%E4%B8%8Eequals%E6%96%B9%E6%B3%95"><span class="toc-text">11.2&#x3D;&#x3D;操作符与equals方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-3toString%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">11.3toString的使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E5%8C%85%E8%A3%85%E7%B1%BB-Wrapper-%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">12.包装类(Wrapper)的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#12-1%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">12.1单元测试方法的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-2%E5%8C%85%E8%A3%85%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">12.2包装类的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-3%E5%8C%85%E8%A3%85%E7%B1%BB%E4%B8%8E%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2"><span class="toc-text">12.3包装类与基本数据类型相互转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13static"><span class="toc-text">13static</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#13-1static%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-text">13.1static的理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-2%E5%8D%95%E4%BE%8B-Singleton-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-text">13.2单例(Singleton)设计模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-%E7%B1%BB%E7%9A%84%E6%88%90%E5%91%98%E4%B9%8B%E5%9B%9B%EF%BC%9A%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="toc-text">14.类的成员之四：代码块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-final"><span class="toc-text">15.final</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-%E6%8A%BD%E8%B1%A1%E7%B1%BB%E4%B8%8E%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95"><span class="toc-text">16.抽象类与抽象方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#16-1%E6%8A%BD%E8%B1%A1%E7%B1%BB%E7%90%86%E8%A7%A3"><span class="toc-text">16.1抽象类理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-2%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%BA%94%E7%94%A8"><span class="toc-text">16.2抽象类应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-3%E5%88%9B%E5%BB%BA%E6%8A%BD%E8%B1%A1%E7%B1%BB%E7%9A%84%E5%8C%BF%E5%90%8D%E5%AD%90%E7%B1%BB%E5%AF%B9%E8%B1%A1"><span class="toc-text">16.3创建抽象类的匿名子类对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-4%E6%8A%BD%E8%B1%A1%E7%B1%BB%E7%9A%84%E7%BB%83%E4%B9%A0"><span class="toc-text">16.4抽象类的练习</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-%E6%8E%A5%E5%8F%A3"><span class="toc-text">17.接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#17-1%E6%8E%A5%E5%8F%A3%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-text">17.1接口的理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-2%E6%8E%A5%E5%8F%A3%E7%9A%84%E7%BB%83%E4%B9%A0"><span class="toc-text">17.2接口的练习</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-%E7%B1%BB%E7%9A%84%E5%86%85%E9%83%A8%E6%88%90%E5%91%98%E4%B9%8B%E4%BA%94%EF%BC%9A%E5%86%85%E9%83%A8%E7%B1%BB"><span class="toc-text">18.类的内部成员之五：内部类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-text">结语</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
       
         <h1 id="面向对象1"><a href="#面向对象1" class="headerlink" title="面向对象1"></a>面向对象1</h1><h2 id="1-类与对象"><a href="#1-类与对象" class="headerlink" title="1.类与对象"></a>1.类与对象</h2><h3 id="1-1类与对象的创建及使用"><a href="#1-1类与对象的创建及使用" class="headerlink" title="1.1类与对象的创建及使用"></a>1.1类与对象的创建及使用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 一、设计类、其实就是设计类的成员</span></span><br><span class="line"><span class="comment"> * Field = 属性 = 成员变量 = 域、字段</span></span><br><span class="line"><span class="comment"> * Method = (成员)方法 = 函数 </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * 创建类 = 类的实例化 = 实例化类</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * 二.类和对象的使用(面向对象思想落地的实现)</span></span><br><span class="line"><span class="comment"> * 1.创建类，设计类的成员</span></span><br><span class="line"><span class="comment"> * 2.创建类的对象</span></span><br><span class="line"><span class="comment"> * 3.通过“对象.属性”或“对象.方法”调用对象的结构</span></span><br><span class="line"><span class="comment"> * 三、如果创建类一个类的多个对象，则每个对象都独立的拥有一套类的属性。(非 static 的)</span></span><br><span class="line"><span class="comment"> * 	  意味着:如果我们修改一个对象的属性 a，则不影响另外一个对象属性 a 的值。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">//测试类</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PersonTest</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">//2.创建 Person 类的对象</span></span><br><span class="line">		<span class="comment">//创建对象语法：类名对象名= new 类名();</span></span><br><span class="line">		<span class="type">Person</span> <span class="variable">p1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line">		<span class="comment">//Scanner scan = new Scanner(System.in);</span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">//调用类的结构：属性、方法</span></span><br><span class="line">		<span class="comment">//调用属性:“对象.属性”</span></span><br><span class="line">		p1.name = <span class="string">&quot;Tom&quot;</span>;</span><br><span class="line">		p1.age = <span class="number">25</span>;</span><br><span class="line">		p1.isMale = <span class="literal">true</span>;</span><br><span class="line">		System.out.println(p1.name);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//调用方法:“对象.方法”</span></span><br><span class="line">		p1.eat();</span><br><span class="line">		p1.sleep();</span><br><span class="line">		p1.talk(<span class="string">&quot;chinese&quot;</span>);</span><br><span class="line">		<span class="comment">//**********************</span></span><br><span class="line">		<span class="type">Person</span> <span class="variable">p2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line">		System.out.println(p2.name); <span class="comment">//null</span></span><br><span class="line">		System.out.println(p2.isMale);</span><br><span class="line">		<span class="comment">//**********************</span></span><br><span class="line">		<span class="comment">//将 p1 变量保存的对象地址值赋给 p3,导致 p1 和 p3 指向了堆空间中的一个对象实体。</span></span><br><span class="line">		<span class="type">Person</span> <span class="variable">p3</span> <span class="operator">=</span> p1;</span><br><span class="line">		System.out.println(p3.name);</span><br><span class="line">		</span><br><span class="line">		p3.age = <span class="number">10</span>;</span><br><span class="line">		System.out.println(p1.age); <span class="comment">//10</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 类的语法格式：</span></span><br><span class="line"><span class="comment"> * 修饰符 class 类名&#123;</span></span><br><span class="line"><span class="comment"> * 		属性声明;</span></span><br><span class="line"><span class="comment"> * 		方法声明;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> * 说明：修饰符 public：类可以被任意访问类的正文要用&#123;  &#125;括起来</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">//1.创建类，设计类的成员</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//属性:对应类中的成员变量</span></span><br><span class="line">	String name;</span><br><span class="line">	<span class="type">int</span> age;</span><br><span class="line">	<span class="type">boolean</span> isMale;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//方法:对应类中的成员方法</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">()</span>&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;吃饭&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sleep</span><span class="params">()</span>&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;睡觉&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">talk</span><span class="params">(String language)</span>&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;人可以说话，使用的是：&quot;</span> + language);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -320,135 +666,193 @@
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>面向对象学习的过程算是比较久，断断续续，希望后面有时间把这部分知识在复习一遍。</p>
 
       
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/21/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A11/" data-id="clfhnzbvq0000c8vn3tekc8fv" data-title="面向对象（类与对象）" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li></ul>
-
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-  
-    <a href="/2023/03/21/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hello World</div>
-    </a>
-  
-</nav>
-
-  
 </article>
 
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8D%9A%E5%AE%A2%E7%AF%87/">博客篇</a></li></ul>
-    </div>
-  </div>
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2023/03/21/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A11/">面向对象（类与对象）</a>
-          </li>
-        
-          <li>
-            <a href="/2023/03/21/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2023 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
     
 
 
-<script src="/js/jquery-3.4.1.min.js"></script>
 
 
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 Yelog
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>Help us with donation</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">alipay</label></span><span><label><input type="radio" name="pay" value="weixin">weixin</label></span>
+    </div>
+</div>
 
 
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
-  </div>
 </body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
 </html>
