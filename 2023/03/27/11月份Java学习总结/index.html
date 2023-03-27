@@ -2,46 +2,25 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>方立夏</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="方立夏">
+  <title>Java （11月总结） | 方立夏</title>
+  <meta name="keywords" content=" Java , Github ">
+  <meta name="description" content="Java （11月总结） | 方立夏">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="算法学习（2023 -03-09）（数组）涉及到的算法题目1.2.3题涉及的知识点为滑动窗口1.长度最小的子数组1.题目给定一个含有 n 个正整数的数组和一个正整数 s ，找出该数组中满足其和 ≥ s 的长度最小的 连续 子数组，并返回其长度。如果不存在符合条件的子数组，返回 0。 示例： 输入：s &#x3D; 7, nums &#x3D; [2,3,1,2,4,3] 输出：2 解释：子数组 [">
+<meta name="description" content="11月份Java学习总结需要注意的点1 输入语句&#x2F;*如何从键盘获取不同类型的变量，需要使用Scanner类 具体步骤：1.导包：import java.util.Scanner;2.Scanner的实例化;3.调用Scanner类的相关方法，来获取指定的变量。 import java.util.Scanner;  class IFTest&amp;#123;     public static">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法练习（数组滑动窗口）">
-<meta property="og:url" content="http://example.com/2023/03/21/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A03%EF%BC%88%E5%85%B3%E4%BA%8E%E6%95%B0%E7%BB%84%E5%A4%84%E7%90%86%E7%9A%84%E5%89%A9%E4%BD%99%E7%9F%A5%E8%AF%86%EF%BC%89/index.html">
+<meta property="og:title" content="Java （11月总结）">
+<meta property="og:url" content="http://example.com/2023/03/27/11%E6%9C%88%E4%BB%BDJava%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="方立夏">
-<meta property="og:description" content="算法学习（2023 -03-09）（数组）涉及到的算法题目1.2.3题涉及的知识点为滑动窗口1.长度最小的子数组1.题目给定一个含有 n 个正整数的数组和一个正整数 s ，找出该数组中满足其和 ≥ s 的长度最小的 连续 子数组，并返回其长度。如果不存在符合条件的子数组，返回 0。 示例： 输入：s &#x3D; 7, nums &#x3D; [2,3,1,2,4,3] 输出：2 解释：子数组 [">
+<meta property="og:description" content="11月份Java学习总结需要注意的点1 输入语句&#x2F;*如何从键盘获取不同类型的变量，需要使用Scanner类 具体步骤：1.导包：import java.util.Scanner;2.Scanner的实例化;3.调用Scanner类的相关方法，来获取指定的变量。 import java.util.Scanner;  class IFTest&amp;#123;     public static">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://code-thinking.cdn.bcebos.com/gifs/209.%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.gif">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210312160441942.png">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/AZHyCoMMOCicvQicWSnN5ZNP97xQibk5RenSvNNZpr8ibMzLDeC2apV3ia2XS7ibTLC5WgGn3VStmCTw6elicia0ht2v6g/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
-<meta property="og:image" content="https://code-thinking-1253855093.file.myqcloud.com/pics/20220922102236.png">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBCcaan5hg7GsqSCVwq4sgZHyqBqfFF4G4oTjhACibCp2RcuMEPeHVjKQ/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBRn0NZibJkWiaJ522aMDOQEsiaiaX4AuXIBEjjKqetvibL104qGfSvmU4BRg/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBECDRbicfLRcRFCERDN4Ykq56ILvDlh6bft5nzG5TqgFXw4ib4y4kw4OA/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBcBzAWFuJjRttCghicyKua5cXicG1db1nTj3QLUh4nXgBNVkp2gznOzdw/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBHI2kPictZLyUeWXQ9Q6N5WBzRlBEXLRewuCDnmL4F2YiaPDN20w2ib9OQ/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBvib02FtjqhSI1R4CQVan160CwemYBsuofXycNecXWJIdysfwBeL2HibQ/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBbdTCtSzibQCt2O6kXkY18e5cncbriaPmjVDia5jp7rgFXICOoQPLBRIDA/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBS9aOEoYGMaic9SBZ2RoRx7soNExMKFbP3NsVo7aicKBjqz0iae46vATRg/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBGttfPK4icjwqxIOHdXC0xoMBLsG173oEN1KTlCmxGvN360XPiciaqvzIg/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBGAM79Tu8Xz5PX4C7Ub0oYFfUiaWU9qnrAXBmJZWPM8gGCloPaUqBwicQ/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBWDzzNiamIibl3YACnJyz1mgAnHwuTcteHOXpIXO5icph9rQAMxWTg4e7A/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBfwZocA61fXZPC26uuNKMUsk062VgbicxcLibf5tTQt2Uf6seEBYuZNlQ/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBtxrnKCicDoKEz5KvUAp4YIzA0W9d66xLK3z1HCpoVD5n1cXJUEnLvvQ/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBUQlq7WcBBpNfnz7OhuFtl72dMsNHstTiaD1icZCMO7ibFoxfkRun7aorg/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBwoNdbBfnQbibPDibLpmyCKZ5XIpzUbjtgDaR86xUBFWDFGTgKPibGZcjw/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSB5q9L67xuHKkWq8aGMsAOGty4Eybu1wicNicQmiajtCplAPNzxHicQggnyw/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/QhRDUrJbPe6b0Ce5EY0oeQpcNQsMsxSBfMaWjJSOIdunBicib5lB9TImdvGUgJQoibouvvl7dIRIL6CztXY0tBDoQ/640?wx_fmt=jpeg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
-<meta property="og:image" content="https://code-thinking-1253855093.file.myqcloud.com/pics/%E6%95%B0%E7%BB%84%E6%80%BB%E7%BB%93.png">
-<meta property="article:published_time" content="2023-03-21T07:31:11.887Z">
-<meta property="article:modified_time" content="2023-03-21T07:28:51.314Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/8229365e772dcb701637caee187afa18.png">
+<meta property="article:published_time" content="2023-03-27T12:59:41.603Z">
+<meta property="article:modified_time" content="2023-03-27T13:00:35.856Z">
 <meta property="article:author" content="方立夏">
-<meta property="article:tag" content="java">
+<meta property="article:tag" content="Java">
 <meta property="article:tag" content="Github">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://code-thinking.cdn.bcebos.com/gifs/209.%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.gif">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/img_convert/8229365e772dcb701637caee187afa18.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -81,7 +60,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -207,7 +186,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(9)</small>
+                <small>(10)</small>
             
         </div>
     </li>
@@ -218,7 +197,7 @@
                     <div data-rel="博客篇">
                         
                         博客篇
-                        <small>(1)</small>
+                        <small>(2)</small>
                         
                     </div>
                     
@@ -274,7 +253,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="9">
+<input type="hidden" id="yelog_site_posts_number" value="10">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -325,11 +304,11 @@
             </li>
         
             <li class="article-tag-list-item">
-                <i class="iconfont icon-tag"></i><a>Hexo</a>
+                <i class="iconfont icon-tag"></i><a>java</a>
             </li>
         
             <li class="article-tag-list-item">
-                <i class="iconfont icon-tag"></i><a>java</a>
+                <i class="iconfont icon-tag"></i><a>Java</a>
             </li>
         
     </div>
@@ -340,9 +319,18 @@
     <nav id="title-list-nav">
         
         
+        <a  class="全部文章 博客篇 "
+           href="/2023/03/27/11%E6%9C%88%E4%BB%BDJava%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"
+           data-tag="Java,Github"
+           data-author="" >
+            <span class="post-title" title="Java （11月总结）">Java （11月总结）</span>
+            <span class="post-date" title="2023-03-27 20:59:41">2023/03/27</span>
+        </a>
+        
+        
         <a  class="全部文章 算法篇 "
            href="/2023/03/21/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A03%EF%BC%88%E5%85%B3%E4%BA%8E%E6%95%B0%E7%BB%84%E5%A4%84%E7%90%86%E7%9A%84%E5%89%A9%E4%BD%99%E7%9F%A5%E8%AF%86%EF%BC%89/"
-           data-tag="java,Github"
+           data-tag="Github,java"
            data-author="" >
             <span class="post-title" title="算法练习（数组滑动窗口）">算法练习（数组滑动窗口）</span>
             <span class="post-date" title="2023-03-21 15:31:11">2023/03/21</span>
@@ -351,7 +339,7 @@
         
         <a  class="全部文章 算法篇 "
            href="/2023/03/21/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/"
-           data-tag="java,Github"
+           data-tag="Github,java"
            data-author="" >
             <span class="post-title" title="算法练习（数组）">算法练习（数组）</span>
             <span class="post-date" title="2023-03-21 15:31:10">2023/03/21</span>
@@ -360,7 +348,7 @@
         
         <a  class="全部文章 算法篇 "
            href="/2023/03/21/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%93%88%E5%B8%8C%E8%A1%A8%EF%BC%8923-03-10/"
-           data-tag="java,Github"
+           data-tag="Github,java"
            data-author="" >
             <span class="post-title" title="算法练习（哈希表）">算法练习（哈希表）</span>
             <span class="post-date" title="2023-03-21 15:31:08">2023/03/21</span>
@@ -369,25 +357,25 @@
         
         <a  class="全部文章 后端篇 "
            href="/2023/03/21/Java%E9%AB%98%E7%BA%A7%E7%AF%87%EF%BC%88%E5%BC%82%E5%B8%B8%EF%BC%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%8C%E5%B8%B8%E7%94%A8%E7%B1%BB%EF%BC%89/"
-           data-tag="java,Github"
+           data-tag="Github,java"
            data-author="" >
-            <span class="post-title" title="面向对象（类与对象）">面向对象（类与对象）</span>
+            <span class="post-title" title="Java高级篇（异常，多线程，常用类）">Java高级篇（异常，多线程，常用类）</span>
             <span class="post-date" title="2023-03-21 15:30:59">2023/03/21</span>
         </a>
         
         
         <a  class="全部文章 后端篇 "
            href="/2023/03/21/Java%E9%AB%98%E7%BA%A7%E7%AF%87%EF%BC%88%E9%9B%86%E5%90%88%EF%BC%8C%20%E6%B3%9B%E6%80%A7%EF%BC%89/"
-           data-tag="java,Github"
+           data-tag="Github,java"
            data-author="" >
-            <span class="post-title" title="面向对象（类与对象）">面向对象（类与对象）</span>
+            <span class="post-title" title="Java HashMap 方法">Java HashMap 方法</span>
             <span class="post-date" title="2023-03-21 15:30:57">2023/03/21</span>
         </a>
         
         
         <a  class="全部文章 算法篇 "
            href="/2023/03/21/%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A02%E4%B8%80%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0%EF%BC%88%E5%8F%8C%E6%8C%87%E9%92%88%EF%BC%89/"
-           data-tag="java,Github"
+           data-tag="Github,java"
            data-author="" >
             <span class="post-title" title="算法练习（双指针）">算法练习（双指针）</span>
             <span class="post-date" title="2023-03-21 15:25:32">2023/03/21</span>
@@ -396,7 +384,7 @@
         
         <a  class="全部文章 算法篇 "
            href="/2023/03/21/%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0%EF%BC%88%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%89/"
-           data-tag="java,Github"
+           data-tag="Github,java"
            data-author="" >
             <span class="post-title" title="算法练习（字符串）">算法练习（字符串）</span>
             <span class="post-date" title="2023-03-21 15:25:25">2023/03/21</span>
@@ -405,9 +393,9 @@
         
         <a  class="全部文章 博客篇 "
            href="/2023/03/21/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A11/"
-           data-tag="Github,Hexo"
+           data-tag="Java,Github"
            data-author="" >
-            <span class="post-title" title="11月Java总结">11月Java总结</span>
+            <span class="post-title" title="Java（封装）（构造器）（继承）（多态性）">Java（封装）（构造器）（继承）（多态性）</span>
             <span class="post-date" title="2023-03-21 10:56:25">2023/03/21</span>
         </a>
         
@@ -436,12 +424,60 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-11月份Java学习总结" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-Blog"><span class="toc-text">Why Blog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-text">对博客的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2"><span class="toc-text">关于我的博客</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0"><span class="toc-text">博客平台</span></a></li></ol></li></ol>
+        <h1 class="article-title">Java （11月总结）</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="博客篇">博客篇</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">Java</a>
+            
+            <a class="color2">Github</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2023-03-27 21:00:35'>2023-03-27 20:59</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#11%E6%9C%88%E4%BB%BDJava%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93"><span class="toc-text">11月份Java学习总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E7%82%B9"><span class="toc-text">需要注意的点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%BE%93%E5%85%A5%E8%AF%AD%E5%8F%A5"><span class="toc-text">1 输入语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2switch-case-%E7%BB%93%E6%9E%84"><span class="toc-text">2switch-case 结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%B5%8C%E5%A5%97%E5%BE%AA%E7%8E%AF"><span class="toc-text">3 嵌套循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-break-continue"><span class="toc-text">4 break continue</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -454,36 +490,235 @@
     }
 </style>
 </div>
-            <h1 id="Why-Blog"><a href="#Why-Blog" class="headerlink" title="Why Blog"></a>Why Blog</h1><h2 id="对博客的理解"><a href="#对博客的理解" class="headerlink" title="对博客的理解"></a>对博客的理解</h2><p>喜欢写Blog的人，会经历三个阶段。</p>
-<blockquote>
-<p>第一阶段，刚接触Blog，觉得很新鲜，试着选择一个免费空间来写。</p>
-</blockquote>
-<blockquote>
-<p>第二阶段，发现免费空间限制太多，就自己购买域名和空间，搭建独立博客。</p>
-</blockquote>
-<blockquote>
-<p>第三阶段，觉得独立博客的管理太麻烦，最好在保留控制权的前提下，让别人来管，自己只负责写文章。</p>
-</blockquote>
-<p>我们每个人的在网络上产生的数据越来越多，这些信息是我们在互联网上存在过的痕迹，值得我们认真对待。但是它们被分散分布在各个网站上。很多时候我们很难将它们聚合在一起，而且各个网站的信息排布方式也没有办法自由控制，所以我们需要一个可以由自己主宰的空间——博客。</p>
-<p>通过博客，我们可以记录自己的生活和成长的轨迹。它不像 Twitter 那样碎片化，也不像 Facebook 那样关系化，它是私人的空间。</p>
-<h2 id="关于我的博客"><a href="#关于我的博客" class="headerlink" title="关于我的博客"></a>关于我的博客</h2><p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
-<h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 生成，部署在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主题 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a> 已经在github上开源</p>
-<p><code>3-hexo</code> 主题使用交流可以加 Q群: <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=e8cf083cc097141eaf323396f1766809b8e90ff00c67bb441898f672892f6904"><img data-ignore border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="3-hexo使用交流" title="3-hexo使用交流"></a></p>
-<p>主要功能：</p>
-<ul>
-<li>搜索支持文章标题、标签(#标签)、作者(@作者)</li>
-<li>pad&#x2F;手机等移动端适配</li>
-<li>页面全局快捷键 <a target="_blank" rel="noopener" href='http://yelog.org/2017/03/24/3-hexo-shortcuts/'>3-hexo快捷键说明</a></li>
-</ul>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="11月份Java学习总结"><a href="#11月份Java学习总结" class="headerlink" title="11月份Java学习总结"></a>11月份Java学习总结</h1><h2 id="需要注意的点"><a href="#需要注意的点" class="headerlink" title="需要注意的点"></a>需要注意的点</h2><h3 id="1-输入语句"><a href="#1-输入语句" class="headerlink" title="1 输入语句"></a>1 输入语句</h3><p>&#x2F;*<br>如何从键盘获取不同类型的变量，需要使用Scanner类</p>
+<p>具体步骤：<br>1.导包：import java.util.Scanner;<br>2.Scanner的实例化;<br>3.调用Scanner类的相关方法，来获取指定的变量。</p>
+<pre><code class="java">import java.util.Scanner;
 
-        </article>
+class IFTest&#123;
+    public static void main(String[] args)&#123;
+        //声明一个Scanner
+        Scanner scan = new Scanner(System.in);	
+    int num = scan.nextInt();
+
+    System.out.println(num);
+    &#125;
+&#125;
+</code></pre>
+<h3 id="2switch-case-结构"><a href="#2switch-case-结构" class="headerlink" title="2switch-case 结构"></a>2switch-case 结构</h3><p><strong>注意： switch结构中的表达式，只能是如下的六种数据类型之一：byte、short、char、int、枚举类型(JDK5.0)、String类型(JDK7.0)</strong></p>
+<p><strong>不能是：long，float，double，boolean</strong>。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/8229365e772dcb701637caee187afa18.png" alt="结构"></p>
+<p>&#x2F;*<br>分支结构之二：switch-case</p>
+<p>1.格式<br>switch(表达式){<br>case 常量1:<br>    执行语句1;<br>    &#x2F;&#x2F;break;<br>case 常量2:<br>    执行语句2;<br>    &#x2F;&#x2F;break;</p>
+<p>…</p>
+<p>default:<br>    执行语句n:<br>    &#x2F;&#x2F;break;<br>}</p>
+<p>2.说明:<br>① 根据switch表达式中的值，依次匹配各个case中的常量。一旦匹配成功，进入相应case结构中，执行相关语句。<br>  当调用完执行语句后，则仍然继续向下执行其他case语句，直到遇到break关键字或末尾结束为止。</p>
+<p>② break, 可以使用switch-case结构中，表示一旦执行到此关键字，就跳出switch-case结构。</p>
+<p>③ switch结构中的表达式，只能是如下的六种数据类型之一：byte、short、char、int、枚举类型(JDK5.0)、String类型(JDK7.0)<br>④ case 之后之能声明常量。不能声明范围。</p>
+<p>⑤ break关键字是可选的。<br>⑥ default：相当于if-else结构中的else。<br>            default 结构是可选的，而且位置是灵活的。</p>
+<pre><code class="java">*/
+
+class SwitchTest&#123;
+    public static void main(String[] args)&#123;	
+int number = 2;
+    switch(number)&#123;
+    case 0:
+        System.out.println(&quot;zero&quot;);
+        break;
+    case 1:
+        System.out.println(&quot;one&quot;);
+        break;
+    case 2:
+        System.out.println(&quot;twe&quot;);
+        break;
+    case 3:
+        System.out.println(&quot;three&quot;);
+        break;
+    default:
+        System.out.println(&quot;other&quot;);
+        break;
+    &#125;
+
+    //*********************************
+    //运行报错，不能运行boolean类型
+    /*		boolean isHandSome = true;
+        switch(isHandSome)&#123;
+        case true:
+            System.out.println(&quot;可乐吗？？&quot;);
+            break;
+        case false:
+            System.out.println(&quot;薯条吗？？&quot;);
+            break;
+        default:
+            System.out.println(&quot;输入有误！！！&quot;);
+        &#125;
+*/
+        //*********************************
+        String season= &quot;summer&quot;;
+        switch(season) &#123;
+        case&quot;spring&quot;:
+            System.out.println(&quot;春暖花开&quot;);
+            break;
+        case&quot;summer&quot;:
+            System.out.println(&quot;夏日炎炎&quot;);
+            break;
+        case&quot;autumn&quot;:
+            System.out.println(&quot;秋高气爽&quot;);
+            break;
+        case&quot;winter&quot;:
+            System.out.println(&quot;冬雪皑皑&quot;);
+            break;
+        default:
+            System.out.println(&quot;季节输入有误&quot;);
+            break;
+        &#125;
         
-        <p>
-            <a  class="dashang" onclick="dashangToggle()">赏</a>
-        </p>
+</code></pre>
+<h3 id="3-嵌套循环"><a href="#3-嵌套循环" class="headerlink" title="3 嵌套循环"></a>3 嵌套循环</h3><p>&#x2F;*<br>嵌套循环的使用<br>1.嵌套循环：将一个循环结构A声明在另一个循环结构B的循环体中，就构成了嵌套循环</p>
+<ol start="2">
+<li>外层循环：循环结构B<br>内层循环：循环结构A<br>3.说明<br>① 内层循环遍历一遍，只相当于外层循环循环体执行了一次<br>② 假设外层循环需要执行m次，内层循环需要执行n次。此时内层循环的循环体一共执行了m * n次</li>
+</ol>
+<p>4.技巧<br>外层循环控制行数，内层循环控制列数</p>
+<pre><code class="java">    
+class  ForForTest&#123;
+    public static void main(String[] args) &#123;
+        //******
+        for(int i = 1;i &lt;= 6;i++)&#123;
+            System.out.print(&quot;*&quot;);
+        &#125;
+        System.out.println();//换行
+    /*
+    ******
+    ******
+    ******
+    ******
+    */
+    for(int i = 1;i &lt;= 4;i++)&#123;  
+        for(int j = 1;j &lt;= 6;j++)&#123;  
+            System.out.print(&#39;*&#39;);
+        &#125;
+        System.out.println();	//换行
+    &#125;
+    /*
+    *
+    **
+    ***
+    ****
+    *****
+    */
+    for(int i = 1;i &lt;= 5;i++)&#123;  //控制行数
+        for(int j = 1;j &lt;= i;j++)&#123;  //控制列数
+            System.out.print(&quot;*&quot;);
+        &#125;
+        System.out.println();
+    &#125;
+    /*
+    *****
+    ****
+    ***
+    **
+    *
+    */
+    for(int i = 1;i &lt;= 6;i++)&#123;
+        for(int j = 1;j &lt;= 6-i;j++)&#123;
+            System.out.print(&quot;*&quot;);
+        &#125;
+        System.out.println();
+    &#125;
+
+    /*
+    *
+    **
+    ***
+    ****
+    *****
+    ****
+    ***
+    **
+    *
+    */
+    for(int i = 1;i &lt;= 5;i++)&#123;
+        for(int j = 1;j &lt;= i;j++)&#123;
+            System.out.print(&quot;*&quot;);
+        &#125;
+        System.out.println();
+    &#125;
+
+    for(int i = 1;i &lt;= 5;i++)&#123;
+        for(int j = 1;j &lt;= 5-i;j++)&#123;
+            System.out.print(&quot;*&quot;);
+        &#125;
+        System.out.println();
+    &#125;
+
+    //九九乘法表
+    for(int i = 1;i &lt;= 9;i++)&#123;
+        for(int j = 1;j &lt;= i;j++)&#123;
+            System.out.print(i + &quot;*&quot; + j + &quot;=&quot; + i*j + &quot; &quot;);
+        &#125;
+        System.out.println();	//换行
+    &#125;
+
+&#125;
+</code></pre>
+<h3 id="4-break-continue"><a href="#4-break-continue" class="headerlink" title="4 break continue"></a>4 break continue</h3><p>1、break的使用</p>
+<p>break语句用于终止某个语句块的执行<br>break语句出现在多层嵌套的语句块中时，可以通过标签指明要终止的是哪一层语句块</p>
+<p>2、continue的使用</p>
+<p>continue 语句<br>continue只能使用在循环结构中<br>continue语句用于跳过其所在循环语句块的一次执行，继续下一次循环<br>continue语句出现在多层嵌套的循环语句体中时，可以通过标签指明要跳过的是哪一层循环<br>3、return的使用</p>
+<p>return：并非专门用于结束循环的，它的功能是结束一个方法。当一个方法执行到一个return语句时，这个方法将被结束。<br>与break和continue不同的是，return直接结束整个方法，不管这个return处于多少层循环之内。<br>4、特殊流程控制语句说明</p>
+<p>break只能用于switch语句和循环语句中。<br>continue 只能用于循环语句中。<br>二者功能类似，但continue是终止本次循环，break是终止本层循环。<br>break、continue之后不能有其他的语句，因为程序永远不会执行其后的语句。<br>标号语句必须紧接在循环的头部。标号语句不能用在非循环语句的前面。</p>
+<p>很多语言都有goto语句，goto语句可以随意将控制转移到程序中的任意一条语句上，然后执行它。但使程序容易出错。Java中的break和continue是不同于goto的。</p>
+<p>&#x2F;*<br>break和countinue关键字的使用<br>                使用范围			循环中使用的作用(不同点)	相同点<br>break:			switch-case			结束当前循环				关键字后面不能声明执行语句<br>                循环结构中</p>
+<p>countinue:		循环结构中			结束当次循环				关键字后面不能声明执行语句</p>
+<p>*&#x2F;</p>
+<pre><code class="java">    class BreakContinueTest&#123;
+    public static void main(String[] args)&#123;
+    for(int i = 1;i &lt;= 10;i++)&#123;
+        if(i % 4 == 0)&#123;
+        //	break;	//1、2、3
+            continue;	//1、2、3、5、6、7、9、10
+        //	System.out.println(&quot;该吃饭了！！！&quot;);
+        &#125;
+    //	System.out.println(i);
+    &#125;
+    //********************************
+    for(int i = 1;i &lt;= 4;i++)&#123;
         
-        
+            for(int j = 1;j &lt;= 10; j++)&#123;
+                if(i % 4 == 0)&#123;
+            //		break;	//默认跳出包裹此关键字最近的一层的循环
+                    continue;
+                &#125;
+                System.out.print(j);
+            &#125;
+            System.out.println();
+    &#125;
+&#125;
+&#125;
+</code></pre>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -492,11 +727,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 <div class="hide_box" onclick="dashangToggle()"></div>
